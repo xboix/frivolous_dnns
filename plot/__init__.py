@@ -65,7 +65,7 @@ def drop_duplicates(data, ignored_key_columns, inplace=False):
 
 
 def get_results_dir(subdirectory=None):
-    results_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'results')
+    results_dir = os.path.join(os.path.dirname(__file__), '..', 'results')
     if subdirectory is not None:
         results_dir = os.path.join(results_dir, subdirectory)
     if not os.path.isdir(results_dir):

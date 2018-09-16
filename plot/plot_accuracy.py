@@ -5,7 +5,7 @@ import sys
 import numpy as np
 import pandas as pd
 import glob
-from robustness.plot import plot, mock_cross_validation_if_necessary, WHOLE_NETWORK
+from plot import plot, mock_cross_validation_if_necessary, WHOLE_NETWORK
 import seaborn
 import matplotlib as mpl
 from matplotlib import pyplot
