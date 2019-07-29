@@ -1,4 +1,3 @@
-
 from __future__ import print_function
 import sys
 import numpy as np
@@ -11,10 +10,10 @@ import time
 
 from sklearn.manifold import TSNE
 import matplotlib as mpl
+
 mpl.use('Agg')
 import matplotlib.pyplot as plt
 from numpy import linalg as LA
-
 
 ################################################################################################
 # Read experiment to run
@@ -33,7 +32,7 @@ with open(opt.log_dir_base + opt.name + '/activations0.pkl', 'rb') as f:
 with open(opt.log_dir_base + opt.name + '/selectivity0.pkl', 'rb') as f:
     s = pickle.load(f)
 
-for LAYER in [3]:#range(4):
+for LAYER in [3]:  # range(4):
     res = a[LAYER].T
     tt = s[0][LAYER]
     res_base = a_base[LAYER].T
@@ -52,10 +51,9 @@ for LAYER in [3]:#range(4):
     KK = np.zeros([num_neurons, num_neurons_base])
     for k in range(num_neurons):
         for k_base in range(num_neurons_base):
-            KK[k, k_base] = np.sum((res[k, :]-res_base[k_base, :])**2)
+            KK[k, k_base] = np.sum((res[k, :] - res_base[k_base, :]) ** 2)
 
-
-    tt = np.argmin(KK,axis=1)
+    tt = np.argmin(KK, axis=1)
     cc = np.random.rand(num_neurons_base, 3)
 
     print(np.shape(res))
@@ -67,8 +65,4 @@ for LAYER in [3]:#range(4):
 
     savepath = os.path.join('./', 'tSNE_' + str(ID) + '_' + str(LAYER) + '.pdf')
     plt.savefig(savepath, format='pdf', dpi=1000)
-    #plt.close()
-
-
-
-
+    # plt.close()

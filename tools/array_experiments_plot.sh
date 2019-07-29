@@ -9,7 +9,5 @@
 #SBATCH --qos=cbmm
 
 cd /om/user/xboix/src/robustness/robustness/
-singularity exec -B /om:/om --nv /om/user/xboix/singularity/localtensorflow.img \
+singularity exec -B /om:/om --nv /om/user/xboix/singularity/xboix-tensorflow1.14.simg \
 python /om/user/xboix/src/robustness/robustness/plot_test.py ${SLURM_ARRAY_TASK_ID}
-
-

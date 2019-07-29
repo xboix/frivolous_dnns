@@ -4,6 +4,9 @@ from models.mlp import MLP1 as net_MLP1
 from models.mlp import MLP3 as net_MLP3
 from models.alexnet import Alexnet as net_Alexnet
 from models.alexnet import Alexnet_test as net_Alexnet_test
+from models.resnet_cifar import ResNet as net_ResNet_cifar
+from models.resnet_cifar import ResNet_test as net_ResNet_cifar_test
+from models.resnet_imagenet import ResNet as net_ResNet_imagenet
 from utils import summary as summ
 
 
@@ -18,5 +21,13 @@ def MLP1(x, dropout_rate, opt, labels_id):
 def Alexnet(x, dropout_rate, opt, labels_id):
     return net_Alexnet(x, opt, labels_id, dropout_rate)
 
-def Alexnet_test(x, dropout_rate, select, opt, labels_id, robustness, robustness_graph):
-    return net_Alexnet_test(x, opt, select, labels_id, dropout_rate, robustness, robustness_graph)
+
+def Alexnet_test(x, dropout_rate, select, opt, labels_id, perturbation_params, perturbation_type):
+    return net_Alexnet_test(x, opt, select, labels_id, dropout_rate, perturbation_params, perturbation_type)
+
+# ignore dropout rate and labels_id in the ResNet models
+def ResNet_cifar(x, dropout_rate, opt, labels_id):
+    return net_ResNet_cifar(x, opt)
+
+def ResNet_cifar_test(x, dropout_rate, select, opt, labels_id, perturbation_params, perturbation_type):
+    return net_ResNet_cifar_test(x, opt, select, perturbation_params, perturbation_type)

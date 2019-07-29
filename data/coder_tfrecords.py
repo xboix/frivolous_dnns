@@ -9,24 +9,24 @@ class ImageCoder(object):
         self._sess = tf.Session()
 
         # Initializes function that decodes RGB JPEG data.
-        self._jpeg_data = tf.placeholder(dtype=tf.string)
+        self._jpeg_data = tf.compat.v1.placeholder(dtype=tf.string)
         self._decode_jpeg = tf.image.decode_jpeg(self._jpeg_data, channels=3)
 
         # Initializes function that encodes RGB JPEG data.
-        self._image = tf.placeholder(dtype=tf.uint8)
+        self._image = tf.compat.v1.placeholder(dtype=tf.uint8)
         self._encode_jpeg = tf.image.encode_jpeg(
-        self._image, format='rgb', quality=100)
+            self._image, format='rgb', quality=100)
 
     def decode_jpeg(self, image_data):
         image = self._sess.run(self._decode_jpeg,
-                           feed_dict={self._jpeg_data: image_data})
+                               feed_dict={self._jpeg_data: image_data})
         assert len(image.shape) == 3
         assert image.shape[2] == 3
         return image
 
     def encode_jpeg(self, image):
         return self._sess.run(self._encode_jpeg,
-                          feed_dict={self._image: image})
+                              feed_dict={self._image: image})
 
 
 def _process_image(filename, coder):

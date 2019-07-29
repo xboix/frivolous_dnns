@@ -1,0 +1,1093 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="CUSTOM_SCOPE_NAME" value="Current File" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ed3bb66d-67f6-4dbd-a399-f518d8f264aa" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/data/mnist_read.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiment_lookup.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/get_activations.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/get_mappability.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/get_redundancy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/list_unfinished.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/resnet_cifar.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/resnet_imagenet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkl2csv_redundancy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/remove_unfinished.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tools/array_activations.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tools/array_redundancy.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tools/array_train.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tools/array_train_base.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tools/mappability.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tools/resnet_cifar_train.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/cifar_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/cifar_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/coder_tfrecords.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/coder_tfrecords.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiments.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extract_tSNE.py" beforeDir="false" afterPath="$PROJECT_DIR$/extract_tSNE.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/alexnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/alexnet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/local_conv.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/local_conv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/mlp.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/mlp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/nets.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/nets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/perturbations.py" beforeDir="false" afterPath="$PROJECT_DIR$/perturbations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkl2csv.py" beforeDir="false" afterPath="$PROJECT_DIR$/pkl2csv_robustness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_accuracy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_generalization_redundancy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_generalization_robustness.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_multiplier_robustness.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_multiplier_robustness_dropselective.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_multiplier_robustness_dropselective_layer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_multiplier_robustness_layer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_multipliers.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_nn.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_nn_layer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_not_selectivity.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_not_selectivity_layer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_numdata_neurons_vs_performance.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_numdata_redundancy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_numdata_robustness.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_numdata_selectivity.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_redundancy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_redundancy_layer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_redundancy_performance.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_redundancy_traintest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_redundancy_vs_robustness.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_robustness.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_robustness_raw.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_selectivity.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_selectivity_layer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot/plot_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/redundancy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_robustness.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_robustness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/array_experiments.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/array_experiments_base.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/array_experiments_plot.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_experiments_plot.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/array_experiments_redundancy.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/array_experiments_redundancy_nogpu.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/array_experiments_robustness.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_robustness.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/launch.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/tensorboard.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/tensorboard.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/summary.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/summary.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/experiments.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="573">
+              <caret line="629" column="2" selection-start-line="629" selection-start-column="2" selection-end-line="629" selection-end-column="2" />
+              <folding>
+                <element signature="e#66#1426#0" />
+                <element signature="e#95#727#0" />
+                <element signature="e#1453#1772#0" />
+                <element signature="e#1481#1634#0" />
+                <element signature="e#1811#2339#0" />
+                <element signature="e#2374#3911#0" />
+                <element signature="e#4481#4657#0" />
+                <element signature="e#4709#4923#0" />
+                <element signature="e#5092#8242#0" />
+                <element signature="e#8463#11526#0" />
+                <element signature="e#11768#14347#0" />
+                <element signature="e#14563#17142#0" />
+                <element signature="e#17440#20888#0" />
+                <element signature="e#21161#24277#0" />
+                <element signature="e#24605#27720#0" />
+                <element signature="e#28060#31176#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tools/array_robustness.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="61" lean-forward="true" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tools/array_train.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/get_robustness.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="216" column="46" lean-forward="true" selection-start-line="216" selection-start-column="46" selection-end-line="216" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+                <element signature="e#577#3812#0" />
+                <element signature="e#3985#9207#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/train.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="122" selection-start-line="122" selection-end-line="125" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>log</find>
+      <find>trainable</find>
+      <find>tf.RunOptions</find>
+      <find>learning</find>
+      <find>summary</find>
+      <find>fp16</find>
+      <find>_RECORD_BYTES</find>
+      <find>parse_record_fn</find>
+      <find>flags_obj.eval</find>
+      <find>from_tensor</find>
+      <find>parse_record</find>
+      <find>eval_only</find>
+      <find>input_fn</find>
+      <find>idx_multi</find>
+      <find>logits, act</find>
+      <find>im_y</find>
+      <find>augment</find>
+      <find>resnet_model_fn</find>
+      <find>weight_decay</find>
+      <find>cifar10_model_fn</find>
+      <find>process_record_dataset</find>
+      <find>opt_id</find>
+      <find>robustness</find>
+      <find>prod</find>
+      <find>L2</find>
+      <find>parameters</find>
+      <find>saver.restore</find>
+      <find>allow</find>
+      <find>allow_growth</find>
+      <find>growth</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>size_idx = size_idx_map[opt.dnn.neuron_multiplier[0]]</replace>
+      <replace>plt.figure(figsize=(10, 7))</replace>
+      <replace>df['layer']==</replace>
+      <replace>augmentation</replace>
+      <replace>for ID in range(62, 92)</replace>
+      <replace>size_idx_map[opt.dnn.neuron_multiplier[0]]</replace>
+      <replace>framealpha=0.8</replace>
+      <replace>neuron_multiplier</replace>
+      <replace>if opt.dnn.neuron_multiplier[0] == 1:</replace>
+      <replace>opt.dnn.neuron_multiplier[0] ==</replace>
+      <replace>selectivity_mean</replace>
+      <replace>c='black'</replace>
+      <replace>'lightgreen', 'limegreen', 'darkgreen'</replace>
+      <replace>tf.</replace>
+      <replace>tf.contrib.distribute</replace>
+      <replace>import</replace>
+      <replace>from utils</replace>
+      <replace />
+      <replace>perturbation_params</replace>
+      <replace>test_robustness</replace>
+      <replace>range_robustness</replace>
+      <replace>proj</replace>
+      <replace>tf.compat.v1.set_random_seed</replace>
+      <replace>tf.compat.v1.placeholder</replace>
+      <replace>tf.compat.v1.data.Iterator</replace>
+      <replace>tf.compat.v1.train.Saver</replace>
+      <replace>tf.compat.v1.summary.merge_all</replace>
+      <replace>tf.compat.v1.summary.FileWriter</replace>
+      <replace>tf.compat.v1.RunOptions</replace>
+      <replace>square_loss</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/resnet/official/utils/logs</dir>
+      <dir>$PROJECT_DIR$/data</dir>
+      <dir>$PROJECT_DIR$/resnet</dir>
+      <dir>$PROJECT_DIR$</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/plotting/plot_compressability.py" />
+        <option value="$PROJECT_DIR$/resnet/resnet.py" />
+        <option value="$PROJECT_DIR$/resnet/cifar10_download_and_extract.py" />
+        <option value="$PROJECT_DIR$/resnet/official/utils/logs/hooks.py" />
+        <option value="$PROJECT_DIR$/resnet/official/utils/logs/metric_hook.py" />
+        <option value="$PROJECT_DIR$/resnet/official/utils/misc/distribution_utils.py" />
+        <option value="$PROJECT_DIR$/resnet/official/utils/logs/logger.py" />
+        <option value="$PROJECT_DIR$/resnet/official/utils/logs/hooks_helper.py" />
+        <option value="$PROJECT_DIR$/resnet_old/resnet_model.py" />
+        <option value="$PROJECT_DIR$/list_unfinished.py" />
+        <option value="$PROJECT_DIR$/plotting/plot_similarity_layerwise.py" />
+        <option value="$PROJECT_DIR$/plotting/plot_similarity.py" />
+        <option value="$PROJECT_DIR$/tools/array_experiments_plot.sh" />
+        <option value="$PROJECT_DIR$/plotting/plot_r_dist.py" />
+        <option value="$PROJECT_DIR$/plotting/plot_perturbation_curves.py" />
+        <option value="$PROJECT_DIR$/models/resnet.py" />
+        <option value="$PROJECT_DIR$/models/resnet_imagenet.py" />
+        <option value="$PROJECT_DIR$/resnet/resnet_experiments.py" />
+        <option value="$PROJECT_DIR$/resnet/get_resnet_activations.py" />
+        <option value="$PROJECT_DIR$/resnet/cifar10_test.py" />
+        <option value="$PROJECT_DIR$/resnet/cifar_train.sh" />
+        <option value="$PROJECT_DIR$/../redundancy_dnns-master/redundancy.py" />
+        <option value="$PROJECT_DIR$/pkl2csv_redundancy.py" />
+        <option value="$PROJECT_DIR$/plotting/plot_mappability.py" />
+        <option value="$PROJECT_DIR$/plotting/plot_mappability_layerwise.py" />
+        <option value="$PROJECT_DIR$/deleteme.py" />
+        <option value="$PROJECT_DIR$/experiment_lookup.txt" />
+        <option value="$PROJECT_DIR$/get_redundancy.py" />
+        <option value="$PROJECT_DIR$/resnet/imagenet_main.py" />
+        <option value="$PROJECT_DIR$/pkl2csv_robustness.py" />
+        <option value="$PROJECT_DIR$/resnet/cifar10_main.py" />
+        <option value="$PROJECT_DIR$/resnet/resnet_run_loop.py" />
+        <option value="$PROJECT_DIR$/data/dataset.py" />
+        <option value="$PROJECT_DIR$/data/cifar_dataset.py" />
+        <option value="$PROJECT_DIR$/tools/array_train_base.sh" />
+        <option value="$PROJECT_DIR$/resnet/resnet_model.py" />
+        <option value="$PROJECT_DIR$/models/nets.py" />
+        <option value="$PROJECT_DIR$/models/alexnet.py" />
+        <option value="$PROJECT_DIR$/experiments.py" />
+        <option value="$PROJECT_DIR$/tools/resnet_cifar_train.sh" />
+        <option value="$PROJECT_DIR$/tools/array_activations.sh" />
+        <option value="$PROJECT_DIR$/tools/mappability.sh" />
+        <option value="$PROJECT_DIR$/tools/array_redundancy.sh" />
+        <option value="$PROJECT_DIR$/tools/tensorboard.sh" />
+        <option value="$PROJECT_DIR$/get_mappability.py" />
+        <option value="$PROJECT_DIR$/models/resnet_cifar.py" />
+        <option value="$PROJECT_DIR$/get_robustness.py" />
+        <option value="$PROJECT_DIR$/get_activations.py" />
+        <option value="$PROJECT_DIR$/tools/array_robustness.sh" />
+        <option value="$PROJECT_DIR$/train.py" />
+        <option value="$PROJECT_DIR$/tools/array_train.sh" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/redundancy_dnns.iml" />
+        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+        <option value="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+        <option value="$PROJECT_DIR$/.idea/deployment.xml" />
+        <option value="$PROJECT_DIR$/.idea/webServers.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="redundancy_dnns" type="b2602c69:ProjectViewProjectNode" />
+              <item name="redundancy_dnns" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tools" />
+      <recent name="$PROJECT_DIR$/resnet" />
+      <recent name="$PROJECT_DIR$/resnet/official" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/resnet" />
+      <recent name="$PROJECT_DIR$/tools" />
+      <recent name="$PROJECT_DIR$/plotting" />
+      <recent name="$PROJECT_DIR$/ipython" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.experiments">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="redundancy_dnns" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="experiments" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="redundancy_dnns" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/experiments.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="resnet_experiments" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="redundancy_dnns" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/resnet" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/resnet/resnet_experiments.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.experiments" />
+        <item itemvalue="Python.resnet_experiments" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ed3bb66d-67f6-4dbd-a399-f518d8f264aa" name="Default Changelist" comment="" />
+      <created>1560360351606</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1560360351606</updated>
+      <workItem from="1560360352922" duration="138000" />
+      <workItem from="1560360497436" duration="2000" />
+      <workItem from="1560360790267" duration="84000" />
+      <workItem from="1560361279880" duration="602000" />
+      <workItem from="1560362215051" duration="9839000" />
+      <workItem from="1560372623291" duration="5212000" />
+      <workItem from="1560431451256" duration="8015000" />
+      <workItem from="1560518349586" duration="17120000" />
+      <workItem from="1560736941666" duration="351000" />
+      <workItem from="1560777431624" duration="16304000" />
+      <workItem from="1560864555783" duration="11923000" />
+      <workItem from="1560950121808" duration="15872000" />
+      <workItem from="1561038708197" duration="21034000" />
+      <workItem from="1561092591961" duration="514000" />
+      <workItem from="1561114336694" duration="836000" />
+      <workItem from="1561233015595" duration="186000" />
+      <workItem from="1561303640331" duration="645000" />
+      <workItem from="1561304789764" duration="190000" />
+      <workItem from="1561352711245" duration="147000" />
+      <workItem from="1561380551065" duration="99000" />
+      <workItem from="1561396145726" duration="17315000" />
+      <workItem from="1561470398689" duration="20561000" />
+      <workItem from="1561520208165" duration="299000" />
+      <workItem from="1561559858041" duration="21000" />
+      <workItem from="1561559908325" duration="18360000" />
+      <workItem from="1561606201916" duration="291000" />
+      <workItem from="1561643593356" duration="22908000" />
+      <workItem from="1561730197194" duration="20945000" />
+      <workItem from="1561785925348" duration="91000" />
+      <workItem from="1561827273742" duration="782000" />
+      <workItem from="1561868501753" duration="101000" />
+      <workItem from="1561917506546" duration="140000" />
+      <workItem from="1561956869083" duration="436000" />
+      <workItem from="1561987885279" duration="8361000" />
+      <workItem from="1561999270219" duration="1005000" />
+      <workItem from="1562000355774" duration="595000" />
+      <workItem from="1562001900922" duration="2756000" />
+      <workItem from="1562005944882" duration="5253000" />
+      <workItem from="1562012097006" duration="1525000" />
+      <workItem from="1562035383839" duration="206000" />
+      <workItem from="1562041993191" duration="11512000" />
+      <workItem from="1562110007546" duration="287000" />
+      <workItem from="1562160072234" duration="186000" />
+      <workItem from="1562167286940" duration="11369000" />
+      <workItem from="1562211418931" duration="267000" />
+      <workItem from="1562297421068" duration="517000" />
+      <workItem from="1562333413646" duration="1194000" />
+      <workItem from="1562338069492" duration="15570000" />
+      <workItem from="1562384585174" duration="436000" />
+      <workItem from="1562435825126" duration="124000" />
+      <workItem from="1562538060357" duration="232000" />
+      <workItem from="1562553858380" duration="2802000" />
+      <workItem from="1562589529622" duration="6477000" />
+      <workItem from="1562603858987" duration="14330000" />
+      <workItem from="1562676017736" duration="12750000" />
+      <workItem from="1562763750125" duration="20067000" />
+      <workItem from="1562852213756" duration="12067000" />
+      <workItem from="1562940465120" duration="21338000" />
+      <workItem from="1562987142640" duration="217000" />
+      <workItem from="1563009105626" duration="23000" />
+      <workItem from="1563024979053" duration="670000" />
+      <workItem from="1563043670574" duration="208000" />
+      <workItem from="1563052899655" duration="2117000" />
+      <workItem from="1563068658723" duration="144000" />
+      <workItem from="1563070490311" duration="220000" />
+      <workItem from="1563113555550" duration="660000" />
+      <workItem from="1563154980479" duration="23109000" />
+      <workItem from="1563286295754" duration="19728000" />
+      <workItem from="1563329257580" duration="1806000" />
+      <workItem from="1563372813659" duration="21171000" />
+      <workItem from="1563421719989" duration="457000" />
+      <workItem from="1563459742365" duration="16299000" />
+      <workItem from="1563544310264" duration="20457000" />
+      <workItem from="1563577585497" duration="75000" />
+      <workItem from="1563661061381" duration="3671000" />
+      <workItem from="1563667345023" duration="894000" />
+      <workItem from="1563751497901" duration="3867000" />
+      <workItem from="1563805119073" duration="10192000" />
+      <workItem from="1563848478673" duration="241000" />
+      <workItem from="1563891087050" duration="12772000" />
+      <workItem from="1563919112270" duration="590000" />
+      <workItem from="1563975453364" duration="25812000" />
+      <workItem from="1564021702795" duration="5000" />
+      <workItem from="1564025308575" duration="81000" />
+      <workItem from="1564062418096" duration="17562000" />
+      <workItem from="1564149406929" duration="5477000" />
+      <workItem from="1564165946448" duration="53000" />
+      <workItem from="1564166027430" duration="165000" />
+      <workItem from="1564166366908" duration="8453000" />
+      <workItem from="1564199667580" duration="1538000" />
+      <workItem from="1564275313103" duration="1406000" />
+      <workItem from="1564325989153" duration="1015000" />
+      <workItem from="1564350922564" duration="425000" />
+      <workItem from="1564372189866" duration="867000" />
+      <workItem from="1564410166658" duration="6398000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="571434000" />
+  </component>
+  <component name="TodoView" selected-index="3">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26251787" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="File Transfer" order="0" sideWeight="0.4985694" visible="true" weight="0.21686748" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32891566" />
+      <window_info anchor="bottom" id="Run" order="3" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.32891566" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32891566" />
+      <window_info anchor="bottom" id="Database Changes" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.18955651" side_tool="true" weight="0.32891566" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.81044346" weight="0.22800496" />
+      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.8619456" weight="0.18835191" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="right" x="0" y="0" width="310" height="677" id="Documentation" order="4" side_tool="true" visible="true" weight="0.06795422" />
+      <window_info anchor="right" id="Database" order="5" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resnet_old/estimator_benchmark.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resnet_old/resnet_run_loop.py</url>
+          <line>395</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resnet_old/resnet_model.py</url>
+          <line>507</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resnet_old/resnet_model.py</url>
+          <line>532</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resnet_old/resnet_model.py</url>
+          <line>552</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/resnet/estimator_benchmark.py</url>
+          <line>15</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/plotting/plot_mappability_layerwise.py" />
+    <entry file="file://$PROJECT_DIR$/plotting/plot_accuracy.py" />
+    <entry file="file://$PROJECT_DIR$/plotting/plot_selectivity.py" />
+    <entry file="file://$PROJECT_DIR$/plotting/plot_selectivity_layerwise.py" />
+    <entry file="file://$PROJECT_DIR$/plotting/plot_similarity_layerwise.py" />
+    <entry file="file://$PROJECT_DIR$/plotting/plot_similarity.py" />
+    <entry file="file://$PROJECT_DIR$/plotting/plot_compressability.py" />
+    <entry file="file://$PROJECT_DIR$/plotting/plot_compressability_layerwise.py" />
+    <entry file="file://$PROJECT_DIR$/plotting/plot_nonselective.py" />
+    <entry file="file://$PROJECT_DIR$/plotting/plot_nonselective_layerwise.py" />
+    <entry file="file://$PROJECT_DIR$/deleteme.py" />
+    <entry file="file://$PROJECT_DIR$/resnet/official/utils/flags/_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="30" column="63" lean-forward="true" selection-start-line="30" selection-start-column="63" selection-end-line="30" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resnet/official/utils/logs/hooks_helper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-762">
+          <caret line="75" column="27" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="27" />
+          <folding>
+            <element signature="e#943#981#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resnet/official/utils/logs/metric_hook.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="74" column="70" lean-forward="true" selection-start-line="74" selection-start-column="70" selection-end-line="74" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resnet/official/utils/logs/hooks_helper_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="64" column="62" lean-forward="true" selection-start-line="64" selection-start-column="62" selection-end-line="64" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resnet/official/utils/logs/hooks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="79" column="58" selection-start-line="79" selection-start-column="58" selection-end-line="79" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resnet/official/utils/logs/logger_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="44" column="56" lean-forward="true" selection-start-line="44" selection-start-column="56" selection-end-line="44" selection-end-column="56" />
+          <folding>
+            <element signature="e#3926#4679#0" />
+            <element signature="e#4736#12964#0" />
+            <element signature="e#13101#15866#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/summary.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resnet/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-193" />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resnet/cifar10_download_and_extract.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="44" column="53" lean-forward="true" selection-start-line="44" selection-start-column="53" selection-end-line="44" selection-end-column="53" />
+          <folding>
+            <element signature="e#764#802#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resnet/imagenet_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="210" selection-start-line="210" selection-end-line="213" selection-end-column="57" />
+          <folding>
+            <element signature="e#741#779#0" expanded="true" />
+            <element signature="e#1934#4890#0" />
+            <element signature="e#4947#5866#0" />
+            <element signature="e#8945#10558#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkl2csv_redundancy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1515">
+          <caret line="101" column="86" lean-forward="true" selection-start-line="101" selection-end-line="102" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plotting/plot_auc.py" />
+    <entry file="file://$PROJECT_DIR$/resnet/layer_test.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/cifar_dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="123" column="44" selection-start-line="123" selection-start-column="44" selection-end-line="123" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#194#627#0" />
+            <element signature="e#698#805#0" />
+            <element signature="e#873#2444#0" />
+            <element signature="e#1215#2379#0" />
+            <element signature="e#2483#3431#0" />
+            <element signature="e#2794#3391#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/dataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#618#665#0" />
+            <element signature="e#1012#2000#0" />
+            <element signature="e#2076#3082#0" />
+            <element signature="e#3340#5336#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resnet/cifar10_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2037">
+          <caret line="181" column="52" lean-forward="true" selection-start-line="181" selection-end-line="182" />
+          <folding>
+            <element signature="e#741#779#0" expanded="true" />
+            <element signature="e#2461#3466#0" />
+            <element signature="e#3475#4470#1" />
+            <element signature="e#5512#6190#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resnet/resnet_run_loop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="618">
+          <caret line="540" column="49" selection-start-line="540" selection-start-column="35" selection-end-line="540" selection-end-column="49" />
+          <folding>
+            <element signature="e#985#1023#0" expanded="true" />
+            <element signature="e#2571#5828#0" />
+            <element signature="e#5942#7611#0" />
+            <element signature="e#7683#8464#0" />
+            <element signature="e#8537#10449#0" />
+            <element signature="e#10829#14674#0" />
+            <element signature="e#15021#23321#0" />
+            <element signature="e#23423#34028#0" />
+            <element signature="e#34163#38101#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resnet/resnet_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="539" column="73" selection-start-line="539" selection-start-column="73" selection-end-line="539" selection-end-column="73" />
+          <folding>
+            <element signature="e#1283#1321#0" expanded="true" />
+            <element signature="e#1869#2340#0" />
+            <element signature="e#2400#3536#0" />
+            <element signature="e#3621#4212#0" />
+            <element signature="e#4527#6295#0" />
+            <element signature="e#6419#8170#0" />
+            <element signature="e#8298#10389#0" />
+            <element signature="e#10525#12888#0" />
+            <element signature="e#13013#14678#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/nets.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="68" selection-start-line="32" selection-start-column="68" selection-end-line="32" selection-end-column="68" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiment_lookup.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="499" column="48" lean-forward="true" selection-start-line="499" selection-start-column="48" selection-end-line="499" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkl2csv_robustness.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="45" column="81" selection-start-line="45" selection-start-column="80" selection-end-line="45" selection-end-column="81" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../redundancy_dnns-master/test_robustness.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plotting/plot_auc_layerwise.py" />
+    <entry file="file://$PROJECT_DIR$/tools/resnet_cifar_train.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/array_activations.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="51" selection-start-line="11" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/array_redundancy.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/tensorboard.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="2" lean-forward="true" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/mappability.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/get_mappability.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="102" column="27" selection-start-line="102" selection-start-column="27" selection-end-line="102" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#207#1841#0" />
+            <element signature="e#1920#3561#0" />
+            <element signature="e#3596#4244#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/alexnet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-987">
+          <caret line="240" column="42" selection-start-line="240" selection-start-column="37" selection-end-line="240" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/perturbations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" lean-forward="true" selection-start-column="14" selection-end-column="14" />
+          <folding>
+            <element signature="e#366#3004#0" />
+            <element signature="e#3141#5910#0" />
+            <element signature="e#3141#4532#1" />
+            <element signature="e#6516#8605#0" />
+            <element signature="e#8682#9405#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/resnet_cifar.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="677" column="35" lean-forward="true" selection-start-line="677" selection-start-column="35" selection-end-line="677" selection-end-column="35" />
+          <folding>
+            <element signature="e#689#1281#1" />
+            <element signature="e#1283#1321#0" expanded="true" />
+            <element signature="e#1958#2429#0" />
+            <element signature="e#2489#3625#0" />
+            <element signature="e#3710#4301#0" />
+            <element signature="e#4616#6380#0" />
+            <element signature="e#6505#8170#0" />
+            <element signature="e#8374#18355#0" />
+            <element signature="e#18389#20050#0" />
+            <element signature="e#20078#20252#0" />
+            <element signature="e#20857#23946#0" />
+            <element signature="e#20857#22542#1" />
+            <element signature="e#24085#26146#0" />
+            <element signature="e#26193#26589#0" />
+            <element signature="e#26694#27046#1" />
+            <element signature="e#31985#33651#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/experiments.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="629" column="2" selection-start-line="629" selection-start-column="2" selection-end-line="629" selection-end-column="2" />
+          <folding>
+            <element signature="e#66#1426#0" />
+            <element signature="e#95#727#0" />
+            <element signature="e#1453#1772#0" />
+            <element signature="e#1481#1634#0" />
+            <element signature="e#1811#2339#0" />
+            <element signature="e#2374#3911#0" />
+            <element signature="e#4481#4657#0" />
+            <element signature="e#4709#4923#0" />
+            <element signature="e#5092#8242#0" />
+            <element signature="e#8463#11526#0" />
+            <element signature="e#11768#14347#0" />
+            <element signature="e#14563#17142#0" />
+            <element signature="e#17440#20888#0" />
+            <element signature="e#21161#24277#0" />
+            <element signature="e#24605#27720#0" />
+            <element signature="e#28060#31176#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/get_redundancy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="124" column="18" lean-forward="true" selection-start-line="124" selection-start-column="18" selection-end-line="124" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#432#1210#0" />
+            <element signature="e#1257#1505#0" />
+            <element signature="e#1593#3012#0" />
+            <element signature="e#3070#3351#0" />
+            <element signature="e#3396#3587#0" />
+            <element signature="e#3685#3776#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/get_activations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="134" column="20" lean-forward="true" selection-start-line="134" selection-start-column="20" selection-end-line="134" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#810#3444#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/array_train_base.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/array_robustness.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="61" lean-forward="true" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/get_robustness.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="216" column="46" lean-forward="true" selection-start-line="216" selection-start-column="46" selection-end-line="216" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#577#3812#0" />
+            <element signature="e#3985#9207#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="122" selection-start-line="122" selection-end-line="125" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/array_train.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
