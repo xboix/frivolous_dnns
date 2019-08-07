@@ -41,9 +41,12 @@ def create_graph():
     dataset = cifar_dataset.Cifar10(opt)
 
     # No repeatable dataset for testing
-    train_dataset_full = dataset.create_dataset(augmentation=False, standarization=True, set_name='train', repeat=False)
-    val_dataset_full = dataset.create_dataset(augmentation=False, standarization=True, set_name='val', repeat=False)
-    test_dataset_full = dataset.create_dataset(augmentation=False, standarization=True, set_name='test', repeat=False)
+    train_dataset_full = dataset.create_dataset(augmentation=False, standarization=True,
+                                                set_name='train', repeat=False)
+    val_dataset_full = dataset.create_dataset(augmentation=False, standarization=True,
+                                              set_name='val', repeat=False)
+    test_dataset_full = dataset.create_dataset(augmentation=False, standarization=True,
+                                               set_name='test', repeat=False)
 
     # Hadles to switch datasets
     handle = tf.compat.v1.placeholder(tf.string, shape=[])
@@ -91,10 +94,13 @@ def get_activations(handle, accuracy, gt, dropout_rate, activations, opt,
 
     activations_out = []
     acc_tmp = 0.0
+
+    max_samples_per_iter = int(MAX_SAMPLES / num_iter)
+
     for _ in range(num_iter):
-        max_samples_per_iter = int(MAX_SAMPLES / num_iter)
         activations_tmp, acc_batch, labels_batch = \
-            sess.run([activations, accuracy, gt], feed_dict={handle: handle_dataset, dropout_rate: opt.hyper.drop_test})
+            sess.run([activations, accuracy, gt], feed_dict={handle: handle_dataset,
+                                                             dropout_rate: opt.hyper.drop_test})
 
         acc_tmp += acc_batch
 

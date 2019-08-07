@@ -15,7 +15,6 @@ range_len = 7
 knockout_range = np.linspace(0.0, 1.0, num=range_len, endpoint=True)
 noise_range = np.linspace(0.0, 1.0, num=range_len, endpoint=True)
 # multiplicative_range = np.arange(0.0, 1.2, 0.2)
-
 noise_idx = [0, 3]
 knockout_idx = [1, 2, 4]
 

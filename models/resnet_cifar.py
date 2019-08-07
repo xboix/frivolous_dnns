@@ -692,7 +692,7 @@ class Model_test(object):
             inputs = tf.layers.dense(inputs=inputs, units=self.num_classes)
             inputs = tf.identity(inputs, 'final_dense')
 
-            return inputs  # *SC*
+            return inputs, activations  # *SC*
 
 
 class Cifar10Model_test(Model_test):
@@ -742,4 +742,4 @@ def ResNet_test(im, opt, select, perturbation_params, perturbation_type):
     model_test = Cifar10Model_test(resnet_size=RESNET_SIZE, size_factor=opt.dnn.neuron_multiplier[0])
     logits = model_test(im, opt=opt, select=select, perturbation_params=perturbation_params,
                         perturbation_type=perturbation_type, training=False)
-    return logits, []  # return empty [] in place of parameters just to make things work smoothly
+    return logits  # return empty [] in place of parameters just to make things work smoothly

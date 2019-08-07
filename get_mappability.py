@@ -55,6 +55,41 @@ def get_avg_cluster_loss(vectors, centers, square_loss=False, unitize=True):
     return np.mean(losses), np.std(losses)
 
 
+def get_avg_best_r(vectors, centers):
+    """
+    :param vectors: the activations vectors to map onto the centroid vectors
+    :param centers: the centroid vectors to map onto
+    :return: scalar-valued average and std best r coeff for the neurons in vectors
+    """
+
+    # make so that each row is a point (neuron), and each column is a dimension (image)
+    vectors = vectors.T
+    centers = centers.T
+
+    # get number of points for each
+    v_num = np.shape(vectors)[0]
+    c_num = np.shape(centers)[0]
+
+    # reduce the number of samples if it's too big
+    if np.shape(vectors)[1] > DIM_LIM:
+        rand_idx = np.random.randint(0, np.shape(vectors)[1], size=DIM_LIM)
+        vectors = vectors[:, rand_idx]
+        centers = centers[:, rand_idx]
+
+    corrs = np.zeros((v_num,))
+
+    # find the best r for each neuron in vectors with one in centers
+    for i in range(v_num):
+        best_r = -1  # init at -1
+        for j in range(c_num):
+            abs_r = np.abs(np.corrcoef(vectors[i], centers[j]))[0, 1]
+            if abs_r > best_r:
+                best_r = abs_r
+        corrs[i] = best_r
+
+    return np.mean(corrs), np.std(corrs)
+
+
 def get_avg_proj_loss(vectors, basis, square_loss=False, unitize=True):
     """
     :param vectors: the activations vectors to map onto the centroid vectors
@@ -100,7 +135,7 @@ def get_avg_proj_loss(vectors, basis, square_loss=False, unitize=True):
     return np.mean(losses), np.std(losses)
 
 
-def get_avg_cca_loss(x, y):
+def get_cca_r2(y, x):
     """
     :param x: the activations vectors to map onto
     :param y: the activations vectors to map onto x vectors
@@ -135,12 +170,15 @@ size_idx_map = {0.25: 0, 0.5: 1, 1: 2, 2: 3, 4: 4}
 regs = 3
 layers = 4
 
-# indexed[cluster_mean/cluster_std/proj_mean/proj_std/cca_mean/cca_std][size][unreg/allreg/random][layer]
-unreg_results = np.zeros((6, sizes, regs, layers))
-allreg_results = np.zeros((6, sizes, regs, layers))
+# indexed[cluster_mean/cluster_std/proj_mean/proj_std/cca_mean/cca_std/|r|_mean\|r|_std] \
+# [size][unreg/allreg/random][layer]
+unreg_results = np.zeros((8, sizes, regs, layers))
+allreg_results = np.zeros((8, sizes, regs, layers))
 
 large_nets = [86, 91]  # the 4x unregularized and allregularized nets
 large_net_duplicates = {86: 232, 91: 233}  # the IDs for the same types of models but with a different random seed
+small_nets = [62, 67]  # the 4x unregularized and allregularized nets
+small_net_duplicates = {62: 239, 67: 240}  # the IDs for the same types of models but with a different random seed
 opt_unreg = experiments.opt[large_nets[0]]
 opt_allreg = experiments.opt[large_nets[1]]
 
@@ -194,8 +232,12 @@ for ID in range(62, 92):
         #     get_avg_proj_loss(unreg_acts[l], opt_acts[l])
         # allreg_results[2, size_idx, reg_idx, l], allreg_results[3, size_idx, reg_idx, l] = \
         #     get_avg_proj_loss(allreg_acts[l], opt_acts[l])
-        unreg_results[4, size_idx, reg_idx, l] = get_avg_cca_loss(unreg_acts[l], opt_acts[l])
-        allreg_results[4, size_idx, reg_idx, l] = get_avg_cca_loss(allreg_acts[l], opt_acts[l])
+        # unreg_results[4, size_idx, reg_idx, l] = get_cca_r2(unreg_acts[l], opt_acts[l])
+        # allreg_results[4, size_idx, reg_idx, l] = get_cca_r2(allreg_acts[l], opt_acts[l])
+        unreg_results[6, size_idx, reg_idx, l], unreg_results[7, size_idx, reg_idx, l] = \
+            get_avg_best_r(unreg_acts[l], opt_acts[l])
+        allreg_results[6, size_idx, reg_idx, l], allreg_results[7, size_idx, reg_idx, l] = \
+            get_avg_best_r(allreg_acts[l], opt_acts[l])
         sys.stdout.flush()
 
 '''
@@ -205,11 +247,12 @@ for ID in range(62, 92):
 4: loss unitized
 5: cca
 6: violin plots
+7: |r|
 '''
 
-with open(opt_unreg.log_dir_base + opt_unreg.name + '/mappability5' + '.pkl', 'wb') as f:
+with open(opt_unreg.log_dir_base + opt_unreg.name + '/mappability7' + '.pkl', 'wb') as f:
     pickle.dump(unreg_results, f, protocol=2)
-with open(opt_allreg.log_dir_base + opt_allreg.name + '/mappability5' + '.pkl', 'wb') as f:
+with open(opt_allreg.log_dir_base + opt_allreg.name + '/mappability7' + '.pkl', 'wb') as f:
     pickle.dump(allreg_results, f, protocol=2)
 
 sys.stdout.flush()

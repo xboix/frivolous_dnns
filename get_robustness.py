@@ -115,7 +115,7 @@ def test_robustness(handle, dropout_rate, perturbation_params, select, opt, rang
         dall = {}
         dall.update({i: d for i, d in zip(select, to_perturb)})  # i is a list of neurons, and d is node binaries
         dall.update({handle: handle_dataset, dropout_rate: opt.hyper.drop_test, perturbation_params: test_rob})
-        act_tmp, y_iter, gt_iter, im_pred_iter = sess.run([accuracy, y, gt, im_prediction], feed_dict=dall)
+        acc_tmp, y_iter, gt_iter, im_pred_iter = sess.run([accuracy, y, gt, im_prediction], feed_dict=dall)
         outputs_base = np.concatenate((outputs_base, y_iter))
 
     sys.stdout.flush()
@@ -175,7 +175,7 @@ def test_robustness(handle, dropout_rate, perturbation_params, select, opt, rang
                 dall = {}
                 dall.update({i: d for i, d in zip(select, to_perturb)})  # i is neuron list, and d is node binaries
                 dall.update({handle: handle_dataset, dropout_rate: opt.hyper.drop_test, perturbation_params: test_rob})
-                act_tmp, y_iter, gt_iter, im_pred_iter = sess.run([accuracy, y, gt, im_prediction], feed_dict=dall)
+                acc_tmp, y_iter, gt_iter, im_pred_iter = sess.run([accuracy, y, gt, im_prediction], feed_dict=dall)
                 output_perturbation = np.concatenate((output_perturbation, y_iter))  # perturb results
 
             prop_same_label = np.mean(outputs_base == output_perturbation)  # proportion of same prediections

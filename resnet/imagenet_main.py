@@ -36,8 +36,7 @@ NUM_CLASSES = 1001
 
 NUM_IMAGES = {
     'train': 1281167,
-    'validation': 50000,
-}
+    'validation': 50000,}
 
 _NUM_TRAIN_FILES = 1024
 _SHUFFLE_BUFFER = 10000
@@ -131,7 +130,7 @@ def _parse_example_proto(example_serialized):
     return features['image/encoded'], label, bbox
 
 
-def parse_record(raw_record, is_training, dtype):
+def parse_record(raw_record, is_training, dtype, augment):
     """Parses a record containing a training example of an image.
 
     The input record is parsed into a label and image, and the image is passed
@@ -239,7 +238,7 @@ def get_synth_input_fn(dtype):
 class ImagenetModel(resnet_model.Model):
     """Model class with appropriate defaults for Imagenet data."""
 
-    def __init__(self, resnet_size, data_format=None, num_classes=NUM_CLASSES,
+    def __init__(self, resnet_size, size_factor, data_format=None, num_classes=NUM_CLASSES,
                  resnet_version=resnet_model.DEFAULT_VERSION,
                  dtype=resnet_model.DEFAULT_DTYPE):
         """These are the parameters that work for Imagenet data.
@@ -265,7 +264,7 @@ class ImagenetModel(resnet_model.Model):
             resnet_size=resnet_size,
             bottleneck=bottleneck,
             num_classes=num_classes,
-            num_filters=64,
+            num_filters=64*size_factor,
             kernel_size=7,
             conv_stride=2,
             first_pool_size=3,
@@ -334,6 +333,7 @@ def imagenet_model_fn(features, labels, mode, params):
         features=features,
         labels=labels,
         mode=mode,
+        size_factor=params['size_factor'],  # *SC*
         model_class=ImagenetModel,
         resnet_size=params['resnet_size'],
         weight_decay=flags.FLAGS.weight_decay,
@@ -390,3 +390,4 @@ if __name__ == '__main__':
     tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.INFO)
     define_imagenet_flags()
     absl_app.run(main)
+    print(':)')

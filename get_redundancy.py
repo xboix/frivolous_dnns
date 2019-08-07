@@ -30,7 +30,7 @@ def pca(data, energy):
     covariance = np.nan_to_num(covariance)  # I added this to fix one problem that one matrix was causing in one opt
     eigenvalues, eigenvectors = np.linalg.eigh(covariance)  # eigenvals are sorted small to large
 
-    th = np.zeros(len(energy))
+    en_evecs = np.zeros(len(energy))
     total = np.sum(eigenvalues)
     for en, idx_en in zip(energy, range(len(energy))):
         accum = 0
@@ -38,8 +38,8 @@ def pca(data, energy):
         while accum <= en:
             accum += eigenvalues[-k] / total
             k += 1
-        th[idx_en] = k - 1  # th is num of eigenvectors needed to explain en proportion of variance
-    return th, eigenvalues, eigenvectors
+        en_evecs[idx_en] = k - 1  # en_evecs is num of eigenvectors needed to explain en proportion of variance
+    return en_evecs, eigenvalues, eigenvectors
 
 
 def get_compressability95(eigenvalues):

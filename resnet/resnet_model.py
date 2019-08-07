@@ -249,7 +249,7 @@ def _bottleneck_block_v1(inputs, filters, training, projection_shortcut,
 
 
 def _bottleneck_block_v2(inputs, filters, training, projection_shortcut,
-                         strides, data_format):  # *SC*
+                         strides, data_format):
     """A single block for ResNet v2, with a bottleneck.
 
     Similar to _building_block_v2(), except using the "bottleneck" blocks
@@ -341,10 +341,10 @@ def block_layer(inputs, filters, bottleneck, block_fn, blocks, strides,
 
     # Only the first block per block_layer uses projection_shortcut and strides
     inputs = block_fn(inputs, filters, training, projection_shortcut, strides,
-                      data_format)  # *SC*
+                      data_format)
 
     for _ in range(1, blocks):
-        inputs = block_fn(inputs, filters, training, None, 1, data_format)  # *SC*
+        inputs = block_fn(inputs, filters, training, None, 1, data_format)
 
     return tf.identity(inputs, name)
 
@@ -534,7 +534,7 @@ class Model(object):
                     inputs=inputs, filters=num_filters, bottleneck=self.bottleneck,
                     block_fn=self.block_fn, blocks=num_blocks,
                     strides=self.block_strides[i], training=training,
-                    name='block_layer{}'.format(i + 1), data_format=self.data_format)  # *SC*
+                    name='block_layer{}'.format(i + 1), data_format=self.data_format)
 
                 # *SC*
                 transposed_inputs = tf.transpose(inputs, perm=[0, 2, 3, 1])
@@ -555,8 +555,8 @@ class Model(object):
             axes = [2, 3] if self.data_format == 'channels_first' else [1, 2]
             inputs = tf.reduce_mean(inputs, axes, keepdims=True)
             inputs = tf.identity(inputs, 'final_reduce_mean')
-
             inputs = tf.squeeze(inputs, axes)
             inputs = tf.layers.dense(inputs=inputs, units=self.num_classes)
+            activations.append(inputs)  # *SC*
             inputs = tf.identity(inputs, 'final_dense')
             return inputs, activations  # *SC*

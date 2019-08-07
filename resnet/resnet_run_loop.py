@@ -612,8 +612,7 @@ def resnet_main(
         warm_start_from=warm_start_settings, params={
             'resnet_size': int(flags_obj.resnet_size),
             'data_format': flags_obj.data_format,
-            'batch_size': int(experiments.opt[flags_obj.opt_id].hyper.batch_size *
-                              experiments.opt[flags_obj.opt_id].hyper.lr_bs_factor),  # *SC*
+            'batch_size': experiments.opt[flags_obj.opt_id].hyper.batch_size,  # *SC*
             'size_factor': experiments.opt[flags_obj.opt_id].dnn.neuron_multiplier[0],  # *SC*
             'weight_decay': experiments.opt[flags_obj.opt_id].hyper.weight_decay,  # *SC*
             'resnet_version': int(flags_obj.resnet_version),
@@ -624,9 +623,7 @@ def resnet_main(
         })
 
     run_params = {
-        'batch_size': int(
-            experiments.opt[flags_obj.opt_id].hyper.batch_size *
-            experiments.opt[flags_obj.opt_id].hyper.lr_bs_factor),  # *SC*
+        'batch_size': experiments.opt[flags_obj.opt_id].hyper.batch_size,  # *SC*
         'size_factor': experiments.opt[flags_obj.opt_id].dnn.neuron_multiplier[0],  # *SC*
         'weight_decay': experiments.opt[flags_obj.opt_id].hyper.weight_decay,  # *SC*
         'dtype': flags_core.get_tf_dtype(flags_obj),
@@ -655,7 +652,7 @@ def resnet_main(
             rand_labels=experiments.opt[flags_obj.opt_id].dataset.random_labels,  # *SC*
             data_dir=flags_obj.data_dir,
             batch_size=distribution_utils.per_replica_batch_size(
-                flags_obj.batch_size, flags_core.get_num_gpus(flags_obj)),
+                experiments.opt[flags_obj.opt_id].hyper.batch_size, flags_core.get_num_gpus(flags_obj)),  # *SC*
             num_epochs=num_epochs,
             dtype=flags_core.get_tf_dtype(flags_obj),
             datasets_num_private_threads=flags_obj.datasets_num_private_threads,
@@ -668,7 +665,7 @@ def resnet_main(
             rand_labels=False,  # experiments.opt[flags_obj.opt_id].dataset.random_labels,  # *SC*
             data_dir=flags_obj.data_dir,
             batch_size=distribution_utils.per_replica_batch_size(
-                flags_obj.batch_size, flags_core.get_num_gpus(flags_obj)),
+                experiments.opt[flags_obj.opt_id].hyper.batch_size, flags_core.get_num_gpus(flags_obj)),  # *SC*
             num_epochs=1,
             dtype=flags_core.get_tf_dtype(flags_obj))
 
@@ -744,7 +741,8 @@ def resnet_main(
                 image_bytes_serving_input_fn, shape, dtype=export_dtype)
         else:
             input_receiver_fn = export.build_tensor_serving_input_receiver_fn(
-                shape, batch_size=flags_obj.batch_size, dtype=export_dtype)
+                shape, batch_size=experiments.opt[flags_obj.opt_id].hyper.batch_size,
+                dtype=export_dtype)
         classifier.export_savedmodel(flags_obj.export_dir, input_receiver_fn,
                                      strip_default_attrs=True)
 
@@ -826,7 +824,7 @@ def define_resnet_flags(resnet_size_choices=None, dynamic_loss_scale=False,
         help=flags_core.help_wrap(
             'Weight decay coefficiant for l2 regularization.'))
 
-    # *SC*
+    # f
     flags.DEFINE_integer(
         name='opt_id', default=0,
         help=flags_core.help_wrap(

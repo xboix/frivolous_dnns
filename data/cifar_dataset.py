@@ -137,4 +137,4 @@ class Cifar10(dataset.Dataset):
             image = tf.image.per_image_standardization(image)
             return image
         else:
-            print('CASPER, GO FIX THE PROPROCESS IMAGE FUNCTION IN CIFAR_DATASET.PY, DUMMY.')
+            print('CASPER, GO FIX THE PREPROCESS IMAGE FUNCTION IN CIFAR_DATASET.PY, DUMMY.')

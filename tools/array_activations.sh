@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -c1
-#SBATCH --array=234-238
+#SBATCH --array=65
 #SBATCH --job-name=get_activations
 #SBATCH --mem=12GB
 #SBATCH --gres=gpu:tesla-k80:1
@@ -12,4 +12,4 @@ cd /om/user/scasper/workspace/
 singularity exec -B /om:/om --nv /om/user/xboix/singularity/xboix-tensorflow1.14.simg \
 python /om/user/scasper/redundancy/get_activations.py ${SLURM_ARRAY_TASK_ID}
 
-# make sure to set the seed in experiments.py
+# make sure to set the seed in imagenet_networks.py

@@ -12,4 +12,4 @@ cd /om/user/scasper/workspace/
 singularity exec -B /om:/om --nv /om/user/xboix/singularity/xboix-tensorflow1.14.simg \
 python /om/user/scasper/redundancy/train.py ${SLURM_ARRAY_TASK_ID}
 
-# make sure to set the directories and seed in experiments.py
+# make sure to set the directories and seed in imagenet_networks.py

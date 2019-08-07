@@ -31,7 +31,12 @@ from official.utils.flags import core as flags_core
 from official.utils.logs import logger
 
 # *SC*
-import random
+# this is an nanoying worksaround needed to import from parent dir
+import inspect
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+sys.path.insert(0, parentdir)
+import experiments
 # *SC*
 
 HEIGHT = 32
@@ -46,8 +51,7 @@ _NUM_DATA_FILES = 5
 # TODO(tobyboyd): Change to best practice 45K(train)/5K(val)/10K(test) splits.
 NUM_IMAGES = {
     'train': 50000,
-    'validation': 10000,
-}
+    'validation': 10000}
 
 DATASET_NAME = 'CIFAR-10'
 
@@ -304,11 +308,11 @@ def cifar10_model_fn(features, labels, mode, params):
 def define_cifar_flags():
     resnet_run_loop.define_resnet_flags()
     flags.adopt_module_key_flags(resnet_run_loop)
-    flags_core.set_defaults(data_dir='/tmp/cifar10_data/cifar-10-batches-bin',
-                            model_dir='/tmp/cifar10_model',
+    flags_core.set_defaults(data_dir='',
+                            model_dir='',
                             resnet_size='56',
                             train_epochs=182,
-                            epochs_between_evals=10,
+                            epochs_between_evals=5,
                             batch_size=128,
                             image_bytes_as_serving_input=False)
 
@@ -349,3 +353,4 @@ if __name__ == '__main__':
     define_cifar_flags()
     absl_app.run(main)
     print(':)')
+    sys.stdout.flush()

@@ -32,12 +32,14 @@ from __future__ import division
 from __future__ import print_function
 
 import tensorflow as tf
+import nets.perturbations as pt
+import numpy as np
 
 NUM_CLASSES = 1001
 
 _BATCH_NORM_DECAY = 0.997
 _BATCH_NORM_EPSILON = 1e-5
-DEFAULT_VERSION = 1
+DEFAULT_VERSION = 2
 DEFAULT_DTYPE = tf.float32
 CASTABLE_TYPES = (tf.float16,)
 ALLOWED_TYPES = (DEFAULT_DTYPE,) + CASTABLE_TYPES
@@ -349,6 +351,9 @@ def block_layer(inputs, filters, bottleneck, block_fn, blocks, strides,
 
     return tf.identity(inputs, name)
 
+################################################################################
+# Basic Model
+################################################################################
 
 class Model(object):
     """Base class for building the Resnet Model."""
@@ -493,10 +498,7 @@ class Model(object):
           A logits Tensor with shape [<batch_size>, self.num_classes].
         """
 
-        # *SC*
         activations = []
-        # *SC*
-
         with self._model_variable_scope():
             if self.data_format == 'channels_first':
                 # Convert the inputs from channels_last (NHWC) to channels_first (NCHW).
@@ -517,10 +519,8 @@ class Model(object):
                 inputs = batch_norm(inputs, training, self.data_format)
                 inputs = tf.nn.relu(inputs)
 
-            # *SC*
             transposed_inputs = tf.transpose(inputs, perm=[0, 2, 3, 1])
             activations.append(transposed_inputs)
-            # *SC*
 
             if self.first_pool_size:
                 inputs = tf.layers.max_pooling2d(
@@ -537,10 +537,8 @@ class Model(object):
                     strides=self.block_strides[i], training=training,
                     name='block_layer{}'.format(i + 1), data_format=self.data_format)
 
-                # *SC*
                 transposed_inputs = tf.transpose(inputs, perm=[0, 2, 3, 1])
                 activations.append(transposed_inputs)
-                # *SC*
 
             # Only apply the BN and ReLU for model that does pre_activation in each
             # building/bottleneck block, eg resnet V2.
@@ -559,9 +557,9 @@ class Model(object):
 
             inputs = tf.squeeze(inputs, axes)
             inputs = tf.layers.dense(inputs=inputs, units=self.num_classes)
-            activations.append(inputs)  # *SC*
+            activations.append(inputs)
             inputs = tf.identity(inputs, 'final_dense')
-            return inputs, activations  # *SC*
+            return inputs, activations
 
 
 def _get_block_sizes(resnet_size):
@@ -641,6 +639,293 @@ class ImagenetModel(Model):
 
 
 def ResNet(im, opt):
-    model = ImagenetModel(resnet_size=18, resnet_version=1, factor=opt.dnn.neuron_multiplier[0])
+    model = ImagenetModel(resnet_size=18, resnet_version=1, factor=opt.dnn.factor)
     logits, activations = model(im, False)
     return logits, activations
+
+################################################################################
+# Model for reobustness testing
+################################################################################
+
+
+class Model_test(object):
+    """Base class for building the Resnet Model."""
+
+    def __init__(self, resnet_size, bottleneck, num_classes, num_filters,
+                 kernel_size, conv_stride, first_pool_size, first_pool_stride,
+                 block_sizes, block_strides,
+                 resnet_version=DEFAULT_VERSION, data_format=None,
+                 dtype=DEFAULT_DTYPE):
+        """Creates a model for classifying an image.
+
+        Args:
+          resnet_size: A single integer for the size of the ResNet model.
+          bottleneck: Use regular blocks or bottleneck blocks.
+          num_classes: The number of classes used as labels.
+          num_filters: The number of filters to use for the first block layer
+            of the model. This number is then doubled for each subsequent block
+            layer.
+          kernel_size: The kernel size to use for convolution.
+          conv_stride: stride size for the initial convolutional layer
+          first_pool_size: Pool size to be used for the first pooling layer.
+            If none, the first pooling layer is skipped.
+          first_pool_stride: stride size for the first pooling layer. Not used
+            if first_pool_size is None.
+          block_sizes: A list containing n values, where n is the number of sets of
+            block layers desired. Each value should be the number of blocks in the
+            i-th set.
+          block_strides: List of integers representing the desired stride size for
+            each of the sets of block layers. Should be same length as block_sizes.
+          resnet_version: Integer representing which version of the ResNet network
+            to use. See README for details. Valid values: [1, 2]
+          data_format: Input format ('channels_last', 'channels_first', or None).
+            If set to None, the format is dependent on whether a GPU is available.
+          dtype: The TensorFlow dtype to use for calculations. If not specified
+            tf.float32 is used.
+
+        Raises:
+          ValueError: if invalid version is selected.
+        """
+        self.resnet_size = resnet_size
+
+        if not data_format:
+            data_format = (
+                'channels_first' if tf.test.is_built_with_cuda() else 'channels_last')
+
+        self.resnet_version = resnet_version
+        if resnet_version not in (1, 2):
+            raise ValueError(
+                'Resnet version should be 1 or 2. See README for citations.')
+
+        self.bottleneck = bottleneck
+        if bottleneck:
+            if resnet_version == 1:
+                self.block_fn = _bottleneck_block_v1
+            else:
+                self.block_fn = _bottleneck_block_v2
+        else:
+            if resnet_version == 1:
+                self.block_fn = _building_block_v1
+            else:
+                self.block_fn = _building_block_v2
+
+        if dtype not in ALLOWED_TYPES:
+            raise ValueError('dtype must be one of: {}'.format(ALLOWED_TYPES))
+
+        self.data_format = data_format
+        self.num_classes = num_classes
+        self.num_filters = num_filters
+        self.kernel_size = kernel_size
+        self.conv_stride = conv_stride
+        self.first_pool_size = first_pool_size
+        self.first_pool_stride = first_pool_stride
+        self.block_sizes = block_sizes
+        self.block_strides = block_strides
+        self.dtype = dtype
+        self.pre_activation = resnet_version == 2
+
+    def _custom_dtype_getter(self, getter, name, shape=None, dtype=DEFAULT_DTYPE,
+                             *args, **kwargs):
+        """Creates variables in fp32, then casts to fp16 if necessary.
+
+        This function is a custom getter. A custom getter is a function with the
+        same signature as tf.get_variable, except it has an additional getter
+        parameter. Custom getters can be passed as the `custom_getter` parameter of
+        tf.variable_scope. Then, tf.get_variable will call the custom getter,
+        instead of directly getting a variable itself. This can be used to change
+        the types of variables that are retrieved with tf.get_variable.
+        The `getter` parameter is the underlying variable getter, that would have
+        been called if no custom getter was used. Custom getters typically get a
+        variable with `getter`, then modify it in some way.
+
+        This custom getter will create an fp32 variable. If a low precision
+        (e.g. float16) variable was requested it will then cast the variable to the
+        requested dtype. The reason we do not directly create variables in low
+        precision dtypes is that applying small gradients to such variables may
+        cause the variable not to change.
+
+        Args:
+          getter: The underlying variable getter, that has the same signature as
+            tf.get_variable and returns a variable.
+          name: The name of the variable to get.
+          shape: The shape of the variable to get.
+          dtype: The dtype of the variable to get. Note that if this is a low
+            precision dtype, the variable will be created as a tf.float32 variable,
+            then cast to the appropriate dtype
+          *args: Additional arguments to pass unmodified to getter.
+          **kwargs: Additional keyword arguments to pass unmodified to getter.
+
+        Returns:
+          A variable which is cast to fp16 if necessary.
+        """
+
+        if dtype in CASTABLE_TYPES:
+            var = getter(name, shape, tf.float32, *args, **kwargs)
+            return tf.cast(var, dtype=dtype, name=name + '_cast')
+        else:
+            return getter(name, shape, dtype, *args, **kwargs)
+
+    def _model_variable_scope(self):
+        """Returns a variable scope that the model should be created under.
+
+        If self.dtype is a castable type, model variable will be created in fp32
+        then cast to self.dtype before being used.
+
+        Returns:
+          A variable scope for the model.
+        """
+
+        return tf.variable_scope('resnet_model',
+                                 custom_getter=self._custom_dtype_getter)
+
+    def __call__(self, inputs, opt, select, perturbation_params, perturbation_type, idx_gpu, training):
+        """Add operations to classify a batch of input images.
+
+        Args:
+          inputs: A Tensor representing a batch of input images.
+          training: A boolean. Set to True to add operations required only when
+            training the classifier.
+
+        Returns:
+          A logits Tensor with shape [<batch_size>, self.num_classes].
+        """
+
+        with self._model_variable_scope():
+            if self.data_format == 'channels_first':
+                # Convert the inputs from channels_last (NHWC) to channels_first (NCHW).
+                # This provides a large performance boost on GPU. See
+                # https://www.tensorflow.org/performance/performance_guide#data_formats
+                inputs = tf.transpose(inputs, [0, 3, 1, 2])
+
+            inputs = conv2d_fixed_padding(
+                inputs=inputs, filters=self.num_filters, kernel_size=self.kernel_size,
+                strides=self.conv_stride, data_format=self.data_format)
+            inputs = tf.identity(inputs, 'initial_conv')
+
+            # *SC*
+            inputs = tf.transpose(inputs, perm=[0, 2, 3, 1])
+            if perturbation_type == 3:
+                batch_num = inputs.get_shape().as_list()[0]
+                inputs = pt.activation_noise(inputs, perturbation_params[3][0], batch_num)
+            elif perturbation_type in [2, 4]:
+                ss = tf.reshape(tf.tile(select[0], [int(np.prod(inputs.get_shape()[1:3])) * opt.hyper.batch_size]),
+                                [-1, int(inputs.get_shape()[1]), int(inputs.get_shape()[2]),
+                                 int(inputs.get_shape()[3])])
+                if idx_gpu != -1:  # by default, it's -1 saying that its not using multi gpus
+                    batch_num = inputs.get_shape().as_list()[0]
+                    begin = int(idx_gpu * batch_num)
+                    size = inputs.get_shape().as_list()
+                    size[0] = batch_num
+                    ss = tf.slice(ss, [begin, 0, 0, 0], size)
+                inputs = pt.activation_knockout_mask(inputs, perturbation_params[4][0], ss)  # ss is the mask
+            inputs = tf.transpose(inputs, perm=[0, 3, 1, 2])
+            # *SC*
+
+            # We do not include batch normalization or activation functions in V2
+            # for the initial conv1 because the first ResNet unit will perform these
+            # for both the shortcut and non-shortcut paths as part of the first
+            # block's projection. Cf. Appendix of [2].
+            if self.resnet_version == 1:
+                inputs = batch_norm(inputs, training, self.data_format)
+                inputs = tf.nn.relu(inputs)
+
+            if self.first_pool_size:
+                inputs = tf.layers.max_pooling2d(
+                    inputs=inputs, pool_size=self.first_pool_size,
+                    strides=self.first_pool_stride, padding='SAME',
+                    data_format=self.data_format)
+                inputs = tf.identity(inputs, 'initial_max_pool')
+
+            for i, num_blocks in enumerate(self.block_sizes):
+                num_filters = self.num_filters * (2 ** i)
+                inputs = block_layer(
+                    inputs=inputs, filters=num_filters, bottleneck=self.bottleneck,
+                    block_fn=self.block_fn, blocks=num_blocks,
+                    strides=self.block_strides[i], training=training,
+                    name='block_layer{}'.format(i + 1), data_format=self.data_format)
+
+                # *SC*
+                inputs = tf.transpose(inputs, perm=[0, 2, 3, 1])
+                if perturbation_type == 3:
+                    batch_num = inputs.get_shape().as_list()[0]
+                    inputs = pt.activation_noise(inputs, perturbation_params[3][i+1], batch_num)
+                elif perturbation_type in [2, 4]:
+                    ss = tf.reshape(tf.tile(select[i+1], [int(np.prod(inputs.get_shape()[1:3])) *
+                                                          opt.hyper.batch_size]),
+                                    [-1, int(inputs.get_shape()[1]), int(inputs.get_shape()[2]),
+                                     int(inputs.get_shape()[3])])
+                    if idx_gpu != -1:  # by default, it's -1 saying that its not using multi gpus
+                        batch_num = inputs.get_shape().as_list()[0]
+                        begin = int(idx_gpu * batch_num)
+                        size = inputs.get_shape().as_list()
+                        size[0] = batch_num
+                        ss = tf.slice(ss, [begin, 0, 0, 0], size)
+                    inputs = pt.activation_knockout_mask(inputs, perturbation_params[4][i+1], ss)  # ss is the mask
+                inputs = tf.transpose(inputs, perm=[0, 3, 1, 2])
+                # *SC*
+
+            # Only apply the BN and ReLU for model that does pre_activation in each
+            # building/bottleneck block, eg resnet V2.
+            if self.pre_activation:
+                inputs = batch_norm(inputs, training, self.data_format)
+                inputs = tf.nn.relu(inputs)
+
+            # The current top layer has shape
+            # `batch_size x pool_size x pool_size x final_size`.
+            # ResNet does an Average Pooling layer over pool_size,
+            # but that is the same as doing a reduce_mean. We do a reduce_mean
+            # here because it performs better than AveragePooling2D.
+            axes = [2, 3] if self.data_format == 'channels_first' else [1, 2]
+            inputs = tf.reduce_mean(inputs, axes, keepdims=True)
+            inputs = tf.identity(inputs, 'final_reduce_mean')
+            inputs = tf.squeeze(inputs, axes)
+            inputs = tf.layers.dense(inputs=inputs, units=self.num_classes)
+            inputs = tf.identity(inputs, 'final_dense')
+            return inputs
+
+
+class ImagenetModel_test(Model_test):
+    """Model class with appropriate defaults for Imagenet data."""
+
+    def __init__(self, resnet_size, data_format=None, num_classes=NUM_CLASSES,
+                 resnet_version=DEFAULT_VERSION,
+                 dtype=DEFAULT_DTYPE, factor=1):
+        """These are the parameters that work for Imagenet data.
+
+        Args:
+          resnet_size: The number of convolutional layers needed in the model.
+          data_format: Either 'channels_first' or 'channels_last', specifying which
+            data format to use when setting up the model.
+          num_classes: The number of output classes needed from the model. This
+            enables users to extend the same model to their own datasets.
+          resnet_version: Integer representing which version of the ResNet network
+            to use. See README for details. Valid values: [1, 2]
+          dtype: The TensorFlow dtype to use for calculations.
+        """
+
+        # For bigger models, we want to use "bottleneck" layers
+        if resnet_size < 50:
+            bottleneck = False
+        else:
+            bottleneck = True
+
+        super(ImagenetModel_test, self).__init__(
+            resnet_size=resnet_size,
+            bottleneck=bottleneck,
+            num_classes=num_classes,
+            num_filters=int(64 * factor),
+            kernel_size=7,
+            conv_stride=2,
+            first_pool_size=3,
+            first_pool_stride=2,
+            block_sizes=_get_block_sizes(resnet_size),
+            block_strides=[1, 2, 2, 2],
+            resnet_version=resnet_version,
+            data_format=data_format,
+            dtype=dtype)
+
+
+def ResNet_test(im, opt, select, perturbation_params, perturbation_type, idx_gpu):
+    model = ImagenetModel_test(resnet_size=18, resnet_version=1, factor=opt.dnn.factor)
+    logits = model(im, opt, select, perturbation_params, perturbation_type, idx_gpu, training=False)
+    return logits

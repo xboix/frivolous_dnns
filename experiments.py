@@ -177,23 +177,22 @@ for p in training_prop:
 # experiments 2-61 are the init_scheme_tests
 
 for nn_name in name:
-    for init_type in initialization_type:
-        for init_mult in initialization_multiplier:
-            for neuron_mult in neuron_multiplier:
-                for train_prop_idx in range(len(training_prop)):
-                    for lr in learning_rate:
-                        for reg in regularizers:
-                            for flag_rand in flag_random:
+    for flag_rand in flag_random:
+        for init_type in initialization_type:
+            for init_mult in initialization_multiplier:
+                for neuron_mult in neuron_multiplier:
+                    for train_prop_idx in range(len(training_prop)):
+                        for lr in learning_rate:
+                            for reg in regularizers:
 
                                 if flag_rand and reg > 0:
                                     continue
 
                                 opt.append(Experiments(idx, nn_name + '_itype=' + str(init_type) + '_nmult=' +
                                                        str(neuron_mult) + '_reg=' + str(reg) + '_rand=' +
-                                                       str(flag_rand) + '_seed=' + str(master_seed)))
+                                                       str(flag_rand)))
 
-                                opt[-1].log_dir_base = '/om/user/scasper/workspace/models/init_scheme_seed' \
-                                                       + str(opt[-1].seed) + '/'
+                                opt[-1].log_dir_base = '/om/user/scasper/workspace/models/init_scheme/'
                                 opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/init_scheme/'
                                 opt[-1].dnn.name = nn_name
                                 opt[-1].init_type = init_type
@@ -406,8 +405,8 @@ for nn_name in name:
                                                            str(lr_bs) + '_rand=' + str(flag_rand) + '_seed=' +
                                                            str(master_seed)))
 
-                                    opt[-1].log_dir_base = '/om/user/scasper/workspace/models/lr_bn/'
-                                    opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/lr_bn/'
+                                    opt[-1].log_dir_base = '/om/user/scasper/workspace/models/lr_bs/'
+                                    opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/lr_bs/'
                                     opt[-1].dnn.name = nn_name
                                     opt[-1].init_type = init_type
                                     opt[-1].hyper.init_factor = init_mult
@@ -606,7 +605,6 @@ for nn_name in name:
                                         opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx])
                                         opt[-1].hyper.max_num_epochs //= training_prop[train_prop_idx]
                                         opt[-1].hyper.augmentation = True
-                                        opt[-1].hyper.weight_decay = 2e-4
                                     else:
                                         opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx + idx_base_random])
                                         opt[-1].dataset.random_labels = True
@@ -618,6 +616,118 @@ for nn_name in name:
 
 ##############################################################################################
 
+# experiments 239 and 240 need to be copies of 62 and 67 to help with the mappability experiment
+
+regularizers = [0, 4]
+flag_random = [0]
+name = ['Alexnet']
+neuron_multiplier = [0.25]
+learning_rate = [1e-2]
+
+for nn_name in name:
+    for init_type in initialization_type:
+        for init_mult in initialization_multiplier:
+            for neuron_mult in neuron_multiplier:
+                for train_prop_idx in range(len(training_prop)):
+                    for lr in learning_rate:
+                        for reg in regularizers:
+                            for flag_rand in flag_random:
+
+                                if flag_rand and reg > 0:
+                                    continue
+
+                                opt.append(Experiments(idx, nn_name + '_itype=' + str(init_type) + '_nmult=' +
+                                                       str(neuron_mult) + '_reg=' + str(reg) + '_rand=' +
+                                                       str(flag_rand) + '_seed=' + str(master_seed+1)))
+
+                                opt[-1].log_dir_base = '/om/user/scasper/workspace/models/replication/'
+                                opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/replication/'
+                                opt[-1].dnn.name = nn_name
+                                opt[-1].init_type = init_type
+                                opt[-1].hyper.init_factor = init_mult
+                                opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                                opt[-1].dataset.proportion_training_set *= training_prop[train_prop_idx]
+                                opt[-1].hyper.learning_rate = lr
+                                opt[-1].hyper.num_epochs_per_decay = \
+                                    int(opt[-1].hyper.num_epochs_per_decay / training_prop[train_prop_idx])
+                                opt[-1].seed += 1
+
+                                if flag_rand == 0:
+                                    opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx])
+                                    opt[-1].hyper.max_num_epochs //= training_prop[train_prop_idx]
+                                else:
+                                    opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx + idx_base_random])
+                                    opt[-1].dataset.random_labels = True
+                                    opt[-1].hyper.max_num_epochs = int(opt[-1].hyper.max_num_epochs * 10 /
+                                                                       training_prop[train_prop_idx])
+
+                                if reg == 1:
+                                    opt[-1].hyper.augmentation = True
+                                    opt[-1].hyper.max_num_epochs *= int(2)
+                                elif reg == 2:
+                                    opt[-1].hyper.drop_train = 0.5
+                                elif reg == 3:
+                                    opt[-1].hyper.weight_decay = 0.001
+                                elif reg == 4:
+                                    opt[-1].hyper.augmentation = True
+                                    opt[-1].hyper.max_num_epochs *= int(2)
+                                    opt[-1].hyper.drop_train = 0.5
+                                    opt[-1].hyper.weight_decay = 0.001
+                                idx += 1
+
+##############################################################################################
+
+# experiments X-X are ResNet18s in imagenet
+
+# name = ['ResNet_imagenet']
+# regularizers = [0]
+# lr_bs_factors = [1]
+# neuron_multiplier = [0.25, 0.5, 1, 2, 4]
+# batch_sizes = [512, 1024, 2048, 4096, 8192]
+# flag_random = [0]
+#
+# for nn_name in name:
+#     for init_type in initialization_type:
+#         for init_mult in initialization_multiplier:
+#             for nm_idx in range(len(neuron_multiplier)):
+#                 for bs_idx in range(len(batch_sizes)):
+#                     for train_prop_idx in range(len(training_prop)):
+#                         for reg in regularizers:
+#                             for flag_rand in flag_random:
+#
+#                                 if nm_idx + bs_idx > 4:  # these ones were impossible to train
+#                                     continue
+#
+#                                 neuron_mult = neuron_multiplier[nm_idx]
+#                                 batch_size = batch_sizes[bs_idx]
+#
+#                                 opt.append(Experiments(idx, nn_name + '_nmult=' + str(neuron_mult) +
+#                                                        '_bsize=' + str(batch_size) + '_seed=' + str(master_seed)))
+#
+#                                 opt[-1].log_dir_base = '/om/user/scasper/workspace/models/resnet_imagenet/'
+#                                 opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/resnet_imagenet/'
+#                                 opt[-1].dnn.name = nn_name
+#                                 opt[-1].init_type = init_type
+#                                 opt[-1].hyper.init_factor = init_mult
+#                                 opt[-1].dnn.layers = 19
+#                                 opt[-1].dnn.neuron_multiplier = np.ones(opt[-1].dnn.layers)
+#                                 opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+#                                 opt[-1].hyper.batch_size = batch_size
+#                                 opt[-1].dataset.proportion_training_set *= training_prop[train_prop_idx]
+#                                 opt[-1].hyper.num_epochs_per_decay = \
+#                                     int(opt[-1].hyper.num_epochs_per_decay / training_prop[train_prop_idx])
+#
+#                                 opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx])
+#                                 opt[-1].dataset.reuse_TFrecords_path = \
+#                                     '/om/user/scasper/workspace/models/resnet_imagenet/data'
+#                                 opt[-1].hyper.max_num_epochs //= training_prop[train_prop_idx]
+#                                 opt[-1].hyper.augmentation = True
+#                                 opt[-1].hyper.weight_decay = 1e-4
+#
+#                                 idx += 1
+
+##############################################################################################
+
 
 def write_lookup_file():
     with open('experiment_lookup.txt', 'w') as f:
@@ -625,6 +735,5 @@ def write_lookup_file():
             f.write(str(i) + '\n')
             f.write(opt[i].name + '\n')
             f.write('\n')
-
 
 # write_lookup_file()

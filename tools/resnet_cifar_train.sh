@@ -1,8 +1,8 @@
 #!/bin/bash
-#SBATCH -c2
-#SBATCH --array=238
+#SBATCH -c1
+#SBATCH --array=230
 #SBATCH --job-name=cifar_train
-#SBATCH --mem=32GB
+#SBATCH --mem=12GB
 #SBATCH --gres=gpu:tesla-k80:1
 #SBATCH -t 1-12:00:00
 #SBATCH --workdir=/om/user/scasper/workspace/
