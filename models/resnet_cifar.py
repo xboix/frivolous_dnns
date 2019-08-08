@@ -692,7 +692,7 @@ class Model_test(object):
             inputs = tf.layers.dense(inputs=inputs, units=self.num_classes)
             inputs = tf.identity(inputs, 'final_dense')
 
-            return inputs, activations  # *SC*
+            return inputs  # *SC*
 
 
 class Cifar10Model_test(Model_test):

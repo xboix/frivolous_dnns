@@ -17,10 +17,13 @@ def create_graph(opt, ptype):
     # I found that this was necessary in order to get everything to git on the om gpus
     # This doesn't affect anything because this is just for evaluation
     # It's ad hoc, but it works well
-    if opt.hyper.batch_size * opt.dnn.factor >= 3072:
-        opt.hyper.batch_size = int(opt.hyper.batch_size / 4)
-    elif opt.hyper.batch_size * opt.dnn.factor >= 2048:
-        opt.hyper.batch_size = int(opt.hyper.batch_size / 2)
+    if opt.dnn.name == 'resnet':
+        if opt.hyper.batch_size * opt.dnn.factor >= 3072:
+            opt.hyper.batch_size = int(opt.hyper.batch_size / 4)
+        elif opt.hyper.batch_size * opt.dnn.factor >= 2048:
+            opt.hyper.batch_size = int(opt.hyper.batch_size / 2)
+    elif opt.dnn.name == 'inception':
+        opt.hyper.batch_size = 256
 
     with open(opt.results_dir + opt.name + '/selectivity.pkl', 'rb') as f:
         selectivity = pickle.load(f)  # indexed [layer][neuron]
@@ -56,8 +59,16 @@ def create_graph(opt, ptype):
     from tensorflow.python.client import device_lib
     local_device_protos = device_lib.list_local_devices()
     gpus = [x.name for x in local_device_protos if x.device_type == 'GPU']
-    image_split = [tf.reshape(t, [-1, data._DEFAULT_IMAGE_SIZE, data._DEFAULT_IMAGE_SIZE, 3]) for t in
-                   zip(tf.split(image, len(gpus)))]
+
+    if opt.dnn.name == 'resnet':
+        image_split = [tf.reshape(t, [-1, data._DEFAULT_IMAGE_SIZE, data._DEFAULT_IMAGE_SIZE, 3]) for t in
+                       zip(tf.split(image, len(gpus)))]
+
+    elif opt.dnn.name == 'inception':
+        image = tf.cast(image, tf.float32)
+        image_split = [tf.reshape(t, [-1, 299, 299, 3]) for t in
+                       zip(tf.split(image, len(gpus)))]
+
     label_split = [tf.reshape(t, [-1]) for t in zip(tf.split(label, len(gpus)))]
 
     # Call DNN

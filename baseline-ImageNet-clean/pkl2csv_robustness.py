@@ -23,7 +23,7 @@ for opt in run_opts:
         sys.stdout.flush()
         continue
 
-    with open(opt.csv_dir + opt.name + '_redundancy.csv', 'w') as csvfile:
+    with open(opt.csv_dir + opt.name + '_robustness.csv', 'w') as csvfile:
 
         filewriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
 
@@ -40,14 +40,14 @@ for opt in run_opts:
         num_layers = opt.dnn.layers  # should be 5 for resnet, 16 for inception v3
 
         for ptype in [2, 3, 4]:  # random ablaiton, noise, targeted perturbation
-            for perturbation_amount in perturbation_range:
+            for p_idx in range(range_len):
                 unchanged_mean_layers = []
 
-                for layer in range(len(num_layers)):  # the +1 is for the all portion
+                for layer in range(num_layers):  # the +1 is for the all portion
 
-                    unchanged_mean_layers.append(robustness_results[ptype, layer, perturbation_amount])
+                    unchanged_mean_layers.append(robustness_results[ptype, layer, p_idx])
 
-                for layer in range(len(num_layers + 1)):  # the +1 is for the all portion
+                for layer in range(num_layers + 1):  # the +1 is for the all portion
 
                     ll = []  # a list which will become a row in the csv
                     ll.append(opt.name)  # model_name
@@ -58,14 +58,14 @@ for opt in run_opts:
                         ll.append('all')  # layer
                     ll.append(opt.dnn.factor)  # size _factor
                     ll.append(opt.hyper.batch_size)  # batch_size
-                    ll.append(ptype)
-                    ll.append(perturbation_amount)
+                    ll.append(ptype)  # perturbation type
+                    ll.append(perturbation_range[p_idx])  # amount of perturbation
 
                     if layer < num_layers:
-                        ll.append(unchanged_mean_layers[layer])
+                        ll.append(unchanged_mean_layers[layer])  # unchanged labels for layer perturbation
 
                     else:
-                        ll.append(sum(unchanged_mean_layers)/num_layers)
+                        ll.append(sum(unchanged_mean_layers)/num_layers)  # unchanged labels for network perturbation
 
                     filewriter.writerow(ll)
 

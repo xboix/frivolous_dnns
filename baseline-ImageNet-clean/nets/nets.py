@@ -17,5 +17,5 @@ def inception(x, opt):
 
 
 def inception_test(x, opt, select, perturbation_params, perturbation_type, idx_gpu=-1):
-    return net_inception(x, opt, select, perturbation_params, perturbation_type, idx_gpu,
+    return net_inception_test(x, opt, select, perturbation_params, perturbation_type, idx_gpu,
                          opt.dnn.factor, num_classes=1001)
