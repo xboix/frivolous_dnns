@@ -222,6 +222,3 @@ def run(opt):
     sys.stdout.flush()
 
     print(":)")
-
-
-
