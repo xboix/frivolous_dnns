@@ -160,6 +160,7 @@ with tf.Session() as sess:
     test_handle_full = sess.run(test_iterator_full.string_handle())
 
     for cross in range(3):
+        print('cross:', cross)
         res, acc, gt_labels_train = get_activations(handle, accuracy, gt, dropout_rate, activations, opt,
                                                     train_iterator_full, train_handle_full, num_iter_train, cross)
         if cross == 0:
@@ -182,6 +183,9 @@ with tf.Session() as sess:
             pickle.dump(gt_labels_test, f, protocol=2)
         with open(opt.log_dir_base + opt.name + '/accuracy_test' + str(cross) + '.pkl', 'wb') as f:
             pickle.dump(acc_test, f, protocol=2)
+
+        sys.stdout.flush()
+
 
 tf.reset_default_graph()
 t1 = time.time()

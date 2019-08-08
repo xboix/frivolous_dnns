@@ -89,11 +89,11 @@ def create_graph(perturbation_type):
 
 
 def test_robustness(handle, dropout_rate, perturbation_params, select, opt, range_robustness, iterator_dataset,
-                    handle_dataset, num_iter, ptype):
+                    handle_dataset, num_iter, ptype, cross):
     # perturbation_params indexed [type][layer]
     # select indexed [layer][neuron]
 
-    with open(opt.log_dir_base + opt.name + '/corr0.pkl', 'rb') as f:  # only do for the first cross
+    with open(opt.log_dir_base + opt.name + '/corr' + str(cross) + '.pkl', 'rb') as f:  # only do for the first cross
         corr = pickle.load(f)
 
     corr = [np.abs(corr[k]) for k in range(len(corr))]  # take the absolute values
@@ -245,11 +245,11 @@ for cross in range(3):
             print('Processing train set')
             results[ptype][0][:] = test_robustness(handle, dropout_rate, perturbation_params, select, opt,
                                                    range_robustness, train_iterator_full, train_handle_full,
-                                                   num_iter_train, ptype)
+                                                   num_iter_train, ptype, cross)
             print('Processing test set')
             results[ptype][1][:] = test_robustness(handle, dropout_rate, perturbation_params, select, opt,
                                                    range_robustness, test_iterator_full, test_handle_full,
-                                                   num_iter_test, ptype)
+                                                   num_iter_test, ptype, cross)
 
         tf.reset_default_graph()
 

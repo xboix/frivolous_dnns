@@ -105,6 +105,7 @@ if not os.path.isfile(opt.log_dir_base + opt.name + '/activations0.pkl'):
 t0 = time.time()
 
 for cross in range(3):
+    print('cross:', cross)
     # results indexed [num_components/evals/evecs/acc/layer_nodes/num_components][train/test]
     results = [[[] for i in range(2)] for i in range(6)]
 
