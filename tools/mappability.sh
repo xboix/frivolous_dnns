@@ -1,9 +1,9 @@
 #!/bin/bash
-#SBATCH -c6
+#SBATCH -c4
 #SBATCH --job-name=mappability
-#SBATCH --mem=72G
+#SBATCH --mem=48G
 #SBATCH --gres=gpu:tesla-k80:1
-#SBATCH -t 3-0:00:00
+#SBATCH -t 4-0:00:00
 #SBATCH --workdir=/om/user/scasper/workspace/
 #SBATCH --qos=cbmm
 

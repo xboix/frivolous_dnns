@@ -4,10 +4,12 @@ import experiments
 import pickle
 from sklearn.cross_decomposition import CCA
 
+# Note: give this a few days (3?) to run on om
+
 DIM_LIM = 50000
 
 
-def get_avg_cluster_loss(vectors, centers, square_loss=False, unitize=True):
+def get_cluster_results(vectors, centers, square_loss=False, unitize=True):
     """
     :param vectors: the activations vectors to map onto the centroid vectors
     :param centers: the centroid vectors to map onto
@@ -55,7 +57,7 @@ def get_avg_cluster_loss(vectors, centers, square_loss=False, unitize=True):
     return np.mean(losses), np.std(losses)
 
 
-def get_avg_best_r(vectors, centers):
+def get_corr_results(vectors, centers):
     """
     :param vectors: the activations vectors to map onto the centroid vectors
     :param centers: the centroid vectors to map onto
@@ -90,7 +92,7 @@ def get_avg_best_r(vectors, centers):
     return np.mean(corrs), np.std(corrs)
 
 
-def get_avg_proj_loss(vectors, basis, square_loss=False, unitize=True):
+def get_proj_results(vectors, basis, square_loss=False, unitize=True):
     """
     :param vectors: the activations vectors to map onto the centroid vectors
     :param basis: the centroid vectors to map onto
@@ -165,95 +167,94 @@ def get_cca_r2(y, x):
 
     return r2
 
-sizes = 5
+
+num_sizes = 5
 size_idx_map = {0.25: 0, 0.5: 1, 1: 2, 2: 3, 4: 4}
-regs = 3
-layers = 4
+num_regs = 3  # unreg, allreg, random
+num_layers = 4
+results_dir = '/om/user/scasper/workspace/models/replication/'
 
-# indexed[cluster_mean/cluster_std/proj_mean/proj_std/cca_mean/cca_std/|r|_mean\|r|_std] \
-# [size][unreg/allreg/random][layer]
-unreg_results = np.zeros((8, sizes, regs, layers))
-allreg_results = np.zeros((8, sizes, regs, layers))
+################################################################
+results = np.zeros((4, 7, num_sizes, num_regs, num_layers))
 
-large_nets = [86, 91]  # the 4x unregularized and allregularized nets
-large_net_duplicates = {86: 232, 91: 233}  # the IDs for the same types of models but with a different random seed
-small_nets = [62, 67]  # the 4x unregularized and allregularized nets
-small_net_duplicates = {62: 239, 67: 240}  # the IDs for the same types of models but with a different random seed
-opt_unreg = experiments.opt[large_nets[0]]
-opt_allreg = experiments.opt[large_nets[1]]
+# index of first dimension:
+# 0: small_unreg net, ID62
+# 1: small_allreg net, ID67
+# 2: large_unreg net, ID86
+# 3: large_allreg net, ID91
 
-# get all stored activations for the large nets
-with open(opt_unreg.log_dir_base + opt_unreg.name + '/activations_test0' + '.pkl', 'rb') as f:
-    unreg_acts = pickle.load(f)
-with open(opt_allreg.log_dir_base + opt_allreg.name + '/activations_test0' + '.pkl', 'rb') as f:
-    allreg_acts = pickle.load(f)
+# index of second dimension:
+# 0: cluster mean loss
+# 1: cluster std loss
+# 2: best_r mean
+# 3: best_r std
+# 4: ssp mean loss
+# 5: ssp std loss
+# 6: cca r^2 (which is not analogous to the pearson r^2)
+################################################################
 
-for ID in range(62, 92):
+net_ids = [62, 67, 86, 91]
+net_duplicates_map = {62: 239, 67: 240, 86: 232, 91: 233}  # IDs for same model but with diff random seed
 
-    if ID in large_nets:  # don't map nets onto themselves, map onto identically trained ones
-        opt = experiments.opt[large_net_duplicates[ID]]
-    else:
-        opt = experiments.opt[ID]
+for results_id, from_id in zip(range(4), net_ids):  # for each, map/score the activations FROM it ONTO the others
 
-    regs = 0
-    if opt.hyper.augmentation:
-        regs += 1
-    if opt.hyper.drop_train < 1:
-        regs += 1
-    if opt.hyper.weight_decay > 0:
-        regs += 1
-    if regs == 1:
-        continue  # if this isn't one of the nets we want to try mapping onto; we want regs \in [0, 3]
+    print('\nprocessing net with id', from_id)
 
-    # get positions to store the results in the result arrays
-    size_idx = size_idx_map[opt.dnn.neuron_multiplier[0]]
-    reg_idx = 0
-    if regs == 3:
-        reg_idx = 1
-    elif opt.dataset.random_labels:
-        reg_idx = 2
+    from_opt = experiments.opt[from_id]
 
-    print('Processing', opt.name)
-    np.random.seed(opt.seed)
+    # get stored TEST activations
+    with open(from_opt.log_dir_base + from_opt.name + '/activations_test0' + '.pkl', 'rb') as f:
+        from_acts = pickle.load(f)
 
-    # get activations for nets to map onto
-    with open(opt.log_dir_base + opt.name + '/activations_test0' + '.pkl', 'rb') as f:
-        opt_acts = pickle.load(f)
+    for onto_id in range(62, 92):
 
-    # get and store average losses
-    for l in range(layers):
-        print('Layer:', l)
-        # get mean and std square_loss losses
-        # unreg_results[0, size_idx, reg_idx, l], unreg_results[1, size_idx, reg_idx, l] = \
-        #     get_avg_cluster_loss(unreg_acts[l], opt_acts[l])
-        # allreg_results[0, size_idx, reg_idx, l], allreg_results[1, size_idx, reg_idx, l] = \
-        #     get_avg_cluster_loss(allreg_acts[l], opt_acts[l])
-        # unreg_results[2, size_idx, reg_idx, l], unreg_results[3, size_idx, reg_idx, l] = \
-        #     get_avg_proj_loss(unreg_acts[l], opt_acts[l])
-        # allreg_results[2, size_idx, reg_idx, l], allreg_results[3, size_idx, reg_idx, l] = \
-        #     get_avg_proj_loss(allreg_acts[l], opt_acts[l])
-        # unreg_results[4, size_idx, reg_idx, l] = get_cca_r2(unreg_acts[l], opt_acts[l])
-        # allreg_results[4, size_idx, reg_idx, l] = get_cca_r2(allreg_acts[l], opt_acts[l])
-        unreg_results[6, size_idx, reg_idx, l], unreg_results[7, size_idx, reg_idx, l] = \
-            get_avg_best_r(unreg_acts[l], opt_acts[l])
-        allreg_results[6, size_idx, reg_idx, l], allreg_results[7, size_idx, reg_idx, l] = \
-            get_avg_best_r(allreg_acts[l], opt_acts[l])
-        sys.stdout.flush()
+        if from_id == onto_id:  # don't map nets onto themselves, map onto identically trained ones
+            onto_opt = experiments.opt[net_duplicates_map[onto_id]]
+        else:
+            onto_opt = experiments.opt[onto_id]
 
-'''
-1: sq loss not unitized
-2: sq loss unitized
-3: loss not unitized
-4: loss unitized
-5: cca
-6: violin plots
-7: |r|
-'''
+        num_regs = 0
+        if onto_opt.hyper.augmentation:
+            num_regs += 1
+        if onto_opt.hyper.drop_train < 1:
+            num_regs += 1
+        if onto_opt.hyper.weight_decay > 0:
+            num_regs += 1
+        if num_regs == 1:
+            continue  # if this isn't one of the nets we want to try mapping onto; we want num_regs \in [0, 3]
 
-with open(opt_unreg.log_dir_base + opt_unreg.name + '/mappability7' + '.pkl', 'wb') as f:
-    pickle.dump(unreg_results, f, protocol=2)
-with open(opt_allreg.log_dir_base + opt_allreg.name + '/mappability7' + '.pkl', 'wb') as f:
-    pickle.dump(allreg_results, f, protocol=2)
+        # get positions to store the results in the result arrays
+        size_idx = size_idx_map[onto_opt.dnn.neuron_multiplier[0]]
+        reg_idx = 0
+        if num_regs == 3:
+            reg_idx = 1
+        elif onto_opt.dataset.random_labels:
+            reg_idx = 2
+
+        print('mapping/scoring onto', onto_opt.name)
+
+        np.random.seed(onto_opt.seed)
+
+        # get TEST activations for net to map onto
+        with open(onto_opt.log_dir_base + onto_opt.name + '/activations_test0' + '.pkl', 'rb') as f:
+            onto_acts = pickle.load(f)
+
+        for layer in range(num_layers):
+            print('processing layer,', layer)
+
+            results[results_id, 0, size_idx, reg_idx, layer], results[results_id, 1, size_idx, reg_idx, layer] = \
+                get_cluster_results(from_acts[layer], onto_acts[layer])
+            results[results_id, 2, size_idx, reg_idx, layer], results[results_id, 3, size_idx, reg_idx, layer] = \
+                get_corr_results(from_acts[layer], onto_acts[layer])
+            results[results_id, 4, size_idx, reg_idx, layer], results[results_id, 5, size_idx, reg_idx, layer] = \
+                get_proj_results(from_acts[layer], onto_acts[layer])
+            results[results_id, 6, size_idx, reg_idx, layer] = \
+                get_cca_r2(from_acts[layer], onto_acts[layer])
+
+            sys.stdout.flush()
+
+with open(results_dir + '.pkl', 'wb') as f:
+    pickle.dump(results, f, protocol=2)
 
 sys.stdout.flush()
 print('get_mappability.py')
