@@ -589,6 +589,7 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][5], ss)
                             end_points['mixed_35x35x256a'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed_1: 35 x 35 x 288.
                         with tf.variable_scope('mixed_35x35x288a'):
@@ -626,6 +627,7 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][6], ss)
                             end_points['mixed_35x35x288a'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed_2: 35 x 35 x 288.
                         with tf.variable_scope('mixed_35x35x288b'):
@@ -663,6 +665,7 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][7], ss)
                             end_points['mixed_35x35x288b'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed_3: 17 x 17 x 768.
                         with tf.variable_scope('mixed_17x17x768a'):
@@ -697,6 +700,7 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][8], ss)
                             end_points['mixed_17x17x768a'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed4: 17 x 17 x 768.
                         with tf.variable_scope('mixed_17x17x768b'):
@@ -737,6 +741,7 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][9], ss)
                             end_points['mixed_17x17x768b'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed_5: 17 x 17 x 768.
                         with tf.variable_scope('mixed_17x17x768c'):
@@ -777,6 +782,7 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][10], ss)
                             end_points['mixed_17x17x768c'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed_6: 17 x 17 x 768.
                         with tf.variable_scope('mixed_17x17x768d'):
@@ -817,6 +823,7 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][11], ss)
                             end_points['mixed_17x17x768d'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed_7: 17 x 17 x 768.
                         with tf.variable_scope('mixed_17x17x768e'):
@@ -857,6 +864,7 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][12], ss)
                             end_points['mixed_17x17x768e'] = activations_tmp
+                            net = activations_tmp
 
                         # Auxiliary Head logits
                         aux_logits = tf.identity(end_points['mixed_17x17x768e'])
@@ -911,6 +919,7 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][13], ss)
                             end_points['mixed_17x17x1280a'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed_9: 8 x 8 x 2048.
                         with tf.variable_scope('mixed_8x8x2048a'):
@@ -951,6 +960,7 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][14], ss)
                             end_points['mixed_8x8x2048a'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed_10: 8 x 8 x 2048.
                         with tf.variable_scope('mixed_8x8x2048b'):
@@ -991,6 +1001,7 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][15], ss)
                             end_points['mixed_8x8x2048b'] = activations_tmp
+                            net = activations_tmp
 
                         # Final pooling and prediction
                         with tf.variable_scope('logits'):
