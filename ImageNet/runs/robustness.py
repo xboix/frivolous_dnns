@@ -139,7 +139,7 @@ def test_robustness(sess, pred_label, handle, perturbation_params, select, opt, 
 
     for layer in range(opt.dnn.layers + 1):  # +1 is for doing all layers together
 
-        print('Processing Layer:', layer)
+        print('processing layer: ' + str(layer+1) + '/' + str(opt.dnn.layers))
 
         for noise_id, noise_level in enumerate(range_robustness):
             print('processing perturbation amount:', noise_level)

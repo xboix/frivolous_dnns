@@ -130,7 +130,7 @@ def get_experiments(output_path, dataset_path):
 
     # Maximum batch size per size
     # id 12-13
-    for n_multiplier, batch_size in zip([1, 0.25], [512, 1024]):
+    for n_multiplier, batch_size in zip([1, 0.25, 0.5], [512, 512, 512]):
         opt_handle = Experiments(id=idx_base,
                                  dataset=opt_data[0], output_path=output_path,
                                  family_id=idx_family, family_name="Inception_v3")

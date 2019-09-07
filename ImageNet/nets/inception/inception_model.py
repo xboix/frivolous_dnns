@@ -405,7 +405,6 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
     }
 
     end_points = {}
-    activations = []
 
     with scopes.arg_scope([ops.conv2d, ops.fc], weight_decay=0.00004):
         with scopes.arg_scope([ops.conv2d],
@@ -440,7 +439,7 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 ss = tf.slice(ss, [begin, 0, 0, 0], size)
                             activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                           perturbation_params[4][0], ss)
-                        activations.append(activations_tmp)
+                        end_points['conv0'] = activations_tmp
 
                         # 149 x 149 x 32
                         end_points['conv1'] = ops.conv2d(end_points['conv0'], int(32 * factor), [3, 3],
@@ -465,7 +464,7 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 ss = tf.slice(ss, [begin, 0, 0, 0], size)
                             activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                           perturbation_params[4][1], ss)
-                        activations.append(activations_tmp)
+                        end_points['conv1'] = activations_tmp
 
                         # 147 x 147 x 32
                         end_points['conv2'] = ops.conv2d(end_points['conv1'], int(64 * factor), [3, 3],
@@ -490,7 +489,7 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 ss = tf.slice(ss, [begin, 0, 0, 0], size)
                             activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                           perturbation_params[4][2], ss)
-                        activations.append(activations_tmp)
+                        end_points['conv2'] = activations_tmp
 
                         # 147 x 147 x 64
                         end_points['pool1'] = ops.max_pool(end_points['conv2'], [3, 3],
@@ -518,7 +517,7 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 ss = tf.slice(ss, [begin, 0, 0, 0], size)
                             activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                           perturbation_params[4][3], ss)
-                        activations.append(activations_tmp)
+                        end_points['conv3'] = activations_tmp
 
                         # 73 x 73 x 80.
                         end_points['conv4'] = ops.conv2d(end_points['conv3'], int(192 * factor), [3, 3],
@@ -543,7 +542,7 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 ss = tf.slice(ss, [begin, 0, 0, 0], size)
                             activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                           perturbation_params[4][4], ss)
-                        activations.append(activations_tmp)
+                        end_points['conv4'] = activations_tmp
 
                         # 71 x 71 x 192.
                         end_points['pool2'] = ops.max_pool(end_points['conv4'], [3, 3],
@@ -569,7 +568,6 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 branch_pool = ops.avg_pool(net, [3, 3])
                                 branch_pool = ops.conv2d(branch_pool, int(32 * factor), [1, 1])
                             net = tf.concat(axis=3, values=[branch1x1, branch5x5, branch3x3dbl, branch_pool])
-                            end_points['mixed_35x35x256a'] = net
 
                             activations_tmp = net
                             if perturbation_type == 3:
@@ -590,7 +588,8 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                     ss = tf.slice(ss, [begin, 0, 0, 0], size)
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][5], ss)
-                            activations.append(activations_tmp)
+                            end_points['mixed_35x35x256a'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed_1: 35 x 35 x 288.
                         with tf.variable_scope('mixed_35x35x288a'):
@@ -607,7 +606,6 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 branch_pool = ops.avg_pool(net, [3, 3])
                                 branch_pool = ops.conv2d(branch_pool, int(64 * factor), [1, 1])
                             net = tf.concat(axis=3, values=[branch1x1, branch5x5, branch3x3dbl, branch_pool])
-                            end_points['mixed_35x35x288a'] = net
 
                             activations_tmp = net
                             if perturbation_type == 3:
@@ -628,7 +626,8 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                     ss = tf.slice(ss, [begin, 0, 0, 0], size)
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][6], ss)
-                            activations.append(activations_tmp)
+                            end_points['mixed_35x35x288a'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed_2: 35 x 35 x 288.
                         with tf.variable_scope('mixed_35x35x288b'):
@@ -645,7 +644,6 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 branch_pool = ops.avg_pool(net, [3, 3])
                                 branch_pool = ops.conv2d(branch_pool, int(64 * factor), [1, 1])
                             net = tf.concat(axis=3, values=[branch1x1, branch5x5, branch3x3dbl, branch_pool])
-                            end_points['mixed_35x35x288b'] = net
 
                             activations_tmp = net
                             if perturbation_type == 3:
@@ -666,7 +664,8 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                     ss = tf.slice(ss, [begin, 0, 0, 0], size)
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][7], ss)
-                            activations.append(activations_tmp)
+                            end_points['mixed_35x35x288b'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed_3: 17 x 17 x 768.
                         with tf.variable_scope('mixed_17x17x768a'):
@@ -680,7 +679,6 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                             with tf.variable_scope('branch_pool'):
                                 branch_pool = ops.max_pool(net, [3, 3], stride=2, padding='VALID')
                             net = tf.concat(axis=3, values=[branch3x3, branch3x3dbl, branch_pool])
-                            end_points['mixed_17x17x768a'] = net
 
                             activations_tmp = net
                             if perturbation_type == 3:
@@ -701,7 +699,8 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                     ss = tf.slice(ss, [begin, 0, 0, 0], size)
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][8], ss)
-                            activations.append(activations_tmp)
+                            end_points['mixed_17x17x768a'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed4: 17 x 17 x 768.
                         with tf.variable_scope('mixed_17x17x768b'):
@@ -721,7 +720,6 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 branch_pool = ops.avg_pool(net, [3, 3])
                                 branch_pool = ops.conv2d(branch_pool, int(192 * factor), [1, 1])
                             net = tf.concat(axis=3, values=[branch1x1, branch7x7, branch7x7dbl, branch_pool])
-                            end_points['mixed_17x17x768b'] = net
 
                             activations_tmp = net
                             if perturbation_type == 3:
@@ -742,7 +740,8 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                     ss = tf.slice(ss, [begin, 0, 0, 0], size)
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][9], ss)
-                            activations.append(activations_tmp)
+                            end_points['mixed_17x17x768b'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed_5: 17 x 17 x 768.
                         with tf.variable_scope('mixed_17x17x768c'):
@@ -762,7 +761,6 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 branch_pool = ops.avg_pool(net, [3, 3])
                                 branch_pool = ops.conv2d(branch_pool, int(192 * factor), [1, 1])
                             net = tf.concat(axis=3, values=[branch1x1, branch7x7, branch7x7dbl, branch_pool])
-                            end_points['mixed_17x17x768c'] = net
 
                             activations_tmp = net
                             if perturbation_type == 3:
@@ -783,7 +781,8 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                     ss = tf.slice(ss, [begin, 0, 0, 0], size)
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][10], ss)
-                            activations.append(activations_tmp)
+                            end_points['mixed_17x17x768c'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed_6: 17 x 17 x 768.
                         with tf.variable_scope('mixed_17x17x768d'):
@@ -803,7 +802,6 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 branch_pool = ops.avg_pool(net, [3, 3])
                                 branch_pool = ops.conv2d(branch_pool, 192, [1, 1])
                             net = tf.concat(axis=3, values=[branch1x1, branch7x7, branch7x7dbl, branch_pool])
-                            end_points['mixed_17x17x768d'] = net
 
                             activations_tmp = net
                             if perturbation_type == 3:
@@ -824,7 +822,8 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                     ss = tf.slice(ss, [begin, 0, 0, 0], size)
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][11], ss)
-                            activations.append(activations_tmp)
+                            end_points['mixed_17x17x768d'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed_7: 17 x 17 x 768.
                         with tf.variable_scope('mixed_17x17x768e'):
@@ -844,7 +843,6 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 branch_pool = ops.avg_pool(net, [3, 3])
                                 branch_pool = ops.conv2d(branch_pool, int(192 * factor), [1, 1])
                             net = tf.concat(axis=3, values=[branch1x1, branch7x7, branch7x7dbl, branch_pool])
-                            end_points['mixed_17x17x768e'] = net
 
                             activations_tmp = net
                             if perturbation_type == 3:
@@ -865,7 +863,8 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                     ss = tf.slice(ss, [begin, 0, 0, 0], size)
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][12], ss)
-                            activations.append(activations_tmp)
+                            end_points['mixed_17x17x768e'] = activations_tmp
+                            net = activations_tmp
 
                         # Auxiliary Head logits
                         aux_logits = tf.identity(end_points['mixed_17x17x768e'])
@@ -899,7 +898,6 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                             with tf.variable_scope('branch_pool'):
                                 branch_pool = ops.max_pool(net, [3, 3], stride=2, padding='VALID')
                             net = tf.concat(axis=3, values=[branch3x3, branch7x7x3, branch_pool])
-                            end_points['mixed_17x17x1280a'] = net
 
                             activations_tmp = net
                             if perturbation_type == 3:
@@ -920,7 +918,8 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                     ss = tf.slice(ss, [begin, 0, 0, 0], size)
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][13], ss)
-                            activations.append(activations_tmp)
+                            end_points['mixed_17x17x1280a'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed_9: 8 x 8 x 2048.
                         with tf.variable_scope('mixed_8x8x2048a'):
@@ -940,7 +939,6 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 branch_pool = ops.avg_pool(net, [3, 3])
                                 branch_pool = ops.conv2d(branch_pool, int(192 * factor), [1, 1])
                             net = tf.concat(axis=3, values=[branch1x1, branch3x3, branch3x3dbl, branch_pool])
-                            end_points['mixed_8x8x2048a'] = net
 
                             activations_tmp = net
                             if perturbation_type == 3:
@@ -961,7 +959,8 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                     ss = tf.slice(ss, [begin, 0, 0, 0], size)
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][14], ss)
-                            activations.append(activations_tmp)
+                            end_points['mixed_8x8x2048a'] = activations_tmp
+                            net = activations_tmp
 
                         # mixed_10: 8 x 8 x 2048.
                         with tf.variable_scope('mixed_8x8x2048b'):
@@ -981,7 +980,6 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                 branch_pool = ops.avg_pool(net, [3, 3])
                                 branch_pool = ops.conv2d(branch_pool, int(192 * factor), [1, 1])
                             net = tf.concat(axis=3, values=[branch1x1, branch3x3, branch3x3dbl, branch_pool])
-                            end_points['mixed_8x8x2048b'] = net
 
                             activations_tmp = net
                             if perturbation_type == 3:
@@ -1002,7 +1000,8 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                                     ss = tf.slice(ss, [begin, 0, 0, 0], size)
                                 activations_tmp = pt.activation_knockout_mask(activations_tmp,
                                                                               perturbation_params[4][15], ss)
-                            activations.append(activations_tmp)
+                            end_points['mixed_8x8x2048b'] = activations_tmp
+                            net = activations_tmp
 
                         # Final pooling and prediction
                         with tf.variable_scope('logits'):
@@ -1015,7 +1014,6 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                             logits = ops.fc(net, num_classes, activation=None, scope='logits',
                                             restore=restore_logits)
                             # 1000
-                            activations.append(logits)
                             end_points['logits'] = logits
                             end_points['predictions'] = tf.nn.softmax(logits, name='predictions')
 

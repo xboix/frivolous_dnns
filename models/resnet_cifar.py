@@ -463,6 +463,7 @@ def ResNet(im, opt):
 # Model for reobustness testing
 ################################################################################
 
+
 class Model_test(object):
     """Base class for building the Resnet Model."""
 
@@ -634,7 +635,7 @@ class Model_test(object):
                 inputs = tf.nn.relu(inputs)
 
             # *SC*
-            inputs = tf.transpose(inputs, perm=[0, 2, 3, 1])
+            inputs = tf.transpose(inputs, perm=[0, 2, 3, 1])  # make channels last
             if perturbation_type == 3:
                 inputs = pt.activation_noise(inputs, perturbation_params[3][0], opt.hyper.batch_size)
             elif perturbation_type in [2, 4]:
@@ -642,7 +643,7 @@ class Model_test(object):
                                 [-1, int(inputs.get_shape()[1]), int(inputs.get_shape()[2]),
                                  int(inputs.get_shape()[3])])
                 inputs = pt.activation_knockout_mask(inputs, perturbation_params[4][0], ss)  # ss is the mask
-            inputs = tf.transpose(inputs, perm=[0, 3, 1, 2])
+            inputs = tf.transpose(inputs, perm=[0, 3, 1, 2])  # make channels first
             # *SC*
 
             if self.first_pool_size:
@@ -661,7 +662,7 @@ class Model_test(object):
                     name='block_layer{}'.format(i + 1), data_format=self.data_format)  # *SC*
 
                 # *SC*
-                inputs = tf.transpose(inputs, perm=[0, 2, 3, 1])
+                inputs = tf.transpose(inputs, perm=[0, 2, 3, 1])  # make channels last
                 if perturbation_type == 3:
                     inputs = pt.activation_noise(inputs, perturbation_params[3][i+1], opt.hyper.batch_size)
                 elif perturbation_type in [2, 4]:
@@ -670,7 +671,7 @@ class Model_test(object):
                                     [-1, int(inputs.get_shape()[1]), int(inputs.get_shape()[2]),
                                      int(inputs.get_shape()[3])])
                     inputs = pt.activation_knockout_mask(inputs, perturbation_params[4][i+1], ss)  # ss is the mask
-                inputs = tf.transpose(inputs, perm=[0, 3, 1, 2])
+                inputs = tf.transpose(inputs, perm=[0, 3, 1, 2])  # make channels first
                 # *SC*
 
             # Only apply the BN and ReLU for model that does pre_activation in each
@@ -742,4 +743,4 @@ def ResNet_test(im, opt, select, perturbation_params, perturbation_type):
     model_test = Cifar10Model_test(resnet_size=RESNET_SIZE, size_factor=opt.dnn.neuron_multiplier[0])
     logits = model_test(im, opt=opt, select=select, perturbation_params=perturbation_params,
                         perturbation_type=perturbation_type, training=False)
-    return logits  # return empty [] in place of parameters just to make things work smoothly
+    return logits, []  # return empty [] in place of parameters just to make things work smoothly
