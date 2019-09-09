@@ -11,6 +11,8 @@ class DNN(object):
         self.name = "ResNet"
         self.layers = 5  # not including the logits output layer
         self.factor = 1
+        self.factor_end = 1
+
 
 
 class Hyperparameters(object):
@@ -53,6 +55,8 @@ class Experiments(object):
         self.dataset = dataset
         self.dnn = DNN()
         self.hyper = Hyperparameters()
+
+        self.time_step = 0
 
 
 def get_experiments(output_path, dataset_path):
@@ -147,20 +151,39 @@ def get_experiments(output_path, dataset_path):
 
     # Maximum batch size per size
     # id 15-18
-    for n_multiplier, batch_size in zip([0.25, 0.5, 2, 4], [512, 512, 512]):
+    for n_multiplier, batch_size in zip([0.25, 0.5, 2, 4], [512, 512, 512, 512]):
         opt_handle = Experiments(id=idx_base,
                                  dataset=opt_data[0], output_path=output_path,
                                  family_id=idx_family, family_name="Inception_v3")
 
         opt_handle.skip_train = False
         opt_handle.dnn.name = "inception"
-        opt_handle.dnn.factor = n_multiplier
+        opt_handle.dnn.factor = 1
+        opt_handle.dnn.factor_end = n_multiplier
         opt_handle.hyper.batch_size = batch_size
         opt_handle.dnn.layers = 16  # not including the logits output layer # 16 might not be right...
         opt_handle.results_dir = '/om/user/scasper/workspace/models/inception_imagenet/'
         opt_handle.csv_dir = '/om/user/scasper/workspace/csvs/inception_imagenet/'
         opt += [copy.deepcopy(opt_handle)]
         idx_base += 1
+
+    # RESNET timesteps
+    # id 19-38
+    for step in range(4):
+        for n_multiplier, batch_size in zip([0.25, 0.5, 1, 2, 4], [8192, 4096, 3072, 1024, 512]):
+            opt_handle = Experiments(id=idx_base,
+                                     dataset=opt_data[0], output_path=output_path,
+                                     family_id=idx_family, family_name="ResNet18")
+
+            opt_handle.time_step = step
+            opt_handle.skip_train = False
+            opt_handle.dnn.name = "resnet"
+            opt_handle.dnn.factor = n_multiplier
+            opt_handle.hyper.batch_size = batch_size
+            opt += [copy.deepcopy(opt_handle)]
+            idx_base += 1
+
+
 
     print('OPTS LOOKUP:')
     for ID in range(len(opt)):
