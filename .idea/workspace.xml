@@ -4,172 +4,47 @@
     <option name="CUSTOM_SCOPE_NAME" value="Current File" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed3bb66d-67f6-4dbd-a399-f518d8f264aa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/data/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/data/build_imagenet_data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/data/data.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/data/imagenet_preprocessing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/datasets.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/experiments/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/experiments/experiments.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/nets.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/perturbations.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/resnet.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/pkl2csv_redundancy.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/pkl2csv_robustness.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/activations.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/preprocessing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/redundancy.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/robustness.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/summary/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/summary/summary.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_activations.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_redundancy.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_robustness.sh" afterDir="false" />
+    <list default="true" id="ed3bb66d-67f6-4dbd-a399-f518d8f264aa" name="Default Changelist" comment="Default Changelist">
+      <change afterPath="$PROJECT_DIR$/ImageNet/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cifar_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/cifar_dataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_lookup.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_lookup.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiments.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_activations.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_activations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_mappability.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_mappability.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_redundancy.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_redundancy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_robustness.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_robustness.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/resnet_cifar.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/resnet_cifar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/resnet_imagenet.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/resnet_imagenet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkl2csv_robustness.py" beforeDir="false" afterPath="$PROJECT_DIR$/pkl2csv_robustness.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resnet/cifar10_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/resnet/cifar10_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resnet/imagenet_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/resnet/imagenet_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resnet/resnet_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/resnet/resnet_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resnet/resnet_run_loop.py" beforeDir="false" afterPath="$PROJECT_DIR$/resnet/resnet_run_loop.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/array_activations.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_activations.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/array_experiments_plot.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/array_redundancy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_redundancy.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/array_robustness.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_robustness.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/array_train.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_train.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/array_train_base.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_train_base.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/reset_experiment_logs.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/resnet_cifar_train.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/resnet_cifar_train.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/rm_logs.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/data/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/summary/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/data/build_imagenet_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/data/build_imagenet_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/data/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/data/data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/data/imagenet_preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/data/imagenet_preprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/datasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/datasets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/experiments/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/runs/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/experiments/experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/experiments/experiments.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/inception/inception_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/inception/inception_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/inception/losses.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/inception/losses.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/inception/ops.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/inception/ops.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/inception/scopes.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/inception/scopes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/inception/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/inception/variables.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/nets.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/nets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/perturbations.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/perturbations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/resnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/resnet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/pkl2csv_redundancy.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/pkl2csv_redundancy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/pkl2csv_robustness.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/pkl2csv_robustness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/experiments/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/activations.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/runs/activations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/runs/preprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/redundancy.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/runs/redundancy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/robustness.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/runs/robustness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/runs/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/summary/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/data/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/summary/summary.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/summary/summary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_activations.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/tools/array_activations.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_redundancy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/tools/array_redundancy.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_robustness.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/tools/array_robustness.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/runs/redundancy.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="91" selection-start-line="91" selection-end-line="91" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/nets/perturbations.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="156" lean-forward="true" selection-start-line="156" selection-end-line="156" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-                <element signature="e#366#3004#0" />
-                <element signature="e#3141#5910#0" />
-                <element signature="e#3141#4532#1" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/nets/resnet.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="849" column="60" selection-start-line="849" selection-start-column="39" selection-end-line="849" selection-end-column="60" />
-              <folding>
-                <element signature="n#!!doc" />
-                <element signature="e#689#1281#1" />
-                <element signature="e#1283#1321#0" expanded="true" />
-                <element signature="e#1940#2437#0" />
-                <element signature="e#2497#3537#0" />
-                <element signature="e#3633#4215#0" />
-                <element signature="e#4529#6293#0" />
-                <element signature="e#6417#8168#0" />
-                <element signature="e#8296#10383#0" />
-                <element signature="e#10511#12874#0" />
-                <element signature="e#12999#14648#0" />
-                <element signature="e#15230#18256#0" />
-                <element signature="e#18395#20456#0" />
-                <element signature="e#20503#20899#0" />
-                <element signature="e#20951#21303#1" />
-                <element signature="e#24629#25584#0" />
-                <element signature="e#25619#27230#0" />
-                <element signature="e#25868#27230#0" />
-                <element signature="e#27999#31025#0" />
-                <element signature="e#27999#29684#1" />
-                <element signature="e#31164#33225#0" />
-                <element signature="e#31164#32978#1" />
-                <element signature="e#33272#33668#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/runs/robustness.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="220" lean-forward="true" selection-start-line="220" selection-end-line="220" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/experiments/experiments.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="128" selection-start-line="128" selection-end-line="147" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_robustness.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -178,168 +53,15 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>learning</find>
-      <find>182</find>
-      <find>global_step</find>
-      <find>max_train_steps</find>
-      <find>step</find>
-      <find>flags_obj.</find>
-      <find>experiments.opt[flags_obj.opt_id].hyper.batch_size</find>
-      <find>name</find>
-      <find>sess.run</find>
-      <find>gt</find>
-      <find>opt.log_dir_base</find>
-      <find>import resnet</find>
-      <find>result_dir</find>
-      <find>from nets.inception.inception_model</find>
-      <find>activations.append(end_points)</find>
-      <find>perturbations</find>
-      <find>allow_soft</find>
-      <find>initializer</find>
-      <find>sys.std</find>
-      <find>initializ</find>
-      <find>make_initializable_iterator</find>
-      <find>tf.transpo</find>
-      <find>tf.transpose</find>
-      <find>activations.append</find>
-      <find>import experiments</find>
-      <find>inception_v3_parameters</find>
-      <find>inputs</find>
-      <find>batch_num = inputs.get_shape()[0]</find>
-      <find>batch_num = activations_tmp.get_shape()[0]</find>
-      <find>get_shape().to_list()</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>size_idx_map[opt.dnn.neuron_multiplier[0]]</replace>
-      <replace>framealpha=0.8</replace>
-      <replace>neuron_multiplier</replace>
-      <replace>if opt.dnn.neuron_multiplier[0] == 1:</replace>
-      <replace>opt.dnn.neuron_multiplier[0] ==</replace>
-      <replace>selectivity_mean</replace>
-      <replace>c='black'</replace>
-      <replace>'lightgreen', 'limegreen', 'darkgreen'</replace>
-      <replace>tf.</replace>
-      <replace>tf.contrib.distribute</replace>
-      <replace>import</replace>
-      <replace>from utils</replace>
-      <replace />
-      <replace>perturbation_params</replace>
-      <replace>test_robustness</replace>
-      <replace>range_robustness</replace>
-      <replace>proj</replace>
-      <replace>tf.compat.v1.set_random_seed</replace>
-      <replace>tf.compat.v1.placeholder</replace>
-      <replace>tf.compat.v1.data.Iterator</replace>
-      <replace>tf.compat.v1.train.Saver</replace>
-      <replace>tf.compat.v1.summary.merge_all</replace>
-      <replace>tf.compat.v1.summary.FileWriter</replace>
-      <replace>tf.compat.v1.RunOptions</replace>
-      <replace>square_loss</replace>
-      <replace>opt.results_dir</replace>
-      <replace>activations.append(net)</replace>
-      <replace>batch_num = inputs.get_shape().to_list()[0]</replace>
-      <replace>batch_num = activations_tmp.get_shape().to_list()[0]</replace>
-      <replace>get_shape().as_list()</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$/resnet/official/utils/logs</dir>
-      <dir>$PROJECT_DIR$/data</dir>
-      <dir>$PROJECT_DIR$/resnet</dir>
-      <dir>$PROJECT_DIR$</dir>
-      <dir>$PROJECT_DIR$/baseline-ImageNet-clean/nets/inception</dir>
-      <dir>$PROJECT_DIR$/baseline-ImageNet-clean</dir>
-    </dirStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/experiment_lookup.txt" />
-        <option value="$PROJECT_DIR$/data/dataset.py" />
-        <option value="$PROJECT_DIR$/tools/array_train_base.sh" />
-        <option value="$PROJECT_DIR$/models/nets.py" />
-        <option value="$PROJECT_DIR$/models/alexnet.py" />
-        <option value="$PROJECT_DIR$/tools/mappability.sh" />
-        <option value="$PROJECT_DIR$/tools/tensorboard.sh" />
-        <option value="$PROJECT_DIR$/train.py" />
-        <option value="$PROJECT_DIR$/resnet/resnet_model.py" />
-        <option value="$PROJECT_DIR$/resnet/imagenet_main.py" />
-        <option value="$PROJECT_DIR$/tools/array_robustness.sh" />
-        <option value="$PROJECT_DIR$/data/cifar_dataset.py" />
-        <option value="$PROJECT_DIR$/resnet/resnet_run_loop.py" />
-        <option value="$PROJECT_DIR$/tools/resnet_cifar_train.sh" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/datasets.py" />
-        <option value="$PROJECT_DIR$/resnet/cifar10_main.py" />
-        <option value="$PROJECT_DIR$/get_mappability.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_test.sh" />
-        <option value="$PROJECT_DIR$/experiments.py" />
-        <option value="$PROJECT_DIR$/tools/array_train.sh" />
-        <option value="$PROJECT_DIR$/get_redundancy.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/tools/pkl2csv_redundancy.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/experiments/resnet.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/runs/test.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/data/imagenet_preprocessing.py" />
-        <option value="$PROJECT_DIR$/models/resnet_cifar.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/runs/redundancy.py" />
-        <option value="$PROJECT_DIR$/models/resnet_imagenet.py" />
-        <option value="$PROJECT_DIR$/get_robustness.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/runs/preprocessing.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/data/build_imagenet_data.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/data/data.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/main.py" />
-        <option value="$PROJECT_DIR$/pkl2csv_robustness.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/pkl2csv_robustness.py" />
-        <option value="$PROJECT_DIR$/tools/array_redundancy.sh" />
-        <option value="$PROJECT_DIR$/tools/array_activations.sh" />
-        <option value="$PROJECT_DIR$/get_activations.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/runs/activations.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/pkl2csv_redundancy.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/nets/perturbations_multi_gpu.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_run.sh" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/nets/nets.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_redundancy.sh" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_activations.sh" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/nets/inception/inception_model.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/nets/perturbations.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/nets/resnet.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_robustness.sh" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/runs/robustness.py" />
-        <option value="$PROJECT_DIR$/baseline-ImageNet-clean/experiments/experiments.py" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="redundancy_dnns" type="b2602c69:ProjectViewProjectNode" />
-              <item name="redundancy_dnns" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
-  </component>
+  <component name="ProjectId" id="1QVmXXrdRdsoGp4sl0nVJnxmvec" />
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/baseline-ImageNet-clean/tools" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/baseline-ImageNet-clean" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -352,18 +74,18 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean" />
+      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/tools" />
+      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/nets" />
+      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/runs" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/baseline-ImageNet-clean" />
       <recent name="$PROJECT_DIR$/tools" />
       <recent name="$PROJECT_DIR$/resnet" />
       <recent name="$PROJECT_DIR$/resnet/official" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/tools" />
-      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean" />
-      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/nets" />
-      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/runs" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -468,6 +190,11 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.experiments" />
+      <item itemvalue="Python.resnet" />
+      <item itemvalue="Python.resnet_experiments" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.experiments" />
@@ -598,11 +325,17 @@
       <workItem from="1565101427421" duration="11759000" />
       <workItem from="1565147518757" duration="1288000" />
       <workItem from="1565184160696" duration="1606000" />
+      <workItem from="1567864180137" duration="1588000" />
     </task>
+    <task id="LOCAL-00001" summary="Inception update">
+      <created>1566600208066</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1566600208067</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="672847000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -613,34 +346,6 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24678111" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="File Transfer" order="0" sideWeight="0.4985694" visible="true" weight="0.21686748" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="3" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="7" weight="0.32891566" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32891566" />
-      <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.18955651" side_tool="true" weight="0.32891566" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.81044346" weight="0.22800496" />
-      <window_info anchor="bottom" id="Python Console" order="13" sideWeight="0.8619456" weight="0.16867469" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" x="0" y="0" width="310" height="677" id="Documentation" order="4" side_tool="true" visible="true" weight="0.07725322" />
-      <window_info anchor="right" id="Database" order="5" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -650,39 +355,16 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
+              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
-          </value>
-        </entry>
-      </map>
-    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Inception update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inception update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -729,615 +411,20 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/get_mappability.py</url>
-          <line>181</line>
+          <line>197</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/get_mappability.py</url>
-          <line>182</line>
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/get_mappability.py</url>
-          <line>193</line>
+          <line>203</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/get_mappability.py</url>
-          <line>192</line>
+          <line>202</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data/dataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-            <element signature="e#618#665#0" />
-            <element signature="e#1012#2000#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/cifar_dataset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="97" column="68" selection-start-line="97" selection-start-column="68" selection-end-line="97" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#194#627#0" />
-            <element signature="e#698#805#0" />
-            <element signature="e#873#2444#0" />
-            <element signature="e#1215#2379#0" />
-            <element signature="e#2483#3431#0" />
-            <element signature="e#2794#3391#0" />
-            <element signature="e#3510#5860#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resnet/official/utils/misc/distribution_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-289">
-          <folding>
-            <element signature="e#995#1928#0" />
-            <element signature="e#1994#3003#0" />
-            <element signature="e#3255#6312#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resnet/resnet_run_loop.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="654" column="66" selection-start-line="654" selection-start-column="16" selection-end-line="654" selection-end-column="66" />
-          <folding>
-            <element signature="e#985#1023#0" expanded="true" />
-            <element signature="e#2571#5828#0" />
-            <element signature="e#2571#3766#1" />
-            <element signature="e#5942#7611#0" />
-            <element signature="e#5942#6814#1" />
-            <element signature="e#7683#8464#0" />
-            <element signature="e#8537#10449#0" />
-            <element signature="e#10829#14674#0" />
-            <element signature="e#10829#11932#1" />
-            <element signature="e#15021#17242#1" />
-            <element signature="e#23423#24455#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools/tensorboard.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="42" selection-start-line="11" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools/array_train_base.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="19" lean-forward="true" selection-start-line="2" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools/resnet_cifar_train.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="19" lean-forward="true" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/summary/summary.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/data/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/experiments/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3568">
-          <caret line="238" column="54" selection-start-line="238" selection-start-column="44" selection-end-line="238" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/datasets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="31" column="49" lean-forward="true" selection-start-line="31" selection-end-line="32" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resnet/cifar10_main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="349" column="26" lean-forward="true" selection-start-line="349" selection-end-line="350" />
-          <folding>
-            <element signature="n#!!doc" />
-            <element signature="e#741#779#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiment_lookup.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="717" selection-start-line="717" selection-end-line="721" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/get_mappability.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#207#1841#0" />
-            <element signature="e#3068#4709#0" />
-            <element signature="e#4738#5386#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/experiments.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-          <folding>
-            <element signature="e#95#727#0" />
-            <element signature="e#1119#1426#0" />
-            <element signature="e#1453#1772#0" />
-            <element signature="e#1811#2339#0" />
-            <element signature="e#1839#2339#0" />
-            <element signature="e#2374#3911#0" />
-            <element signature="e#4481#4657#0" />
-            <element signature="e#4709#4923#0" />
-            <element signature="e#8346#11409#0" />
-            <element signature="e#11651#14230#0" />
-            <element signature="e#14446#17025#0" />
-            <element signature="e#17323#20771#0" />
-            <element signature="e#21044#24160#0" />
-            <element signature="e#24488#27603#0" />
-            <element signature="e#27943#30985#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pkl2csv_redundancy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="46" column="20" lean-forward="true" selection-start-line="46" selection-start-column="20" selection-end-line="48" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resnet/resnet_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="351" column="20" selection-start-line="351" selection-start-column="20" selection-end-line="351" selection-end-column="20" />
-          <folding>
-            <element signature="e#1283#1321#0" expanded="true" />
-            <element signature="e#1869#2340#0" />
-            <element signature="e#2400#3536#0" />
-            <element signature="e#3621#4212#0" />
-            <element signature="e#4527#6295#0" />
-            <element signature="e#6419#8170#0" />
-            <element signature="e#8298#10389#0" />
-            <element signature="e#10517#12880#0" />
-            <element signature="e#13005#14654#0" />
-            <element signature="e#14682#24551#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/nets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/resnet_imagenet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="522" column="18" selection-start-line="522" selection-start-column="18" selection-end-line="522" selection-end-column="18" />
-          <folding>
-            <element signature="n#!!doc" />
-            <element signature="e#689#1281#1" />
-            <element signature="e#1889#2386#0" />
-            <element signature="e#2446#3486#0" />
-            <element signature="e#3582#4164#0" />
-            <element signature="e#4478#5519#1" />
-            <element signature="e#6366#8117#0" />
-            <element signature="e#6366#7406#1" />
-            <element signature="e#8245#10332#0" />
-            <element signature="e#8245#9383#1" />
-            <element signature="e#10460#12823#0" />
-            <element signature="e#10460#11886#1" />
-            <element signature="e#12948#14597#0" />
-            <element signature="e#12948#13930#1" />
-            <element signature="e#15003#18029#0" />
-            <element signature="e#15003#16688#1" />
-            <element signature="e#18168#20229#0" />
-            <element signature="e#18168#19982#1" />
-            <element signature="e#20276#20548#1" />
-            <element signature="e#20724#21076#1" />
-            <element signature="e#24533#25488#0" />
-            <element signature="e#24533#25035#1" />
-            <element signature="e#25523#27134#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/nets/inception/losses.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/data/build_imagenet_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="172" column="17" selection-start-line="172" selection-start-column="17" selection-end-line="172" selection-end-column="17" />
-          <folding>
-            <element signature="n#!!doc" />
-            <element signature="e#695#3587#1" />
-            <element signature="e#4882#4954#0" />
-            <element signature="e#5399#5466#0" />
-            <element signature="e#5912#5964#0" />
-            <element signature="e#6815#7009#0" />
-            <element signature="e#7043#7289#0" />
-            <element signature="e#7412#9407#0" />
-            <element signature="e#9440#10976#0" />
-            <element signature="e#11006#11343#0" />
-            <element signature="e#11374#12415#0" />
-            <element signature="e#12459#13578#0" />
-            <element signature="e#12459#12824#1" />
-            <element signature="e#13739#16968#0" />
-            <element signature="e#17088#17781#1" />
-            <element signature="e#19140#21993#0" />
-            <element signature="e#22059#22540#0" />
-            <element signature="e#22607#23549#0" />
-            <element signature="e#23676#24338#1" />
-            <element signature="e#26113#27052#0" />
-            <element signature="e#27110#28667#0" />
-            <element signature="e#28697#29567#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/runs/preprocessing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/data/imagenet_preprocessing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-407">
-          <caret line="237" column="35" selection-start-line="237" selection-start-column="35" selection-end-line="237" selection-end-column="35" />
-          <folding>
-            <element signature="n#!!doc" />
-            <element signature="e#689#1445#1" />
-            <element signature="e#1447#1485#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/nets/inception/ops.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/data/data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/get_redundancy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="73" column="37" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#432#1234#0" />
-            <element signature="e#1281#1529#0" />
-            <element signature="e#3094#3375#0" />
-            <element signature="e#3420#3611#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pkl2csv_robustness.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-717">
-          <caret line="13" selection-start-line="13" selection-end-line="18" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/pkl2csv_robustness.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="13" lean-forward="true" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#431#4122#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools/array_redundancy.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools/array_activations.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/get_activations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="102" column="96" selection-start-line="102" selection-start-column="96" selection-end-line="102" selection-end-column="96" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/runs/activations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="121" lean-forward="true" selection-start-line="121" selection-end-line="121" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/runs/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="167" column="15" lean-forward="true" selection-start-line="167" selection-start-column="15" selection-end-line="167" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#215#5442#0" />
-            <element signature="e#5464#6384#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools/array_train.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="60" lean-forward="true" selection-start-line="11" selection-start-column="60" selection-end-line="11" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/pkl2csv_redundancy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="70" column="63" lean-forward="true" selection-start-line="70" selection-start-column="63" selection-end-line="70" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/nets/nets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="85" selection-start-line="18" selection-start-column="85" selection-end-line="18" selection-end-column="85" />
-          <folding>
-            <element signature="e#0#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/alexnet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1261">
-          <caret line="314" column="67" selection-start-line="314" selection-start-column="67" selection-end-line="314" selection-end-column="92" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_redundancy.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_activations.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/get_robustness.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="881">
-          <caret line="256" column="27" selection-start-line="256" selection-start-column="20" selection-end-line="256" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-            <element signature="e#577#3775#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/perturbations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2">
-          <caret line="161" selection-start-line="161" selection-end-line="167" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#366#3004#0" />
-            <element signature="e#3141#5910#0" />
-            <element signature="e#3141#4532#1" />
-            <element signature="e#8682#9405#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/nets/inception/inception_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="809" column="72" selection-start-line="809" selection-start-column="72" selection-end-line="809" selection-end-column="72" />
-          <folding>
-            <element signature="e#673#1652#1" />
-            <element signature="e#1653#1691#0" expanded="true" />
-            <element signature="e#2150#24482#0" />
-            <element signature="e#24787#25492#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/resnet_cifar.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="634" lean-forward="true" selection-start-line="634" selection-end-line="634" />
-          <folding>
-            <element signature="e#689#1281#1" />
-            <element signature="e#1283#1321#0" expanded="true" />
-            <element signature="e#1958#2429#0" />
-            <element signature="e#2489#3625#0" />
-            <element signature="e#3710#4301#0" />
-            <element signature="e#4616#6380#0" />
-            <element signature="e#6505#8170#0" />
-            <element signature="e#8374#18355#0" />
-            <element signature="e#11980#14041#0" />
-            <element signature="e#14088#14484#0" />
-            <element signature="e#18389#20050#0" />
-            <element signature="e#20857#23946#0" />
-            <element signature="e#20857#22542#1" />
-            <element signature="e#24085#26146#0" />
-            <element signature="e#26193#26589#0" />
-            <element signature="e#26694#27046#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/runs/redundancy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="91" selection-start-line="91" selection-end-line="91" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_robustness.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/nets/perturbations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="156" lean-forward="true" selection-start-line="156" selection-end-line="156" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#366#3004#0" />
-            <element signature="e#3141#5910#0" />
-            <element signature="e#3141#4532#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/nets/resnet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="849" column="60" selection-start-line="849" selection-start-column="39" selection-end-line="849" selection-end-column="60" />
-          <folding>
-            <element signature="n#!!doc" />
-            <element signature="e#689#1281#1" />
-            <element signature="e#1283#1321#0" expanded="true" />
-            <element signature="e#1940#2437#0" />
-            <element signature="e#2497#3537#0" />
-            <element signature="e#3633#4215#0" />
-            <element signature="e#4529#6293#0" />
-            <element signature="e#6417#8168#0" />
-            <element signature="e#8296#10383#0" />
-            <element signature="e#10511#12874#0" />
-            <element signature="e#12999#14648#0" />
-            <element signature="e#15230#18256#0" />
-            <element signature="e#18395#20456#0" />
-            <element signature="e#20503#20899#0" />
-            <element signature="e#20951#21303#1" />
-            <element signature="e#24629#25584#0" />
-            <element signature="e#25619#27230#0" />
-            <element signature="e#25868#27230#0" />
-            <element signature="e#27999#31025#0" />
-            <element signature="e#27999#29684#1" />
-            <element signature="e#31164#33225#0" />
-            <element signature="e#31164#32978#1" />
-            <element signature="e#33272#33668#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/runs/robustness.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="220" lean-forward="true" selection-start-line="220" selection-end-line="220" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/baseline-ImageNet-clean/experiments/experiments.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="128" selection-start-line="128" selection-end-line="147" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>
