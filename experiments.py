@@ -21,6 +21,8 @@ class Dataset(object):
         self.random_labels = False
         self.scramble_data = False
 
+        self.dataset = 'cifar'
+
         # Transfer learning
         self.transfer_learning = False
         self.transfer_pretrain = True
@@ -675,6 +677,23 @@ for nn_name in name:
                                     opt[-1].hyper.weight_decay = 0.001
                                 idx += 1
 
+
+# Create base for TF records:
+opt += [Experiments(idx, "data_" + str(p))]
+opt[-1].dataset = 'rand10'
+opt[-1].hyper.max_num_epochs = 0
+opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10/'
+opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10/'
+idx += 1
+
+opt += [Experiments(idx, "data_" + str(p))]
+opt[-1].dataset = 'rand10000'
+opt[-1].hyper.max_num_epochs = 0
+opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10000/'
+opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10000/'
+idx += 1
+
+
 ##############################################################################################
 
 # experiments X-X are ResNet18s in imagenet
@@ -736,4 +755,4 @@ def write_lookup_file():
             f.write(opt[i].name + '\n')
             f.write('\n')
 
-# write_lookup_file()
+#write_lookup_file()

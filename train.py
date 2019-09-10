@@ -1,3 +1,6 @@
+import os
+os.environ['CUDA_VISIBLE_DEVICES'] = ""
+
 import os.path
 import shutil
 import sys
@@ -5,7 +8,7 @@ import numpy as np
 
 import tensorflow as tf
 
-import experiments
+import experiments 
 from data import cifar_dataset
 from models import nets
 from utils import summary
@@ -34,7 +37,12 @@ print(opt.name)
 ################################################################################################
 
 # Initialize dataset and creates TF records if they do not exist
-dataset = cifar_dataset.Cifar10(opt)
+if opt.dataset == 'cifar':
+    dataset = cifar_dataset.Cifar10(opt)
+elif opt.dataset == 'rand10':
+    dataset = cifar_dataset.Rand10(opt)
+elif opt.dataset == 'rand10000':
+    dataset = cifar_dataset.Rand10000(opt)
 
 # Repeatable datasets for training
 train_dataset = dataset.create_dataset(augmentation=opt.hyper.augmentation, standarization=True, set_name='train',

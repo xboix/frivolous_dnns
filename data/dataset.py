@@ -115,7 +115,10 @@ class Dataset:
             image = tf.cast(image, tf.float32)
             S = tf.stack([tf.cast(parsed_features[set_name_app + '/height'], tf.int32),
                           tf.cast(parsed_features[set_name_app + '/width'], tf.int32), 3])
-            image = tf.reshape(image, S)
+
+            ## FOR CIFAR DATASET
+            if opt.dataset == 'cifar':
+                image = tf.reshape(image, S)
 
             float_image = self.preprocess_image(augmentation, standarization, image)
 
