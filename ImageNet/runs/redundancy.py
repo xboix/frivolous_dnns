@@ -83,45 +83,49 @@ def run(opt):
     print('factor:', opt.dnn.factor)
     print('batch size:', opt.hyper.batch_size)
 
-    with open(opt.results_dir + opt.name + '/activations.pkl', 'rb') as f:
-        res = pickle.load(f)
-    with open(opt.results_dir + opt.name + '/labels.pkl', 'rb') as f:
-        gt_labels = pickle.load(f)
+    for cross in range(3):
 
-    num_layers = len(res)
+        print('cross', cross)
 
-    corr = []
-    similarity = []
-    compressability = []
-    selectivity = []
+        with open(opt.results_dir + opt.name + '/activations' + str(cross) + '.pkl', 'rb') as f:
+            res = pickle.load(f)
+        with open(opt.results_dir + opt.name + '/labels' + str(cross) + '.pkl', 'rb') as f:
+            gt_labels = pickle.load(f)
 
-    for layer in range(num_layers):
+        num_layers = len(res)
 
-        print('processing_layer:', str(layer+1) + '/' + str(num_layers))
+        corr = []
+        similarity = []
+        compressability = []
+        selectivity = []
+
+        for layer in range(num_layers):
+
+            print('processing_layer:', str(layer+1) + '/' + str(num_layers))
+            sys.stdout.flush()
+
+            corr_layer = get_corr(res[layer])
+            corr.append(corr_layer)
+            sim_mean, sim_std = get_similarity(corr_layer)
+            similarity.append([sim_mean, sim_std])
+            compress_95, _, _, _ = pca(res[layer])
+            compressability.append(compress_95)
+            sel = get_selectivity(res[layer], gt_labels[layer])
+            selectivity.append(sel)
+
+        print('now writing .pkl files...')
+
+        with open(opt.results_dir + opt.name + '/corr' + str(cross) + '.pkl', 'wb') as f:
+            pickle.dump(corr, f, protocol=2)
+        with open(opt.results_dir + opt.name + '/similarity' + str(cross) + '.pkl', 'wb') as f:
+            pickle.dump(similarity, f, protocol=2)
+        with open(opt.results_dir + opt.name + '/compressability' + str(cross) + '.pkl', 'wb') as f:
+            pickle.dump(compressability, f, protocol=2)
+        with open(opt.results_dir + opt.name + '/selectivity' + str(cross) + '.pkl', 'wb') as f:
+            pickle.dump(selectivity, f, protocol=2)
+
+        tf.reset_default_graph()
+        gc.collect()
         sys.stdout.flush()
-
-        corr_layer = get_corr(res[layer])
-        corr.append(corr_layer)
-        sim_mean, sim_std = get_similarity(corr_layer)
-        similarity.append([sim_mean, sim_std])
-        compress_95, _, _, _ = pca(res[layer])
-        compressability.append(compress_95)
-        sel = get_selectivity(res[layer], gt_labels[layer])
-        selectivity.append(sel)
-
-    print('now writing .pkl files...')
-
-    with open(opt.results_dir + opt.name + '/corr.pkl', 'wb') as f:
-        pickle.dump(corr, f, protocol=2)
-    with open(opt.results_dir + opt.name + '/similarity.pkl', 'wb') as f:
-        pickle.dump(similarity, f, protocol=2)
-    with open(opt.results_dir + opt.name + '/compressability.pkl', 'wb') as f:
-        pickle.dump(compressability, f, protocol=2)
-    with open(opt.results_dir + opt.name + '/selectivity.pkl', 'wb') as f:
-        pickle.dump(selectivity, f, protocol=2)
-
-    tf.reset_default_graph()
-    gc.collect()
-    sys.stdout.flush()
 
     print(":)")

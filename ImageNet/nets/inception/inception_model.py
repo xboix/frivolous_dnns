@@ -51,7 +51,8 @@ from nets import perturbations as pt
 
 
 def inception_v3(inputs, opt,
-                 factor=1,
+                 factor = 1,
+                 factor_end = 1,
                  dropout_keep_prob=0.8,
                  num_classes=1000,
                  is_training=False,
@@ -168,17 +169,17 @@ def inception_v3(inputs, opt,
                         # mixed_2: 35 x 35 x 288.
                         with tf.variable_scope('mixed_35x35x288b'):
                             with tf.variable_scope('branch1x1'):
-                                branch1x1 = ops.conv2d(net, int(64 * factor), [1, 1])
+                                branch1x1 = ops.conv2d(net, int(64 * factor * factor_end), [1, 1])
                             with tf.variable_scope('branch5x5'):
-                                branch5x5 = ops.conv2d(net, int(48 * factor), [1, 1])
-                                branch5x5 = ops.conv2d(branch5x5, int(64 * factor), [5, 5])
+                                branch5x5 = ops.conv2d(net, int(48 * factor * factor_end), [1, 1])
+                                branch5x5 = ops.conv2d(branch5x5, int(64 * factor * factor_end), [5, 5])
                             with tf.variable_scope('branch3x3dbl'):
-                                branch3x3dbl = ops.conv2d(net, int(64 * factor), [1, 1])
-                                branch3x3dbl = ops.conv2d(branch3x3dbl, int(96 * factor), [3, 3])
-                                branch3x3dbl = ops.conv2d(branch3x3dbl, int(96 * factor), [3, 3])
+                                branch3x3dbl = ops.conv2d(net, int(64 * factor * factor_end), [1, 1])
+                                branch3x3dbl = ops.conv2d(branch3x3dbl, int(96 * factor * factor_end), [3, 3])
+                                branch3x3dbl = ops.conv2d(branch3x3dbl, int(96 * factor * factor_end), [3, 3])
                             with tf.variable_scope('branch_pool'):
                                 branch_pool = ops.avg_pool(net, [3, 3])
-                                branch_pool = ops.conv2d(branch_pool, int(64 * factor), [1, 1])
+                                branch_pool = ops.conv2d(branch_pool, int(64 * factor * factor_end), [1, 1])
                             net = tf.concat(axis=3, values=[branch1x1, branch5x5, branch3x3dbl, branch_pool])
                             end_points['mixed_35x35x288b'] = net
                             activations.append(net)
@@ -369,12 +370,13 @@ def inception_v3(inputs, opt,
 
 
 def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_type, idx_gpu,
-                 factor=1,
-                 dropout_keep_prob=0.8,
-                 num_classes=1000,
-                 is_training=False,
-                 restore_logits=True,
-                 scope=None):
+                      factor=1,
+                      factor_end = 1,
+                      dropout_keep_prob=0.8,
+                      num_classes=1000,
+                      is_training=False,
+                      restore_logits=True,
+                      scope=None):
     """Latest Inception from http://arxiv.org/abs/1512.00567.
 
       "Rethinking the Inception Architecture for Computer Vision"
@@ -632,17 +634,17 @@ def inception_v3_test(inputs, opt, select, perturbation_params, perturbation_typ
                         # mixed_2: 35 x 35 x 288.
                         with tf.variable_scope('mixed_35x35x288b'):
                             with tf.variable_scope('branch1x1'):
-                                branch1x1 = ops.conv2d(net, int(64 * factor), [1, 1])
+                                branch1x1 = ops.conv2d(net, int(64 * factor * factor_end), [1, 1])
                             with tf.variable_scope('branch5x5'):
-                                branch5x5 = ops.conv2d(net, int(48 * factor), [1, 1])
-                                branch5x5 = ops.conv2d(branch5x5, int(64 * factor), [5, 5])
+                                branch5x5 = ops.conv2d(net, int(48 * factor * factor_end), [1, 1])
+                                branch5x5 = ops.conv2d(branch5x5, int(64 * factor * factor_end), [5, 5])
                             with tf.variable_scope('branch3x3dbl'):
-                                branch3x3dbl = ops.conv2d(net, int(64 * factor), [1, 1])
-                                branch3x3dbl = ops.conv2d(branch3x3dbl, int(96 * factor), [3, 3])
-                                branch3x3dbl = ops.conv2d(branch3x3dbl, int(96 * factor), [3, 3])
+                                branch3x3dbl = ops.conv2d(net, int(64 * factor * factor_end), [1, 1])
+                                branch3x3dbl = ops.conv2d(branch3x3dbl, int(96 * factor * factor_end), [3, 3])
+                                branch3x3dbl = ops.conv2d(branch3x3dbl, int(96 * factor * factor_end), [3, 3])
                             with tf.variable_scope('branch_pool'):
                                 branch_pool = ops.avg_pool(net, [3, 3])
-                                branch_pool = ops.conv2d(branch_pool, int(64 * factor), [1, 1])
+                                branch_pool = ops.conv2d(branch_pool, int(64 * factor * factor_end), [1, 1])
                             net = tf.concat(axis=3, values=[branch1x1, branch5x5, branch3x3dbl, branch_pool])
 
                             activations_tmp = net

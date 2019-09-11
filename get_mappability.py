@@ -253,7 +253,7 @@ for results_id, from_id in zip(range(4), net_ids):  # for each, map/score the ac
 
             sys.stdout.flush()
 
-with open(results_dir + '.pkl', 'wb') as f:
+with open(results_dir + 'mappability.pkl', 'wb') as f:
     pickle.dump(results, f, protocol=2)
 
 sys.stdout.flush()

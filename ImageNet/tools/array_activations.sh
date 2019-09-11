@@ -1,13 +1,13 @@
 #!/bin/bash
-#SBATCH --array=0-11
+#SBATCH --array=19-38
 #SBATCH -n 1
 #SBATCH -c 6
 #SBATCH --job-name=array_activations
 #SBATCH --mem=48GB
-#SBATCH -t 1:00:00
-#SBATCH --workdir=/om/user/scasper/workspace/
+#SBATCH -t 1-0:00:00
+#SBATCH --chdir=/om/user/scasper/workspace/
 #SBATCH --gres=gpu:tesla-k80:4
-#SBATCH --qos=cbmm
+#SBATCH --partition=cbmm
 
 cd /om/user/scasper/workspace/
 
@@ -19,5 +19,3 @@ python /om/user/scasper/redundancy/baseline-ImageNet-clean/main.py \
 --host_filesystem=om \
 --network=all \
 --run=activations
-
-# if running activations, try 6 cores and 32 GB of mem

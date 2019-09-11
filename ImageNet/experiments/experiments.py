@@ -14,7 +14,6 @@ class DNN(object):
         self.factor_end = 1
 
 
-
 class Hyperparameters(object):
 
     def __init__(self):
@@ -143,7 +142,7 @@ def get_experiments(output_path, dataset_path):
         opt_handle.dnn.name = "inception"
         opt_handle.dnn.factor = n_multiplier
         opt_handle.hyper.batch_size = batch_size
-        opt_handle.dnn.layers = 16  # not including the logits output layer # 16 might not be right...
+        opt_handle.dnn.layers = 16  # not including the logits output layer
         opt_handle.results_dir = '/om/user/scasper/workspace/models/inception_imagenet/'
         opt_handle.csv_dir = '/om/user/scasper/workspace/csvs/inception_imagenet/'
         opt += [copy.deepcopy(opt_handle)]
@@ -161,7 +160,7 @@ def get_experiments(output_path, dataset_path):
         opt_handle.dnn.factor = 1
         opt_handle.dnn.factor_end = n_multiplier
         opt_handle.hyper.batch_size = batch_size
-        opt_handle.dnn.layers = 16  # not including the logits output layer # 16 might not be right...
+        opt_handle.dnn.layers = 16  # not including the logits output layer
         opt_handle.results_dir = '/om/user/scasper/workspace/models/inception_imagenet/'
         opt_handle.csv_dir = '/om/user/scasper/workspace/csvs/inception_imagenet/'
         opt += [copy.deepcopy(opt_handle)]
@@ -182,9 +181,6 @@ def get_experiments(output_path, dataset_path):
             opt_handle.hyper.batch_size = batch_size
             opt += [copy.deepcopy(opt_handle)]
             idx_base += 1
-
-
-
     print('OPTS LOOKUP:')
     for ID in range(len(opt)):
         print('ID: ' + str(ID) + ', ' + str(opt[ID].dnn.name) + ', factor: ' +

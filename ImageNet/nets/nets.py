@@ -13,9 +13,9 @@ def resnet_test(x, opt, select, perturbation_params, perturbation_type, idx_gpu=
 
 
 def inception(x, opt):
-    return net_inception(x, opt, opt.dnn.factor, num_classes=1001)
+    return net_inception(x, opt, opt.dnn.factor, opt.dnn.factor_end, num_classes=1001)
 
 
 def inception_test(x, opt, select, perturbation_params, perturbation_type, idx_gpu=-1):
     return net_inception_test(x, opt, select, perturbation_params, perturbation_type, idx_gpu,
-                         opt.dnn.factor, num_classes=1001)
+                         opt.dnn.factor, opt.dnn.factor_end, num_classes=1001)

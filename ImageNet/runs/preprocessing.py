@@ -10,8 +10,8 @@ def resnet(im, opt):
 
 
 def inception(im, opt):
-    # image = tf.divide(image, 255)
-    image = tf.subtract(im, 0.5)
+    image = tf.divide(im, 255)
+    image = tf.subtract(image, 0.5)
     image = tf.multiply(image, 2.0)
 
     return image

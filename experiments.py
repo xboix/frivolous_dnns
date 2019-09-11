@@ -1,6 +1,6 @@
 import numpy as np
 
-master_seed = 0
+master_seed = 2
 
 
 class Dataset(object):
@@ -15,7 +15,7 @@ class Dataset(object):
         # For reusing tfrecords:
         self.reuse_TFrecords = False
         self.reuse_TFrecords_ID = 0
-        self.reuse_TFrecords_path = ""
+        self.reusse_TFrecords_path = ""
 
         # Set random labels
         self.random_labels = False
@@ -192,7 +192,7 @@ for nn_name in name:
 
                                 opt.append(Experiments(idx, nn_name + '_itype=' + str(init_type) + '_nmult=' +
                                                        str(neuron_mult) + '_reg=' + str(reg) + '_rand=' +
-                                                       str(flag_rand)))
+                                                       str(flag_rand) + '_seed=' + str(master_seed)))
 
                                 opt[-1].log_dir_base = '/om/user/scasper/workspace/models/init_scheme/'
                                 opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/init_scheme/'

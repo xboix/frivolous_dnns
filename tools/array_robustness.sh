@@ -1,12 +1,12 @@
 #!/bin/bash
 #SBATCH -c1
-#SBATCH --array=217-231,234-238
+#SBATCH --array=4-7,16
 #SBATCH --job-name=get_robustness
 #SBATCH --mem=12GB
 #SBATCH --gres=gpu:tesla-k80:1
-#SBATCH -t 12:00:00
-#SBATCH --workdir=/om/user/scasper/workspace/
-#SBATCH --qos=cbmm
+#SBATCH -t 36:00:00
+#SBATCH --chdir=/om/user/scasper/workspace/
+#SBATCH --partition=cbmm
 
 cd /om/user/scasper/workspace/
 singularity exec -B /om:/om --nv /om/user/xboix/singularity/xboix-tensorflow1.14.simg \
