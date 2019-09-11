@@ -15,7 +15,7 @@ def MLP3(x, dropout_rate, opt, labels_id):
 
 
 def MLP1(x, dropout_rate, opt, labels_id):
-    return net_MLP1(x, opt, labels_id, dropout_rate)
+    return net_MLP1(x, opt)
 
 
 def Alexnet(x, dropout_rate, opt, labels_id):

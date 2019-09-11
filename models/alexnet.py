@@ -2,7 +2,7 @@ import tensorflow as tf
 from utils import summary as summ
 import perturbations as pt
 from numpy import *
-from keras import backend as K
+#from keras import backend as K
 import numpy as np
 import sys
 num_neurons = [96, 256, 384, 192]

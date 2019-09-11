@@ -21,7 +21,7 @@ class Dataset(object):
         self.random_labels = False
         self.scramble_data = False
 
-        self.dataset = 'cifar'
+        self.dataset_name = 'cifar'
 
         # Transfer learning
         self.transfer_learning = False
@@ -679,20 +679,49 @@ for nn_name in name:
 
 
 # Create base for TF records:
+idx_rand_10 = idx
 opt += [Experiments(idx, "data_" + str(p))]
-opt[-1].dataset = 'rand10'
+opt[-1].dataset_name = 'rand10'
 opt[-1].hyper.max_num_epochs = 0
+opt[-1].dnn.name = 'MLP1'
 opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10/'
 opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10/'
 idx += 1
 
+
+idx_rand_10000 = idx
 opt += [Experiments(idx, "data_" + str(p))]
-opt[-1].dataset = 'rand10000'
+opt[-1].dataset_name = 'rand10000'
 opt[-1].hyper.max_num_epochs = 0
+opt[-1].dnn.name = 'MLP1'
 opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10000/'
 opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10000/'
 idx += 1
 
+
+for neuron_mult in [1, 2, 4, 8, 16]:
+    for lr in [1, 1e-1, 1e-2, 1e-3, 1e-4]:
+        opt += [Experiments(idx, "MLP" + str(p))]
+        opt[-1].dataset_name = 'rand10'
+        opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10])
+        opt[-1].hyper.max_num_epochs = 50
+        opt[-1].dnn.name = 'MLP1'
+        opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
+        opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10/'
+        opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10/'
+        idx += 1
+
+for neuron_mult in [1, 2, 4, 8, 16]:
+    for lr in [1, 1e-1, 1e-2, 1e-3, 1e-4]:
+        opt += [Experiments(idx, "MLP10K" + str(p))]
+        opt[-1].dataset_name = 'rand10000'
+        opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10000])
+        opt[-1].hyper.max_num_epochs = 50
+        opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
+        opt[-1].dnn.name = 'MLP1'
+        opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10000/'
+        opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10000/'
+        idx += 1
 
 ##############################################################################################
 
@@ -755,4 +784,4 @@ def write_lookup_file():
             f.write(opt[i].name + '\n')
             f.write('\n')
 
-#write_lookup_file()
+write_lookup_file()

@@ -37,6 +37,9 @@ class Dataset:
     def _int64_feature(self, value):
         return tf.train.Feature(int64_list=tf.train.Int64List(value=[value]))
 
+    def _float_feature(self, value):
+        return tf.train.Feature(int64_list=tf.train.FloatList(value=[value]))
+
     def _bytes_feature(self, value):
         return tf.train.Feature(bytes_list=tf.train.BytesList(value=[value]))
 
@@ -111,13 +114,17 @@ class Dataset:
                         set_name_app + '/height': tf.io.FixedLenFeature([], tf.int64),
                         set_name_app + '/width': tf.io.FixedLenFeature([], tf.int64)}
             parsed_features = tf.io.parse_single_example(example_proto, features)
-            image = tf.decode_raw(parsed_features[set_name_app + '/image'], tf.uint8)
+            if self.opt.dataset_name == 'cifar':
+                image = tf.decode_raw(parsed_features[set_name_app + '/image'], tf.uint8)
+            else:
+                image = tf.decode_raw(parsed_features[set_name_app + '/image'], tf.float64)
+
             image = tf.cast(image, tf.float32)
             S = tf.stack([tf.cast(parsed_features[set_name_app + '/height'], tf.int32),
                           tf.cast(parsed_features[set_name_app + '/width'], tf.int32), 3])
 
             ## FOR CIFAR DATASET
-            if opt.dataset == 'cifar':
+            if self.opt.dataset_name == 'cifar':
                 image = tf.reshape(image, S)
 
             float_image = self.preprocess_image(augmentation, standarization, image)

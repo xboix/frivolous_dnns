@@ -63,37 +63,23 @@ def MLP3(x, opt, labels_id, dropout_rate):
     return fc8, parameters
 
 
-def MLP1(x, opt, labels_id, dropout_rate):
-    parameters = []
+def MLP1(x, opt):
 
-    aa = x
-    num_neurons_before_fc = int(prod(aa.get_shape()[1:]))
-    flattened = tf.reshape(aa, [-1, num_neurons_before_fc])
+    num_neurons_before_fc = int(x.get_shape()[1])
 
     # fc1
     with tf.name_scope('fc1') as scope:
-        W = tf.Variable(
-            tf.truncated_normal([num_neurons_before_fc, int(512 * opt.dnn.neuron_multiplier[0])], dtype=tf.float32,
-                                stddev=1e-3),
-            name='weights')
-        b = tf.Variable(0.1 * tf.ones([int(512 * opt.dnn.neuron_multiplier[0])]), name='bias')
-        parameters += [W, b]
-        summ.variable_summaries(W, b, opt)
+        W = tf.Variable( tf.truncated_normal([num_neurons_before_fc, int(32*opt.dnn.neuron_multiplier[0])], dtype=tf.float32,
+                                stddev=1e-3), name='weights')
+        b = tf.Variable(0 * tf.ones([int(32)]), name='bias')
 
-        fc1 = tf.nn.relu(tf.nn.bias_add(tf.matmul(flattened, W), b, name=scope))
-        summ.activation_summaries(fc1, opt)
-        dropout1 = tf.nn.dropout(fc1, dropout_rate)
+        fc1 = tf.nn.relu(tf.nn.bias_add(tf.matmul(x, W), b, name=scope))
 
     # fc8
     with tf.name_scope('fc_out') as scope:
-        W = tf.Variable(tf.truncated_normal([int(512 * opt.dnn.neuron_multiplier[0]), len(labels_id)],
-                                            dtype=tf.float32,
-                                            stddev=1e-2), name='weights')
-        b = tf.Variable(tf.zeros([len(labels_id)]), name='bias')
-        parameters += [W, b]
-        summ.variable_summaries(W, b, opt)
+        W = tf.Variable(tf.truncated_normal([int(32*opt.dnn.neuron_multiplier[0]), 2],  dtype=tf.float32, stddev=1e-2), name='weights')
+        b = tf.Variable(tf.zeros([2]), name='bias')
 
-        fc8 = tf.nn.bias_add(tf.matmul(dropout1, W), b, name=scope)
-        summ.activation_summaries(fc8, opt)
+        fc8 = tf.nn.bias_add(tf.matmul(fc1, W), b, name=scope)
 
-    return fc8, parameters
+    return fc8, [], []

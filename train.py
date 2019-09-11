@@ -1,5 +1,5 @@
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = ""
+os.environ['CUDA_VISIBLE_DEVICES'] = "0"
 
 import os.path
 import shutil
@@ -8,8 +8,8 @@ import numpy as np
 
 import tensorflow as tf
 
-import experiments 
-from data import cifar_dataset
+import experiments
+
 from models import nets
 from utils import summary
 
@@ -37,12 +37,15 @@ print(opt.name)
 ################################################################################################
 
 # Initialize dataset and creates TF records if they do not exist
-if opt.dataset == 'cifar':
+if opt.dataset_name == 'cifar':
+    from data import cifar_dataset
     dataset = cifar_dataset.Cifar10(opt)
-elif opt.dataset == 'rand10':
-    dataset = cifar_dataset.Rand10(opt)
-elif opt.dataset == 'rand10000':
-    dataset = cifar_dataset.Rand10000(opt)
+elif opt.dataset_name == 'rand10':
+    from data import rand10_dataset
+    dataset = rand10_dataset.Rand10(opt)
+elif opt.dataset_name == 'rand10000':
+    from data import rand10000_dataset
+    dataset = rand10000_dataset.Rand10000(opt)
 
 # Repeatable datasets for training
 train_dataset = dataset.create_dataset(augmentation=opt.hyper.augmentation, standarization=True, set_name='train',
@@ -74,9 +77,18 @@ test_iterator_full = test_dataset_full.make_initializable_iterator()
 
 # Get data from dataset dataset
 image, y_ = iterator.get_next()
-image = tf.image.resize_images(image, [opt.hyper.image_size, opt.hyper.image_size])
-if opt.extense_summary:
-    tf.summary.image('input', image)
+
+if opt.dataset_name == 'cifar':
+    image = tf.image.resize_images(image, [opt.hyper.image_size, opt.hyper.image_size])
+    if opt.extense_summary:
+        tf.summary.image('input', image)
+
+elif opt.dataset_name == 'rand10':
+    image = tf.compat.v1.reshape(image, [-1, 10])
+elif opt.dataset_name == 'rand10000':
+    image = tf.compat.v1.reshape(image, [-1, 10000])
+print(tf.shape(image))
+
 
 # Call DNN
 dropout_rate = tf.compat.v1.placeholder(tf.float32)
@@ -117,6 +129,7 @@ lr = tf.train.exponential_decay(opt.hyper.learning_rate, global_step, decay_step
 
 tf.summary.scalar('learning_rate', lr)
 tf.summary.scalar('weight_decay', opt.hyper.weight_decay)
+
 
 # Accuracy
 with tf.name_scope('accuracy'):
