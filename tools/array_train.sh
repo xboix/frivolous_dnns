@@ -13,3 +13,4 @@ singularity exec -B /om:/om --nv /om/user/xboix/singularity/xboix-tensorflow1.14
 python /om/user/scasper/redundancy/train.py ${SLURM_ARRAY_TASK_ID}
 
 # make sure to set the seed in imagenet_networks.py
+

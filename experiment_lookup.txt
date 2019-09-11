@@ -5,721 +5,721 @@ ID0_data_1
 ID1_data_random
 
 2
-ID2_Alexnet_itype=0_nmult=0.25_reg=0_rand=0
+ID2_Alexnet_itype=0_nmult=0.25_reg=0_rand=0_seed=2
 
 3
-ID3_Alexnet_itype=0_nmult=0.5_reg=0_rand=0
+ID3_Alexnet_itype=0_nmult=0.5_reg=0_rand=0_seed=2
 
 4
-ID4_Alexnet_itype=0_nmult=1_reg=0_rand=0
+ID4_Alexnet_itype=0_nmult=1_reg=0_rand=0_seed=2
 
 5
-ID5_Alexnet_itype=0_nmult=2_reg=0_rand=0
+ID5_Alexnet_itype=0_nmult=2_reg=0_rand=0_seed=2
 
 6
-ID6_Alexnet_itype=0_nmult=4_reg=0_rand=0
+ID6_Alexnet_itype=0_nmult=4_reg=0_rand=0_seed=2
 
 7
-ID7_Alexnet_itype=1_nmult=0.25_reg=0_rand=0
+ID7_Alexnet_itype=1_nmult=0.25_reg=0_rand=0_seed=2
 
 8
-ID8_Alexnet_itype=1_nmult=0.5_reg=0_rand=0
+ID8_Alexnet_itype=1_nmult=0.5_reg=0_rand=0_seed=2
 
 9
-ID9_Alexnet_itype=1_nmult=1_reg=0_rand=0
+ID9_Alexnet_itype=1_nmult=1_reg=0_rand=0_seed=2
 
 10
-ID10_Alexnet_itype=1_nmult=2_reg=0_rand=0
+ID10_Alexnet_itype=1_nmult=2_reg=0_rand=0_seed=2
 
 11
-ID11_Alexnet_itype=1_nmult=4_reg=0_rand=0
+ID11_Alexnet_itype=1_nmult=4_reg=0_rand=0_seed=2
 
 12
-ID12_Alexnet_itype=2_nmult=0.25_reg=0_rand=0
+ID12_Alexnet_itype=2_nmult=0.25_reg=0_rand=0_seed=2
 
 13
-ID13_Alexnet_itype=2_nmult=0.5_reg=0_rand=0
+ID13_Alexnet_itype=2_nmult=0.5_reg=0_rand=0_seed=2
 
 14
-ID14_Alexnet_itype=2_nmult=1_reg=0_rand=0
+ID14_Alexnet_itype=2_nmult=1_reg=0_rand=0_seed=2
 
 15
-ID15_Alexnet_itype=2_nmult=2_reg=0_rand=0
+ID15_Alexnet_itype=2_nmult=2_reg=0_rand=0_seed=2
 
 16
-ID16_Alexnet_itype=2_nmult=4_reg=0_rand=0
+ID16_Alexnet_itype=2_nmult=4_reg=0_rand=0_seed=2
 
 17
-ID17_Alexnet_itype=3_nmult=0.25_reg=0_rand=0
+ID17_Alexnet_itype=3_nmult=0.25_reg=0_rand=0_seed=2
 
 18
-ID18_Alexnet_itype=3_nmult=0.5_reg=0_rand=0
+ID18_Alexnet_itype=3_nmult=0.5_reg=0_rand=0_seed=2
 
 19
-ID19_Alexnet_itype=3_nmult=1_reg=0_rand=0
+ID19_Alexnet_itype=3_nmult=1_reg=0_rand=0_seed=2
 
 20
-ID20_Alexnet_itype=3_nmult=2_reg=0_rand=0
+ID20_Alexnet_itype=3_nmult=2_reg=0_rand=0_seed=2
 
 21
-ID21_Alexnet_itype=3_nmult=4_reg=0_rand=0
+ID21_Alexnet_itype=3_nmult=4_reg=0_rand=0_seed=2
 
 22
-ID22_Alexnet_itype=4_nmult=0.25_reg=0_rand=0
+ID22_Alexnet_itype=4_nmult=0.25_reg=0_rand=0_seed=2
 
 23
-ID23_Alexnet_itype=4_nmult=0.5_reg=0_rand=0
+ID23_Alexnet_itype=4_nmult=0.5_reg=0_rand=0_seed=2
 
 24
-ID24_Alexnet_itype=4_nmult=1_reg=0_rand=0
+ID24_Alexnet_itype=4_nmult=1_reg=0_rand=0_seed=2
 
 25
-ID25_Alexnet_itype=4_nmult=2_reg=0_rand=0
+ID25_Alexnet_itype=4_nmult=2_reg=0_rand=0_seed=2
 
 26
-ID26_Alexnet_itype=4_nmult=4_reg=0_rand=0
+ID26_Alexnet_itype=4_nmult=4_reg=0_rand=0_seed=2
 
 27
-ID27_Alexnet_itype=5_nmult=0.25_reg=0_rand=0
+ID27_Alexnet_itype=5_nmult=0.25_reg=0_rand=0_seed=2
 
 28
-ID28_Alexnet_itype=5_nmult=0.5_reg=0_rand=0
+ID28_Alexnet_itype=5_nmult=0.5_reg=0_rand=0_seed=2
 
 29
-ID29_Alexnet_itype=5_nmult=1_reg=0_rand=0
+ID29_Alexnet_itype=5_nmult=1_reg=0_rand=0_seed=2
 
 30
-ID30_Alexnet_itype=5_nmult=2_reg=0_rand=0
+ID30_Alexnet_itype=5_nmult=2_reg=0_rand=0_seed=2
 
 31
-ID31_Alexnet_itype=5_nmult=4_reg=0_rand=0
+ID31_Alexnet_itype=5_nmult=4_reg=0_rand=0_seed=2
 
 32
-ID32_Alexnet_itype=0_nmult=0.25_reg=0_rand=1
+ID32_Alexnet_itype=0_nmult=0.25_reg=0_rand=1_seed=2
 
 33
-ID33_Alexnet_itype=0_nmult=0.5_reg=0_rand=1
+ID33_Alexnet_itype=0_nmult=0.5_reg=0_rand=1_seed=2
 
 34
-ID34_Alexnet_itype=0_nmult=1_reg=0_rand=1
+ID34_Alexnet_itype=0_nmult=1_reg=0_rand=1_seed=2
 
 35
-ID35_Alexnet_itype=0_nmult=2_reg=0_rand=1
+ID35_Alexnet_itype=0_nmult=2_reg=0_rand=1_seed=2
 
 36
-ID36_Alexnet_itype=0_nmult=4_reg=0_rand=1
+ID36_Alexnet_itype=0_nmult=4_reg=0_rand=1_seed=2
 
 37
-ID37_Alexnet_itype=1_nmult=0.25_reg=0_rand=1
+ID37_Alexnet_itype=1_nmult=0.25_reg=0_rand=1_seed=2
 
 38
-ID38_Alexnet_itype=1_nmult=0.5_reg=0_rand=1
+ID38_Alexnet_itype=1_nmult=0.5_reg=0_rand=1_seed=2
 
 39
-ID39_Alexnet_itype=1_nmult=1_reg=0_rand=1
+ID39_Alexnet_itype=1_nmult=1_reg=0_rand=1_seed=2
 
 40
-ID40_Alexnet_itype=1_nmult=2_reg=0_rand=1
+ID40_Alexnet_itype=1_nmult=2_reg=0_rand=1_seed=2
 
 41
-ID41_Alexnet_itype=1_nmult=4_reg=0_rand=1
+ID41_Alexnet_itype=1_nmult=4_reg=0_rand=1_seed=2
 
 42
-ID42_Alexnet_itype=2_nmult=0.25_reg=0_rand=1
+ID42_Alexnet_itype=2_nmult=0.25_reg=0_rand=1_seed=2
 
 43
-ID43_Alexnet_itype=2_nmult=0.5_reg=0_rand=1
+ID43_Alexnet_itype=2_nmult=0.5_reg=0_rand=1_seed=2
 
 44
-ID44_Alexnet_itype=2_nmult=1_reg=0_rand=1
+ID44_Alexnet_itype=2_nmult=1_reg=0_rand=1_seed=2
 
 45
-ID45_Alexnet_itype=2_nmult=2_reg=0_rand=1
+ID45_Alexnet_itype=2_nmult=2_reg=0_rand=1_seed=2
 
 46
-ID46_Alexnet_itype=2_nmult=4_reg=0_rand=1
+ID46_Alexnet_itype=2_nmult=4_reg=0_rand=1_seed=2
 
 47
-ID47_Alexnet_itype=3_nmult=0.25_reg=0_rand=1
+ID47_Alexnet_itype=3_nmult=0.25_reg=0_rand=1_seed=2
 
 48
-ID48_Alexnet_itype=3_nmult=0.5_reg=0_rand=1
+ID48_Alexnet_itype=3_nmult=0.5_reg=0_rand=1_seed=2
 
 49
-ID49_Alexnet_itype=3_nmult=1_reg=0_rand=1
+ID49_Alexnet_itype=3_nmult=1_reg=0_rand=1_seed=2
 
 50
-ID50_Alexnet_itype=3_nmult=2_reg=0_rand=1
+ID50_Alexnet_itype=3_nmult=2_reg=0_rand=1_seed=2
 
 51
-ID51_Alexnet_itype=3_nmult=4_reg=0_rand=1
+ID51_Alexnet_itype=3_nmult=4_reg=0_rand=1_seed=2
 
 52
-ID52_Alexnet_itype=4_nmult=0.25_reg=0_rand=1
+ID52_Alexnet_itype=4_nmult=0.25_reg=0_rand=1_seed=2
 
 53
-ID53_Alexnet_itype=4_nmult=0.5_reg=0_rand=1
+ID53_Alexnet_itype=4_nmult=0.5_reg=0_rand=1_seed=2
 
 54
-ID54_Alexnet_itype=4_nmult=1_reg=0_rand=1
+ID54_Alexnet_itype=4_nmult=1_reg=0_rand=1_seed=2
 
 55
-ID55_Alexnet_itype=4_nmult=2_reg=0_rand=1
+ID55_Alexnet_itype=4_nmult=2_reg=0_rand=1_seed=2
 
 56
-ID56_Alexnet_itype=4_nmult=4_reg=0_rand=1
+ID56_Alexnet_itype=4_nmult=4_reg=0_rand=1_seed=2
 
 57
-ID57_Alexnet_itype=5_nmult=0.25_reg=0_rand=1
+ID57_Alexnet_itype=5_nmult=0.25_reg=0_rand=1_seed=2
 
 58
-ID58_Alexnet_itype=5_nmult=0.5_reg=0_rand=1
+ID58_Alexnet_itype=5_nmult=0.5_reg=0_rand=1_seed=2
 
 59
-ID59_Alexnet_itype=5_nmult=1_reg=0_rand=1
+ID59_Alexnet_itype=5_nmult=1_reg=0_rand=1_seed=2
 
 60
-ID60_Alexnet_itype=5_nmult=2_reg=0_rand=1
+ID60_Alexnet_itype=5_nmult=2_reg=0_rand=1_seed=2
 
 61
-ID61_Alexnet_itype=5_nmult=4_reg=0_rand=1
+ID61_Alexnet_itype=5_nmult=4_reg=0_rand=1_seed=2
 
 62
-ID62_Alexnet_itype=0_nmult=0.25_reg=0_rand=0_seed=0
+ID62_Alexnet_itype=0_nmult=0.25_reg=0_rand=0_seed=2
 
 63
-ID63_Alexnet_itype=0_nmult=0.25_reg=0_rand=1_seed=0
+ID63_Alexnet_itype=0_nmult=0.25_reg=0_rand=1_seed=2
 
 64
-ID64_Alexnet_itype=0_nmult=0.25_reg=1_rand=0_seed=0
+ID64_Alexnet_itype=0_nmult=0.25_reg=1_rand=0_seed=2
 
 65
-ID65_Alexnet_itype=0_nmult=0.25_reg=2_rand=0_seed=0
+ID65_Alexnet_itype=0_nmult=0.25_reg=2_rand=0_seed=2
 
 66
-ID66_Alexnet_itype=0_nmult=0.25_reg=3_rand=0_seed=0
+ID66_Alexnet_itype=0_nmult=0.25_reg=3_rand=0_seed=2
 
 67
-ID67_Alexnet_itype=0_nmult=0.25_reg=4_rand=0_seed=0
+ID67_Alexnet_itype=0_nmult=0.25_reg=4_rand=0_seed=2
 
 68
-ID68_Alexnet_itype=0_nmult=0.5_reg=0_rand=0_seed=0
+ID68_Alexnet_itype=0_nmult=0.5_reg=0_rand=0_seed=2
 
 69
-ID69_Alexnet_itype=0_nmult=0.5_reg=0_rand=1_seed=0
+ID69_Alexnet_itype=0_nmult=0.5_reg=0_rand=1_seed=2
 
 70
-ID70_Alexnet_itype=0_nmult=0.5_reg=1_rand=0_seed=0
+ID70_Alexnet_itype=0_nmult=0.5_reg=1_rand=0_seed=2
 
 71
-ID71_Alexnet_itype=0_nmult=0.5_reg=2_rand=0_seed=0
+ID71_Alexnet_itype=0_nmult=0.5_reg=2_rand=0_seed=2
 
 72
-ID72_Alexnet_itype=0_nmult=0.5_reg=3_rand=0_seed=0
+ID72_Alexnet_itype=0_nmult=0.5_reg=3_rand=0_seed=2
 
 73
-ID73_Alexnet_itype=0_nmult=0.5_reg=4_rand=0_seed=0
+ID73_Alexnet_itype=0_nmult=0.5_reg=4_rand=0_seed=2
 
 74
-ID74_Alexnet_itype=0_nmult=1_reg=0_rand=0_seed=0
+ID74_Alexnet_itype=0_nmult=1_reg=0_rand=0_seed=2
 
 75
-ID75_Alexnet_itype=0_nmult=1_reg=0_rand=1_seed=0
+ID75_Alexnet_itype=0_nmult=1_reg=0_rand=1_seed=2
 
 76
-ID76_Alexnet_itype=0_nmult=1_reg=1_rand=0_seed=0
+ID76_Alexnet_itype=0_nmult=1_reg=1_rand=0_seed=2
 
 77
-ID77_Alexnet_itype=0_nmult=1_reg=2_rand=0_seed=0
+ID77_Alexnet_itype=0_nmult=1_reg=2_rand=0_seed=2
 
 78
-ID78_Alexnet_itype=0_nmult=1_reg=3_rand=0_seed=0
+ID78_Alexnet_itype=0_nmult=1_reg=3_rand=0_seed=2
 
 79
-ID79_Alexnet_itype=0_nmult=1_reg=4_rand=0_seed=0
+ID79_Alexnet_itype=0_nmult=1_reg=4_rand=0_seed=2
 
 80
-ID80_Alexnet_itype=0_nmult=2_reg=0_rand=0_seed=0
+ID80_Alexnet_itype=0_nmult=2_reg=0_rand=0_seed=2
 
 81
-ID81_Alexnet_itype=0_nmult=2_reg=0_rand=1_seed=0
+ID81_Alexnet_itype=0_nmult=2_reg=0_rand=1_seed=2
 
 82
-ID82_Alexnet_itype=0_nmult=2_reg=1_rand=0_seed=0
+ID82_Alexnet_itype=0_nmult=2_reg=1_rand=0_seed=2
 
 83
-ID83_Alexnet_itype=0_nmult=2_reg=2_rand=0_seed=0
+ID83_Alexnet_itype=0_nmult=2_reg=2_rand=0_seed=2
 
 84
-ID84_Alexnet_itype=0_nmult=2_reg=3_rand=0_seed=0
+ID84_Alexnet_itype=0_nmult=2_reg=3_rand=0_seed=2
 
 85
-ID85_Alexnet_itype=0_nmult=2_reg=4_rand=0_seed=0
+ID85_Alexnet_itype=0_nmult=2_reg=4_rand=0_seed=2
 
 86
-ID86_Alexnet_itype=0_nmult=4_reg=0_rand=0_seed=0
+ID86_Alexnet_itype=0_nmult=4_reg=0_rand=0_seed=2
 
 87
-ID87_Alexnet_itype=0_nmult=4_reg=0_rand=1_seed=0
+ID87_Alexnet_itype=0_nmult=4_reg=0_rand=1_seed=2
 
 88
-ID88_Alexnet_itype=0_nmult=4_reg=1_rand=0_seed=0
+ID88_Alexnet_itype=0_nmult=4_reg=1_rand=0_seed=2
 
 89
-ID89_Alexnet_itype=0_nmult=4_reg=2_rand=0_seed=0
+ID89_Alexnet_itype=0_nmult=4_reg=2_rand=0_seed=2
 
 90
-ID90_Alexnet_itype=0_nmult=4_reg=3_rand=0_seed=0
+ID90_Alexnet_itype=0_nmult=4_reg=3_rand=0_seed=2
 
 91
-ID91_Alexnet_itype=0_nmult=4_reg=4_rand=0_seed=0
+ID91_Alexnet_itype=0_nmult=4_reg=4_rand=0_seed=2
 
 92
-ID92_Alexnet_nmult=0.25_reg=0_rand=0_optim=0_seed=0
+ID92_Alexnet_nmult=0.25_reg=0_rand=0_optim=0_seed=2
 
 93
-ID93_Alexnet_nmult=0.25_reg=0_rand=0_optim=1_seed=0
+ID93_Alexnet_nmult=0.25_reg=0_rand=0_optim=1_seed=2
 
 94
-ID94_Alexnet_nmult=0.25_reg=0_rand=0_optim=2_seed=0
+ID94_Alexnet_nmult=0.25_reg=0_rand=0_optim=2_seed=2
 
 95
-ID95_Alexnet_nmult=0.25_reg=0_rand=0_optim=3_seed=0
+ID95_Alexnet_nmult=0.25_reg=0_rand=0_optim=3_seed=2
 
 96
-ID96_Alexnet_nmult=0.25_reg=0_rand=0_optim=4_seed=0
+ID96_Alexnet_nmult=0.25_reg=0_rand=0_optim=4_seed=2
 
 97
-ID97_Alexnet_nmult=0.25_reg=0_rand=0_optim=5_seed=0
+ID97_Alexnet_nmult=0.25_reg=0_rand=0_optim=5_seed=2
 
 98
-ID98_Alexnet_nmult=0.25_reg=0_rand=0_optim=6_seed=0
+ID98_Alexnet_nmult=0.25_reg=0_rand=0_optim=6_seed=2
 
 99
-ID99_Alexnet_nmult=0.5_reg=0_rand=0_optim=0_seed=0
+ID99_Alexnet_nmult=0.5_reg=0_rand=0_optim=0_seed=2
 
 100
-ID100_Alexnet_nmult=0.5_reg=0_rand=0_optim=1_seed=0
+ID100_Alexnet_nmult=0.5_reg=0_rand=0_optim=1_seed=2
 
 101
-ID101_Alexnet_nmult=0.5_reg=0_rand=0_optim=2_seed=0
+ID101_Alexnet_nmult=0.5_reg=0_rand=0_optim=2_seed=2
 
 102
-ID102_Alexnet_nmult=0.5_reg=0_rand=0_optim=3_seed=0
+ID102_Alexnet_nmult=0.5_reg=0_rand=0_optim=3_seed=2
 
 103
-ID103_Alexnet_nmult=0.5_reg=0_rand=0_optim=4_seed=0
+ID103_Alexnet_nmult=0.5_reg=0_rand=0_optim=4_seed=2
 
 104
-ID104_Alexnet_nmult=0.5_reg=0_rand=0_optim=5_seed=0
+ID104_Alexnet_nmult=0.5_reg=0_rand=0_optim=5_seed=2
 
 105
-ID105_Alexnet_nmult=0.5_reg=0_rand=0_optim=6_seed=0
+ID105_Alexnet_nmult=0.5_reg=0_rand=0_optim=6_seed=2
 
 106
-ID106_Alexnet_nmult=1_reg=0_rand=0_optim=0_seed=0
+ID106_Alexnet_nmult=1_reg=0_rand=0_optim=0_seed=2
 
 107
-ID107_Alexnet_nmult=1_reg=0_rand=0_optim=1_seed=0
+ID107_Alexnet_nmult=1_reg=0_rand=0_optim=1_seed=2
 
 108
-ID108_Alexnet_nmult=1_reg=0_rand=0_optim=2_seed=0
+ID108_Alexnet_nmult=1_reg=0_rand=0_optim=2_seed=2
 
 109
-ID109_Alexnet_nmult=1_reg=0_rand=0_optim=3_seed=0
+ID109_Alexnet_nmult=1_reg=0_rand=0_optim=3_seed=2
 
 110
-ID110_Alexnet_nmult=1_reg=0_rand=0_optim=4_seed=0
+ID110_Alexnet_nmult=1_reg=0_rand=0_optim=4_seed=2
 
 111
-ID111_Alexnet_nmult=1_reg=0_rand=0_optim=5_seed=0
+ID111_Alexnet_nmult=1_reg=0_rand=0_optim=5_seed=2
 
 112
-ID112_Alexnet_nmult=1_reg=0_rand=0_optim=6_seed=0
+ID112_Alexnet_nmult=1_reg=0_rand=0_optim=6_seed=2
 
 113
-ID113_Alexnet_nmult=2_reg=0_rand=0_optim=0_seed=0
+ID113_Alexnet_nmult=2_reg=0_rand=0_optim=0_seed=2
 
 114
-ID114_Alexnet_nmult=2_reg=0_rand=0_optim=1_seed=0
+ID114_Alexnet_nmult=2_reg=0_rand=0_optim=1_seed=2
 
 115
-ID115_Alexnet_nmult=2_reg=0_rand=0_optim=2_seed=0
+ID115_Alexnet_nmult=2_reg=0_rand=0_optim=2_seed=2
 
 116
-ID116_Alexnet_nmult=2_reg=0_rand=0_optim=3_seed=0
+ID116_Alexnet_nmult=2_reg=0_rand=0_optim=3_seed=2
 
 117
-ID117_Alexnet_nmult=2_reg=0_rand=0_optim=4_seed=0
+ID117_Alexnet_nmult=2_reg=0_rand=0_optim=4_seed=2
 
 118
-ID118_Alexnet_nmult=2_reg=0_rand=0_optim=5_seed=0
+ID118_Alexnet_nmult=2_reg=0_rand=0_optim=5_seed=2
 
 119
-ID119_Alexnet_nmult=2_reg=0_rand=0_optim=6_seed=0
+ID119_Alexnet_nmult=2_reg=0_rand=0_optim=6_seed=2
 
 120
-ID120_Alexnet_nmult=4_reg=0_rand=0_optim=0_seed=0
+ID120_Alexnet_nmult=4_reg=0_rand=0_optim=0_seed=2
 
 121
-ID121_Alexnet_nmult=4_reg=0_rand=0_optim=1_seed=0
+ID121_Alexnet_nmult=4_reg=0_rand=0_optim=1_seed=2
 
 122
-ID122_Alexnet_nmult=4_reg=0_rand=0_optim=2_seed=0
+ID122_Alexnet_nmult=4_reg=0_rand=0_optim=2_seed=2
 
 123
-ID123_Alexnet_nmult=4_reg=0_rand=0_optim=3_seed=0
+ID123_Alexnet_nmult=4_reg=0_rand=0_optim=3_seed=2
 
 124
-ID124_Alexnet_nmult=4_reg=0_rand=0_optim=4_seed=0
+ID124_Alexnet_nmult=4_reg=0_rand=0_optim=4_seed=2
 
 125
-ID125_Alexnet_nmult=4_reg=0_rand=0_optim=5_seed=0
+ID125_Alexnet_nmult=4_reg=0_rand=0_optim=5_seed=2
 
 126
-ID126_Alexnet_nmult=4_reg=0_rand=0_optim=6_seed=0
+ID126_Alexnet_nmult=4_reg=0_rand=0_optim=6_seed=2
 
 127
-ID127_Alexnet_nmult=0.25_reg=0_rand=0_af=0_seed=0
+ID127_Alexnet_nmult=0.25_reg=0_rand=0_af=0_seed=2
 
 128
-ID128_Alexnet_nmult=0.25_reg=0_rand=0_af=1_seed=0
+ID128_Alexnet_nmult=0.25_reg=0_rand=0_af=1_seed=2
 
 129
-ID129_Alexnet_nmult=0.25_reg=0_rand=0_af=2_seed=0
+ID129_Alexnet_nmult=0.25_reg=0_rand=0_af=2_seed=2
 
 130
-ID130_Alexnet_nmult=0.25_reg=0_rand=0_af=3_seed=0
+ID130_Alexnet_nmult=0.25_reg=0_rand=0_af=3_seed=2
 
 131
-ID131_Alexnet_nmult=0.25_reg=0_rand=0_af=4_seed=0
+ID131_Alexnet_nmult=0.25_reg=0_rand=0_af=4_seed=2
 
 132
-ID132_Alexnet_nmult=0.25_reg=0_rand=0_af=5_seed=0
+ID132_Alexnet_nmult=0.25_reg=0_rand=0_af=5_seed=2
 
 133
-ID133_Alexnet_nmult=0.5_reg=0_rand=0_af=0_seed=0
+ID133_Alexnet_nmult=0.5_reg=0_rand=0_af=0_seed=2
 
 134
-ID134_Alexnet_nmult=0.5_reg=0_rand=0_af=1_seed=0
+ID134_Alexnet_nmult=0.5_reg=0_rand=0_af=1_seed=2
 
 135
-ID135_Alexnet_nmult=0.5_reg=0_rand=0_af=2_seed=0
+ID135_Alexnet_nmult=0.5_reg=0_rand=0_af=2_seed=2
 
 136
-ID136_Alexnet_nmult=0.5_reg=0_rand=0_af=3_seed=0
+ID136_Alexnet_nmult=0.5_reg=0_rand=0_af=3_seed=2
 
 137
-ID137_Alexnet_nmult=0.5_reg=0_rand=0_af=4_seed=0
+ID137_Alexnet_nmult=0.5_reg=0_rand=0_af=4_seed=2
 
 138
-ID138_Alexnet_nmult=0.5_reg=0_rand=0_af=5_seed=0
+ID138_Alexnet_nmult=0.5_reg=0_rand=0_af=5_seed=2
 
 139
-ID139_Alexnet_nmult=1_reg=0_rand=0_af=0_seed=0
+ID139_Alexnet_nmult=1_reg=0_rand=0_af=0_seed=2
 
 140
-ID140_Alexnet_nmult=1_reg=0_rand=0_af=1_seed=0
+ID140_Alexnet_nmult=1_reg=0_rand=0_af=1_seed=2
 
 141
-ID141_Alexnet_nmult=1_reg=0_rand=0_af=2_seed=0
+ID141_Alexnet_nmult=1_reg=0_rand=0_af=2_seed=2
 
 142
-ID142_Alexnet_nmult=1_reg=0_rand=0_af=3_seed=0
+ID142_Alexnet_nmult=1_reg=0_rand=0_af=3_seed=2
 
 143
-ID143_Alexnet_nmult=1_reg=0_rand=0_af=4_seed=0
+ID143_Alexnet_nmult=1_reg=0_rand=0_af=4_seed=2
 
 144
-ID144_Alexnet_nmult=1_reg=0_rand=0_af=5_seed=0
+ID144_Alexnet_nmult=1_reg=0_rand=0_af=5_seed=2
 
 145
-ID145_Alexnet_nmult=2_reg=0_rand=0_af=0_seed=0
+ID145_Alexnet_nmult=2_reg=0_rand=0_af=0_seed=2
 
 146
-ID146_Alexnet_nmult=2_reg=0_rand=0_af=1_seed=0
+ID146_Alexnet_nmult=2_reg=0_rand=0_af=1_seed=2
 
 147
-ID147_Alexnet_nmult=2_reg=0_rand=0_af=2_seed=0
+ID147_Alexnet_nmult=2_reg=0_rand=0_af=2_seed=2
 
 148
-ID148_Alexnet_nmult=2_reg=0_rand=0_af=3_seed=0
+ID148_Alexnet_nmult=2_reg=0_rand=0_af=3_seed=2
 
 149
-ID149_Alexnet_nmult=2_reg=0_rand=0_af=4_seed=0
+ID149_Alexnet_nmult=2_reg=0_rand=0_af=4_seed=2
 
 150
-ID150_Alexnet_nmult=2_reg=0_rand=0_af=5_seed=0
+ID150_Alexnet_nmult=2_reg=0_rand=0_af=5_seed=2
 
 151
-ID151_Alexnet_nmult=4_reg=0_rand=0_af=0_seed=0
+ID151_Alexnet_nmult=4_reg=0_rand=0_af=0_seed=2
 
 152
-ID152_Alexnet_nmult=4_reg=0_rand=0_af=1_seed=0
+ID152_Alexnet_nmult=4_reg=0_rand=0_af=1_seed=2
 
 153
-ID153_Alexnet_nmult=4_reg=0_rand=0_af=2_seed=0
+ID153_Alexnet_nmult=4_reg=0_rand=0_af=2_seed=2
 
 154
-ID154_Alexnet_nmult=4_reg=0_rand=0_af=3_seed=0
+ID154_Alexnet_nmult=4_reg=0_rand=0_af=3_seed=2
 
 155
-ID155_Alexnet_nmult=4_reg=0_rand=0_af=4_seed=0
+ID155_Alexnet_nmult=4_reg=0_rand=0_af=4_seed=2
 
 156
-ID156_Alexnet_nmult=4_reg=0_rand=0_af=5_seed=0
+ID156_Alexnet_nmult=4_reg=0_rand=0_af=5_seed=2
 
 157
-ID157_Alexnet_nmult=0.25_reg=0_lrbs=0.25_rand=0_seed=0
+ID157_Alexnet_nmult=0.25_reg=0_lrbs=0.25_rand=0_seed=2
 
 158
-ID158_Alexnet_nmult=0.25_reg=0_lrbs=4_rand=0_seed=0
+ID158_Alexnet_nmult=0.25_reg=0_lrbs=4_rand=0_seed=2
 
 159
-ID159_Alexnet_nmult=0.5_reg=0_lrbs=0.25_rand=0_seed=0
+ID159_Alexnet_nmult=0.5_reg=0_lrbs=0.25_rand=0_seed=2
 
 160
-ID160_Alexnet_nmult=0.5_reg=0_lrbs=4_rand=0_seed=0
+ID160_Alexnet_nmult=0.5_reg=0_lrbs=4_rand=0_seed=2
 
 161
-ID161_Alexnet_nmult=1_reg=0_lrbs=0.25_rand=0_seed=0
+ID161_Alexnet_nmult=1_reg=0_lrbs=0.25_rand=0_seed=2
 
 162
-ID162_Alexnet_nmult=1_reg=0_lrbs=4_rand=0_seed=0
+ID162_Alexnet_nmult=1_reg=0_lrbs=4_rand=0_seed=2
 
 163
-ID163_Alexnet_nmult=2_reg=0_lrbs=0.25_rand=0_seed=0
+ID163_Alexnet_nmult=2_reg=0_lrbs=0.25_rand=0_seed=2
 
 164
-ID164_Alexnet_nmult=2_reg=0_lrbs=4_rand=0_seed=0
+ID164_Alexnet_nmult=2_reg=0_lrbs=4_rand=0_seed=2
 
 165
-ID165_Alexnet_nmult=4_reg=0_lrbs=0.25_rand=0_seed=0
+ID165_Alexnet_nmult=4_reg=0_lrbs=0.25_rand=0_seed=2
 
 166
-ID166_Alexnet_nmult=4_reg=0_lrbs=4_rand=0_seed=0
+ID166_Alexnet_nmult=4_reg=0_lrbs=4_rand=0_seed=2
 
 167
-ID167_Alexnet_nmult=0.25_reg=1_lrbs=0.25_rand=0_seed=0
+ID167_Alexnet_nmult=0.25_reg=1_lrbs=0.25_rand=0_seed=2
 
 168
-ID168_Alexnet_nmult=0.25_reg=1_lrbs=4_rand=0_seed=0
+ID168_Alexnet_nmult=0.25_reg=1_lrbs=4_rand=0_seed=2
 
 169
-ID169_Alexnet_nmult=0.5_reg=1_lrbs=0.25_rand=0_seed=0
+ID169_Alexnet_nmult=0.5_reg=1_lrbs=0.25_rand=0_seed=2
 
 170
-ID170_Alexnet_nmult=0.5_reg=1_lrbs=4_rand=0_seed=0
+ID170_Alexnet_nmult=0.5_reg=1_lrbs=4_rand=0_seed=2
 
 171
-ID171_Alexnet_nmult=1_reg=1_lrbs=0.25_rand=0_seed=0
+ID171_Alexnet_nmult=1_reg=1_lrbs=0.25_rand=0_seed=2
 
 172
-ID172_Alexnet_nmult=1_reg=1_lrbs=4_rand=0_seed=0
+ID172_Alexnet_nmult=1_reg=1_lrbs=4_rand=0_seed=2
 
 173
-ID173_Alexnet_nmult=2_reg=1_lrbs=0.25_rand=0_seed=0
+ID173_Alexnet_nmult=2_reg=1_lrbs=0.25_rand=0_seed=2
 
 174
-ID174_Alexnet_nmult=2_reg=1_lrbs=4_rand=0_seed=0
+ID174_Alexnet_nmult=2_reg=1_lrbs=4_rand=0_seed=2
 
 175
-ID175_Alexnet_nmult=4_reg=1_lrbs=0.25_rand=0_seed=0
+ID175_Alexnet_nmult=4_reg=1_lrbs=0.25_rand=0_seed=2
 
 176
-ID176_Alexnet_nmult=4_reg=1_lrbs=4_rand=0_seed=0
+ID176_Alexnet_nmult=4_reg=1_lrbs=4_rand=0_seed=2
 
 177
-ID177_Alexnet_nmult=0.25_reg=2_lrbs=0.25_rand=0_seed=0
+ID177_Alexnet_nmult=0.25_reg=2_lrbs=0.25_rand=0_seed=2
 
 178
-ID178_Alexnet_nmult=0.25_reg=2_lrbs=4_rand=0_seed=0
+ID178_Alexnet_nmult=0.25_reg=2_lrbs=4_rand=0_seed=2
 
 179
-ID179_Alexnet_nmult=0.5_reg=2_lrbs=0.25_rand=0_seed=0
+ID179_Alexnet_nmult=0.5_reg=2_lrbs=0.25_rand=0_seed=2
 
 180
-ID180_Alexnet_nmult=0.5_reg=2_lrbs=4_rand=0_seed=0
+ID180_Alexnet_nmult=0.5_reg=2_lrbs=4_rand=0_seed=2
 
 181
-ID181_Alexnet_nmult=1_reg=2_lrbs=0.25_rand=0_seed=0
+ID181_Alexnet_nmult=1_reg=2_lrbs=0.25_rand=0_seed=2
 
 182
-ID182_Alexnet_nmult=1_reg=2_lrbs=4_rand=0_seed=0
+ID182_Alexnet_nmult=1_reg=2_lrbs=4_rand=0_seed=2
 
 183
-ID183_Alexnet_nmult=2_reg=2_lrbs=0.25_rand=0_seed=0
+ID183_Alexnet_nmult=2_reg=2_lrbs=0.25_rand=0_seed=2
 
 184
-ID184_Alexnet_nmult=2_reg=2_lrbs=4_rand=0_seed=0
+ID184_Alexnet_nmult=2_reg=2_lrbs=4_rand=0_seed=2
 
 185
-ID185_Alexnet_nmult=4_reg=2_lrbs=0.25_rand=0_seed=0
+ID185_Alexnet_nmult=4_reg=2_lrbs=0.25_rand=0_seed=2
 
 186
-ID186_Alexnet_nmult=4_reg=2_lrbs=4_rand=0_seed=0
+ID186_Alexnet_nmult=4_reg=2_lrbs=4_rand=0_seed=2
 
 187
-ID187_Alexnet_nmult=0.25_reg=3_lrbs=0.25_rand=0_seed=0
+ID187_Alexnet_nmult=0.25_reg=3_lrbs=0.25_rand=0_seed=2
 
 188
-ID188_Alexnet_nmult=0.25_reg=3_lrbs=4_rand=0_seed=0
+ID188_Alexnet_nmult=0.25_reg=3_lrbs=4_rand=0_seed=2
 
 189
-ID189_Alexnet_nmult=0.5_reg=3_lrbs=0.25_rand=0_seed=0
+ID189_Alexnet_nmult=0.5_reg=3_lrbs=0.25_rand=0_seed=2
 
 190
-ID190_Alexnet_nmult=0.5_reg=3_lrbs=4_rand=0_seed=0
+ID190_Alexnet_nmult=0.5_reg=3_lrbs=4_rand=0_seed=2
 
 191
-ID191_Alexnet_nmult=1_reg=3_lrbs=0.25_rand=0_seed=0
+ID191_Alexnet_nmult=1_reg=3_lrbs=0.25_rand=0_seed=2
 
 192
-ID192_Alexnet_nmult=1_reg=3_lrbs=4_rand=0_seed=0
+ID192_Alexnet_nmult=1_reg=3_lrbs=4_rand=0_seed=2
 
 193
-ID193_Alexnet_nmult=2_reg=3_lrbs=0.25_rand=0_seed=0
+ID193_Alexnet_nmult=2_reg=3_lrbs=0.25_rand=0_seed=2
 
 194
-ID194_Alexnet_nmult=2_reg=3_lrbs=4_rand=0_seed=0
+ID194_Alexnet_nmult=2_reg=3_lrbs=4_rand=0_seed=2
 
 195
-ID195_Alexnet_nmult=4_reg=3_lrbs=0.25_rand=0_seed=0
+ID195_Alexnet_nmult=4_reg=3_lrbs=0.25_rand=0_seed=2
 
 196
-ID196_Alexnet_nmult=4_reg=3_lrbs=4_rand=0_seed=0
+ID196_Alexnet_nmult=4_reg=3_lrbs=4_rand=0_seed=2
 
 197
-ID197_Alexnet_nmult=0.25_reg=4_lrbs=0.25_rand=0_seed=0
+ID197_Alexnet_nmult=0.25_reg=4_lrbs=0.25_rand=0_seed=2
 
 198
-ID198_Alexnet_nmult=0.25_reg=4_lrbs=4_rand=0_seed=0
+ID198_Alexnet_nmult=0.25_reg=4_lrbs=4_rand=0_seed=2
 
 199
-ID199_Alexnet_nmult=0.5_reg=4_lrbs=0.25_rand=0_seed=0
+ID199_Alexnet_nmult=0.5_reg=4_lrbs=0.25_rand=0_seed=2
 
 200
-ID200_Alexnet_nmult=0.5_reg=4_lrbs=4_rand=0_seed=0
+ID200_Alexnet_nmult=0.5_reg=4_lrbs=4_rand=0_seed=2
 
 201
-ID201_Alexnet_nmult=1_reg=4_lrbs=0.25_rand=0_seed=0
+ID201_Alexnet_nmult=1_reg=4_lrbs=0.25_rand=0_seed=2
 
 202
-ID202_Alexnet_nmult=1_reg=4_lrbs=4_rand=0_seed=0
+ID202_Alexnet_nmult=1_reg=4_lrbs=4_rand=0_seed=2
 
 203
-ID203_Alexnet_nmult=2_reg=4_lrbs=0.25_rand=0_seed=0
+ID203_Alexnet_nmult=2_reg=4_lrbs=0.25_rand=0_seed=2
 
 204
-ID204_Alexnet_nmult=2_reg=4_lrbs=4_rand=0_seed=0
+ID204_Alexnet_nmult=2_reg=4_lrbs=4_rand=0_seed=2
 
 205
-ID205_Alexnet_nmult=4_reg=4_lrbs=0.25_rand=0_seed=0
+ID205_Alexnet_nmult=4_reg=4_lrbs=0.25_rand=0_seed=2
 
 206
-ID206_Alexnet_nmult=4_reg=4_lrbs=4_rand=0_seed=0
+ID206_Alexnet_nmult=4_reg=4_lrbs=4_rand=0_seed=2
 
 207
-ID207_Alexnet_nmult=0.25_reg=0_lrbs=0.25_rand=1_seed=0
+ID207_Alexnet_nmult=0.25_reg=0_lrbs=0.25_rand=1_seed=2
 
 208
-ID208_Alexnet_nmult=0.25_reg=0_lrbs=4_rand=1_seed=0
+ID208_Alexnet_nmult=0.25_reg=0_lrbs=4_rand=1_seed=2
 
 209
-ID209_Alexnet_nmult=0.5_reg=0_lrbs=0.25_rand=1_seed=0
+ID209_Alexnet_nmult=0.5_reg=0_lrbs=0.25_rand=1_seed=2
 
 210
-ID210_Alexnet_nmult=0.5_reg=0_lrbs=4_rand=1_seed=0
+ID210_Alexnet_nmult=0.5_reg=0_lrbs=4_rand=1_seed=2
 
 211
-ID211_Alexnet_nmult=1_reg=0_lrbs=0.25_rand=1_seed=0
+ID211_Alexnet_nmult=1_reg=0_lrbs=0.25_rand=1_seed=2
 
 212
-ID212_Alexnet_nmult=1_reg=0_lrbs=4_rand=1_seed=0
+ID212_Alexnet_nmult=1_reg=0_lrbs=4_rand=1_seed=2
 
 213
-ID213_Alexnet_nmult=2_reg=0_lrbs=0.25_rand=1_seed=0
+ID213_Alexnet_nmult=2_reg=0_lrbs=0.25_rand=1_seed=2
 
 214
-ID214_Alexnet_nmult=2_reg=0_lrbs=4_rand=1_seed=0
+ID214_Alexnet_nmult=2_reg=0_lrbs=4_rand=1_seed=2
 
 215
-ID215_Alexnet_nmult=4_reg=0_lrbs=0.25_rand=1_seed=0
+ID215_Alexnet_nmult=4_reg=0_lrbs=0.25_rand=1_seed=2
 
 216
-ID216_Alexnet_nmult=4_reg=0_lrbs=4_rand=1_seed=0
+ID216_Alexnet_nmult=4_reg=0_lrbs=4_rand=1_seed=2
 
 217
-ID217_ResNet_cifar_nmult=0.25_lrbs=1_rand=0_seed=0
+ID217_ResNet_cifar_nmult=0.25_lrbs=1_rand=0_seed=2
 
 218
-ID218_ResNet_cifar_nmult=0.25_lrbs=1_rand=1_seed=0
+ID218_ResNet_cifar_nmult=0.25_lrbs=1_rand=1_seed=2
 
 219
-ID219_ResNet_cifar_nmult=0.25_lrbs=0.25_rand=0_seed=0
+ID219_ResNet_cifar_nmult=0.25_lrbs=0.25_rand=0_seed=2
 
 220
-ID220_ResNet_cifar_nmult=0.5_lrbs=1_rand=0_seed=0
+ID220_ResNet_cifar_nmult=0.5_lrbs=1_rand=0_seed=2
 
 221
-ID221_ResNet_cifar_nmult=0.5_lrbs=1_rand=1_seed=0
+ID221_ResNet_cifar_nmult=0.5_lrbs=1_rand=1_seed=2
 
 222
-ID222_ResNet_cifar_nmult=0.5_lrbs=0.25_rand=0_seed=0
+ID222_ResNet_cifar_nmult=0.5_lrbs=0.25_rand=0_seed=2
 
 223
-ID223_ResNet_cifar_nmult=1_lrbs=1_rand=0_seed=0
+ID223_ResNet_cifar_nmult=1_lrbs=1_rand=0_seed=2
 
 224
-ID224_ResNet_cifar_nmult=1_lrbs=1_rand=1_seed=0
+ID224_ResNet_cifar_nmult=1_lrbs=1_rand=1_seed=2
 
 225
-ID225_ResNet_cifar_nmult=1_lrbs=0.25_rand=0_seed=0
+ID225_ResNet_cifar_nmult=1_lrbs=0.25_rand=0_seed=2
 
 226
-ID226_ResNet_cifar_nmult=2_lrbs=1_rand=0_seed=0
+ID226_ResNet_cifar_nmult=2_lrbs=1_rand=0_seed=2
 
 227
-ID227_ResNet_cifar_nmult=2_lrbs=1_rand=1_seed=0
+ID227_ResNet_cifar_nmult=2_lrbs=1_rand=1_seed=2
 
 228
-ID228_ResNet_cifar_nmult=2_lrbs=0.25_rand=0_seed=0
+ID228_ResNet_cifar_nmult=2_lrbs=0.25_rand=0_seed=2
 
 229
-ID229_ResNet_cifar_nmult=4_lrbs=1_rand=0_seed=0
+ID229_ResNet_cifar_nmult=4_lrbs=1_rand=0_seed=2
 
 230
-ID230_ResNet_cifar_nmult=4_lrbs=1_rand=1_seed=0
+ID230_ResNet_cifar_nmult=4_lrbs=1_rand=1_seed=2
 
 231
-ID231_ResNet_cifar_nmult=4_lrbs=0.25_rand=0_seed=0
+ID231_ResNet_cifar_nmult=4_lrbs=0.25_rand=0_seed=2
 
 232
-ID232_Alexnet_itype=0_nmult=4_reg=0_rand=0_seed=1
+ID232_Alexnet_itype=0_nmult=4_reg=0_rand=0_seed=3
 
 233
-ID233_Alexnet_itype=0_nmult=4_reg=4_rand=0_seed=1
+ID233_Alexnet_itype=0_nmult=4_reg=4_rand=0_seed=3
 
 234
-ID234_ResNet_cifar_nmult=0.25_lrbs=4_rand=0_seed=0
+ID234_ResNet_cifar_nmult=0.25_lrbs=4_rand=0_seed=2
 
 235
-ID235_ResNet_cifar_nmult=0.5_lrbs=4_rand=0_seed=0
+ID235_ResNet_cifar_nmult=0.5_lrbs=4_rand=0_seed=2
 
 236
-ID236_ResNet_cifar_nmult=1_lrbs=4_rand=0_seed=0
+ID236_ResNet_cifar_nmult=1_lrbs=4_rand=0_seed=2
 
 237
-ID237_ResNet_cifar_nmult=2_lrbs=4_rand=0_seed=0
+ID237_ResNet_cifar_nmult=2_lrbs=4_rand=0_seed=2
 
 238
-ID238_ResNet_cifar_nmult=4_lrbs=4_rand=0_seed=0
+ID238_ResNet_cifar_nmult=4_lrbs=4_rand=0_seed=2
 
 239
-ID239_Alexnet_itype=0_nmult=0.25_reg=0_rand=0_seed=1
+ID239_Alexnet_itype=0_nmult=0.25_reg=0_rand=0_seed=3
 
 240
-ID240_Alexnet_itype=0_nmult=0.25_reg=4_rand=0_seed=1
+ID240_Alexnet_itype=0_nmult=0.25_reg=4_rand=0_seed=3
 
 241
 ID241_data_1
@@ -876,4 +876,154 @@ ID291_MLP10K1
 
 292
 ID292_MLP10K1
+
+293
+ID293_MLP1
+
+294
+ID294_MLP1
+
+295
+ID295_MLP1
+
+296
+ID296_MLP1
+
+297
+ID297_MLP1
+
+298
+ID298_MLP1
+
+299
+ID299_MLP1
+
+300
+ID300_MLP1
+
+301
+ID301_MLP1
+
+302
+ID302_MLP1
+
+303
+ID303_MLP1
+
+304
+ID304_MLP1
+
+305
+ID305_MLP1
+
+306
+ID306_MLP1
+
+307
+ID307_MLP1
+
+308
+ID308_MLP1
+
+309
+ID309_MLP1
+
+310
+ID310_MLP1
+
+311
+ID311_MLP1
+
+312
+ID312_MLP1
+
+313
+ID313_MLP1
+
+314
+ID314_MLP1
+
+315
+ID315_MLP1
+
+316
+ID316_MLP1
+
+317
+ID317_MLP1
+
+318
+ID318_MLP10K1
+
+319
+ID319_MLP10K1
+
+320
+ID320_MLP10K1
+
+321
+ID321_MLP10K1
+
+322
+ID322_MLP10K1
+
+323
+ID323_MLP10K1
+
+324
+ID324_MLP10K1
+
+325
+ID325_MLP10K1
+
+326
+ID326_MLP10K1
+
+327
+ID327_MLP10K1
+
+328
+ID328_MLP10K1
+
+329
+ID329_MLP10K1
+
+330
+ID330_MLP10K1
+
+331
+ID331_MLP10K1
+
+332
+ID332_MLP10K1
+
+333
+ID333_MLP10K1
+
+334
+ID334_MLP10K1
+
+335
+ID335_MLP10K1
+
+336
+ID336_MLP10K1
+
+337
+ID337_MLP10K1
+
+338
+ID338_MLP10K1
+
+339
+ID339_MLP10K1
+
+340
+ID340_MLP10K1
+
+341
+ID341_MLP10K1
+
+342
+ID342_MLP10K1
 
