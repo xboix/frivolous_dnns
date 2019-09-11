@@ -1,12 +1,12 @@
 #!/bin/bash
 #SBATCH -c1
-#SBATCH --array=65
+#SBATCH --array=2-31,62-91,157-165,217-231,234-238
 #SBATCH --job-name=get_activations
 #SBATCH --mem=12GB
 #SBATCH --gres=gpu:tesla-k80:1
 #SBATCH -t 2:00:00
-#SBATCH --workdir=/om/user/scasper/workspace/
-#SBATCH --qos=cbmm
+#SBATCH --chdir=/om/user/scasper/workspace/
+#SBATCH --partition=cbmm
 
 cd /om/user/scasper/workspace/
 singularity exec -B /om:/om --nv /om/user/xboix/singularity/xboix-tensorflow1.14.simg \

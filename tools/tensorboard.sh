@@ -1,9 +1,9 @@
 #!/bin/bash
 
-srun -t 1:00:00 --qos=cbmm ss tensorboard --port=6058 \
+srun -t 1:00:00 --partition=cbmm ss tensorboard --port=6058 \
 --logdir=/om/user/scasper/workspace/models/init_scheme_tests/
 
-#srun -t 2:00:00 --qos=cbmm /
+#srun -t 2:00:00 --partition=cbmm /
 #singularity exec -B /om:/om --nv /om/user/scasper/singularity/xboix-tensorflow.simg tensorboard \
 #--port=6058 --logdir=/om/user/scasper/redundancy_workspace/models/init_scheme_tests/
 

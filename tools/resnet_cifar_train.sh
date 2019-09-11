@@ -1,12 +1,12 @@
 #!/bin/bash
 #SBATCH -c1
-#SBATCH --array=230
+#SBATCH --array=217-232,234-238
 #SBATCH --job-name=cifar_train
 #SBATCH --mem=12GB
 #SBATCH --gres=gpu:tesla-k80:1
 #SBATCH -t 1-12:00:00
-#SBATCH --workdir=/om/user/scasper/workspace/
-#SBATCH --qos=cbmm
+#SBATCH --chdir=/om/user/scasper/workspace/
+#SBATCH --partition=cbmm
 
 cd /om/user/scasper/workspace/
 

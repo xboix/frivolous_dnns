@@ -1,13 +1,13 @@
 #!/bin/bash
-#SBATCH --array=0-11
+#SBATCH --array=0-14,16-38
 #SBATCH -n 1
 #SBATCH -c 6
 #SBATCH --job-name=imagenet_array_run
 #SBATCH --mem=48GB
 #SBATCH -t 2-0:00:00
-#SBATCH --workdir=/om/user/scasper/workspace/
+#SBATCH --chdir=/om/user/scasper/workspace/
 #SBATCH --gres=gpu:tesla-k80:4
-#SBATCH --qos=cbmm
+#SBATCH --partition=cbmm
 
 cd /om/user/scasper/workspace/
 
