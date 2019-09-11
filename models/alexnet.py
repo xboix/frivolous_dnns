@@ -2,7 +2,7 @@ import tensorflow as tf
 from utils import summary as summ
 import perturbations as pt
 from numpy import *
-from keras import backend as K
+# from keras import backend as K
 import numpy as np
 import sys
 num_neurons = [96, 256, 384, 192]
@@ -323,7 +323,6 @@ def Alexnet_test(x, opt, select, labels_id, dropout_rate, perturbation_params, p
     with tf.variable_scope('softmax_linear', reuse=reuse) as scope:
         weights = tf.get_variable(shape=[dim3, len(labels_id)], initializer=init_type(), name='weights')
         biases = tf.get_variable(initializer=tf.constant(0.0, shape=[len(labels_id)]), name='biases')
-        fc5 = tf.add(tf.matmul(fc4, weights), biases, name=scope.name)
 
         # weight perturbation
         if perturbation_type == 0:

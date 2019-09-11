@@ -10,7 +10,9 @@ from runs import preprocessing
 import pickle
 
 
-def get_activations(opt, max_samples=5e4):
+def get_activations(opt, cross, max_samples=5e4):
+
+    np.random.seed(cross)
 
     # I found that this was necessary in order to get everything to git on the om gpus
     # This doesn't affect anything because this is just for evaluation
@@ -186,10 +188,6 @@ def get_activations(opt, max_samples=5e4):
 
 def run(opt):
 
-    ################################################################################################
-    # Read experiment to run
-    ################################################################################################
-
     # Skip execution if instructed in experiment
     if opt.skip:
         print("SKIP")
@@ -199,26 +197,27 @@ def run(opt):
     print('factor:', opt.dnn.factor)
     print('batch size:', opt.hyper.batch_size)
 
-    ################################################################################################
-    # Define training and validation datasets through Dataset API
-    ################################################################################################
-    record_acc, record_acc_5, activations, gt = get_activations(opt)
-
     # make directory to put results into if not already exists
     if not os.path.exists(opt.results_dir + opt.name + '/'):
         os.mkdir(opt.results_dir + opt.name + '/')
 
-    with open(opt.results_dir + opt.name + '/activations.pkl', 'wb') as f:
-        pickle.dump(activations, f, protocol=2)
-    with open(opt.results_dir + opt.name + '/labels.pkl', 'wb') as f:
-        pickle.dump(gt, f, protocol=2)
-    with open(opt.results_dir + opt.name + '/accuracy.pkl', 'wb') as f:
-        pickle.dump([record_acc, record_acc_5], f, protocol=2)
+    for cross in range(3):
 
-    tf.reset_default_graph()
-    gc.collect()
-    print("top-1:", record_acc)
-    print("top-5: ", record_acc_5)
-    sys.stdout.flush()
+        print('cross', cross)
+
+        record_acc, record_acc_5, activations, gt = get_activations(opt, cross)
+
+        with open(opt.results_dir + opt.name + '/activations' + str(cross) + '.pkl', 'wb') as f:
+            pickle.dump(activations, f, protocol=2)
+        with open(opt.results_dir + opt.name + '/labels' + str(cross) + '.pkl', 'wb') as f:
+            pickle.dump(gt, f, protocol=2)
+        with open(opt.results_dir + opt.name + '/accuracy' + str(cross) + '.pkl', 'wb') as f:
+            pickle.dump([record_acc, record_acc_5], f, protocol=2)
+
+        tf.reset_default_graph()
+        gc.collect()
+        print("top-1:", record_acc)
+        print("top-5: ", record_acc_5)
+        sys.stdout.flush()
 
     print(":)")

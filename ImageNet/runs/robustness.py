@@ -12,7 +12,7 @@ import pickle
 NUM_PTYPES = 5
 
 
-def create_graph(opt, ptype):
+def create_graph(opt, ptype, cross):
 
     # I found that this was necessary in order to get everything to git on the om gpus
     # This doesn't affect anything because this is just for evaluation
@@ -25,7 +25,7 @@ def create_graph(opt, ptype):
     elif opt.dnn.name == 'inception':
         opt.hyper.batch_size = 256
 
-    with open(opt.results_dir + opt.name + '/selectivity.pkl', 'rb') as f:
+    with open(opt.results_dir + opt.name + '/selectivity' + str(cross) + '.pkl', 'rb') as f:
         selectivity = pickle.load(f)  # indexed [layer][neuron]
 
     select = [tf.compat.v1.placeholder(tf.float32, shape=(len(selectivity[k]))) for k in range(len(selectivity))]
@@ -108,11 +108,11 @@ def create_graph(opt, ptype):
 
 
 def test_robustness(sess, pred_label, handle, perturbation_params, select, opt, range_robustness,
-                    val_iterator, val_handle_full, num_iter_val, ptype):
+                    val_iterator, val_handle_full, num_iter_val, ptype, cross):
 
     results_robustness = np.zeros([opt.dnn.layers + 1, len(range_robustness)])  # idx: [layer][perturb_amount]
 
-    with open(opt.results_dir + opt.name + '/corr.pkl', 'rb') as f:  # only do for the first cross
+    with open(opt.results_dir + opt.name + '/corr' + str(cross) + '.pkl', 'rb') as f:  # only do for the first cross
         corr = pickle.load(f)
     corr = [np.abs(corr[k]) for k in range(len(corr))]  # take the absolute values
     corr_single = [corr[k][np.random.randint(0, np.shape(corr[k])[0])] for k in range(len(corr))]
@@ -204,10 +204,6 @@ def test_robustness(sess, pred_label, handle, perturbation_params, select, opt, 
 
 def run(opt):
 
-    ################################################################################################
-    # Read experiment to run
-    ################################################################################################
-
     # Skip execution if instructed in experiment
     if opt.skip:
         print("SKIP")
@@ -217,10 +213,6 @@ def run(opt):
     print('factor:', opt.dnn.factor)
     print('batch size:', opt.hyper.batch_size)
 
-    ################################################################################################
-    # get robustness
-    ################################################################################################
-
     range_len = 7
     layers = opt.dnn.layers
     knockout_idx = [1, 2, 4]
@@ -228,68 +220,74 @@ def run(opt):
     knockout_range = np.linspace(0.0, 1.0, num=range_len, endpoint=True)
     noise_range = np.linspace(0.0, 1.0, num=range_len, endpoint=True)
 
-    results = np.zeros((NUM_PTYPES, layers+1, range_len))  # the +1 on layers is for all layers
+    for cross in range(3):
 
-    for ptype in range(NUM_PTYPES):
-        # perturbation types: 0=weight noise, 1=weight ko, 2=act ko, 3=act noise, 4=targeted act ko
-        if ptype in [0, 1]:  # for now, we skip over weight perturbations and only look at activation ones
-            continue
+        print('cross', cross)
 
-        print("Perturbation type: " + str(ptype))
+        np.random.seed(cross)
 
-        if ptype in knockout_idx:
-            range_robustness = knockout_range
-        else:
-            range_robustness = noise_range
+        results = np.zeros((NUM_PTYPES, layers+1, range_len))  # the +1 on layers is for all layers
 
-        acc_1, acc_5, pred_label, label, handle, perturbation_params, select, val_iterator, num_iter_val \
-            = create_graph(opt, ptype)
-        # note that HERE ^ perturbation_params is indexed [type][layer] select is indexed [layer][neuron]
+        for ptype in range(NUM_PTYPES):
+            # perturbation types: 0=weight noise, 1=weight ko, 2=act ko, 3=act noise, 4=targeted act ko
+            if ptype in [0, 1]:  # for now, we skip over weight perturbations and only look at activation ones
+                continue
 
-        # allow for GPU memory to be allocated as needed
-        config = tf.ConfigProto()
-        config.gpu_options.allow_growth = True
+            print("Perturbation type: " + str(ptype))
 
-        with tf.Session(config=config) as sess:
+            if ptype in knockout_idx:
+                range_robustness = knockout_range
+            else:
+                range_robustness = noise_range
 
-            print("RESTORE")
-            print(opt.log_dir_base + opt.name)
+            acc_1, acc_5, pred_label, label, handle, perturbation_params, select, val_iterator, num_iter_val \
+                = create_graph(opt, ptype, cross)
+            # note that HERE ^ perturbation_params is indexed [type][layer] select is indexed [layer][neuron]
 
-            if opt.dnn.name == 'resnet':
-                saver = tf.train.Saver(max_to_keep=opt.max_to_keep_checkpoints)
-                saver.restore(sess, tf.train.latest_checkpoint(opt.log_dir_base + opt.name + '/'))
+            # allow for GPU memory to be allocated as needed
+            config = tf.ConfigProto()
+            config.gpu_options.allow_growth = True
 
-            elif opt.dnn.name == 'inception':
-                variable_averages = tf.train.ExponentialMovingAverage(0.9999)
-                variables_to_restore = variable_averages.variables_to_restore()
-                saver = tf.train.Saver(variables_to_restore)
-                # saver = tf.train.Saver()
-                saver.restore(sess, tf.train.latest_checkpoint(opt.log_dir_base + opt.name + '/'))
+            with tf.Session(config=config) as sess:
 
-            ''' 
-            ckpt = tf.train.get_checkpoint_state(opt.log_dir_base + opt.name + '/')
-            if ckpt and ckpt.model_checkpoint_path:
-                if os.path.isabs(ckpt.model_checkpoint_path):
-                    # Restores from checkpoint with absolute path.
-                    saver.restore(sess, ckpt.model_checkpoint_path)
-                else:
-                    # Restores from checkpoint with relative path.
-                    saver.restore(sess, os.path.join(opt.log_dir_base + opt.name + '/',
-                                                     ckpt.model_checkpoint_path))
-            '''
+                print("RESTORE")
+                print(opt.log_dir_base + opt.name)
 
-            val_handle_full = sess.run(val_iterator.string_handle())
+                if opt.dnn.name == 'resnet':
+                    saver = tf.train.Saver(max_to_keep=opt.max_to_keep_checkpoints)
+                    saver.restore(sess, tf.train.latest_checkpoint(opt.log_dir_base + opt.name + '/'))
 
-            # resuls indexed [pytpe, layer, parturbation_amount]
-            results[ptype, :, :] = test_robustness(sess, pred_label, handle, perturbation_params,
-                                                   select, opt, range_robustness, val_iterator,
-                                                   val_handle_full, num_iter_val, ptype)
+                elif opt.dnn.name == 'inception':
+                    variable_averages = tf.train.ExponentialMovingAverage(0.9999)
+                    variables_to_restore = variable_averages.variables_to_restore()
+                    saver = tf.train.Saver(variables_to_restore)
+                    # saver = tf.train.Saver()
+                    saver.restore(sess, tf.train.latest_checkpoint(opt.log_dir_base + opt.name + '/'))
 
-    with open(opt.results_dir + opt.name + '/robustness.pkl', 'wb') as f:
-        pickle.dump(results, f, protocol=2)
+                ''' 
+                ckpt = tf.train.get_checkpoint_state(opt.log_dir_base + opt.name + '/')
+                if ckpt and ckpt.model_checkpoint_path:
+                    if os.path.isabs(ckpt.model_checkpoint_path):
+                        # Restores from checkpoint with absolute path.
+                        saver.restore(sess, ckpt.model_checkpoint_path)
+                    else:
+                        # Restores from checkpoint with relative path.
+                        saver.restore(sess, os.path.join(opt.log_dir_base + opt.name + '/',
+                                                         ckpt.model_checkpoint_path))
+                '''
 
-    tf.reset_default_graph()
-    gc.collect()
-    sys.stdout.flush()
+                val_handle_full = sess.run(val_iterator.string_handle())
+
+                # resuls indexed [pytpe, layer, parturbation_amount]
+                results[ptype, :, :] = test_robustness(sess, pred_label, handle, perturbation_params,
+                                                       select, opt, range_robustness, val_iterator,
+                                                       val_handle_full, num_iter_val, ptype, cross)
+
+        with open(opt.results_dir + opt.name + '/robustness' + str(cross) + '.pkl', 'wb') as f:
+            pickle.dump(results, f, protocol=2)
+
+        tf.reset_default_graph()
+        gc.collect()
+        sys.stdout.flush()
 
     print(":)")

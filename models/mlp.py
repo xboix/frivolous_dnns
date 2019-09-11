@@ -1,5 +1,6 @@
 import tensorflow as tf
 from utils import summary as summ
+import perturbations as pt
 from numpy import *
 
 
@@ -90,6 +91,72 @@ def MLP1(x, opt, labels_id, dropout_rate):
                                             dtype=tf.float32,
                                             stddev=1e-2), name='weights')
         b = tf.Variable(tf.zeros([len(labels_id)]), name='bias')
+        parameters += [W, b]
+        summ.variable_summaries(W, b, opt)
+
+        fc8 = tf.nn.bias_add(tf.matmul(dropout1, W), b, name=scope)
+        summ.activation_summaries(fc8, opt)
+
+    return fc8, [], parameters
+
+
+def MLP1_test(x, opt, select, labels_id, dropout_rate, perturbation_params, perturbation_type):
+    # x is an input, opt is the experiment
+    # select gives selected neurons where 1 indicates being selected, indexed as [layer][node]
+    # labels_id=categories
+    # dropout rate=dropout rate
+    # perturbation_params=array of keep/drop probs indexed [type][layer]
+    # perturbation_type is an int in range(5) giving perturbation type:
+    # 0=weight noise, 1=weight ko, 2=act ko, 3=act noise, 4=targeted act ko
+
+    parameters = []
+
+    aa = x
+    num_neurons_before_fc = int(prod(aa.get_shape()[1:]))
+    flattened = tf.reshape(aa, [-1, num_neurons_before_fc])
+
+    # fc1
+    with tf.name_scope('fc1') as scope:
+        W = tf.Variable(
+            tf.truncated_normal([num_neurons_before_fc, int(512 * opt.dnn.neuron_multiplier[0])], dtype=tf.float32,
+                                stddev=1e-3),
+            name='weights')
+        b = tf.Variable(0.1 * tf.ones([int(512 * opt.dnn.neuron_multiplier[0])]), name='bias')
+
+        # weight perturbation
+        if perturbation_type == 0:
+            W = pt.weight_knockout(W, perturbation_params[1][0])
+        if perturbation_type == 1:
+            W = pt.weight_noise(W, perturbation_params[0][0])
+
+        parameters += [W, b]
+        summ.variable_summaries(W, b, opt)
+
+        fc1_predrop = tf.nn.relu(tf.nn.bias_add(tf.matmul(flattened, W), b, name=scope))
+
+        # if perturbation_type == 2:
+        #     fc3_predrop = pt.activation_knockout(fc3_predrop, perturbation_params[2][2])
+        if perturbation_type == 3:
+            fc1_predrop = pt.activation_noise(fc1_predrop, perturbation_params[3][0], opt.hyper.batch_size)
+        elif perturbation_type in [2, 4]:
+            ss = tf.reshape(tf.tile(select[2], [opt.hyper.batch_size]), [-1, int(fc1_predrop.get_shape()[1])])
+            fc1_predrop = pt.activation_knockout_mask(fc1_predrop, perturbation_params[4][0], ss)
+
+        summ.activation_summaries(fc1_predrop, opt)
+        dropout1 = tf.nn.dropout(fc1_predrop, dropout_rate)
+
+    # fc8
+    with tf.name_scope('fc_out') as scope:
+        W = tf.Variable(tf.truncated_normal([int(512 * opt.dnn.neuron_multiplier[0]), len(labels_id)],
+                                            dtype=tf.float32, stddev=1e-2), name='weights')
+        b = tf.Variable(tf.zeros([len(labels_id)]), name='bias')
+
+        # weight perturbation
+        if perturbation_type == 0:
+            W = pt.weight_knockout(W, perturbation_params[1][1])
+        if perturbation_type == 1:
+            W = pt.weight_noise(W, perturbation_params[0][1])
+
         parameters += [W, b]
         summ.variable_summaries(W, b, opt)
 
