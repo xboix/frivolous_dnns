@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -N 1
 #SBATCH -c 2
-#SBATCH --array=293-342
+#SBATCH --array=243-342
 #SBATCH --job-name=MLPs
 #SBATCH --mem=20GB
 #SBATCH --gres=gpu:titan-x:1
@@ -11,7 +11,6 @@
 
 cd /om/user/xboix/src/redundancy_dnns/
 singularity exec -B /om:/om --nv /om/user/xboix/singularity/xboix-tensorflow1.14.simg \
-python /om/user/xboix/src/redundancy_dnns/train.py ${SLURM_ARRAY_TASK_ID}
+python /om/user/xboix/src/redundancy_dnns/get_activations.py ${SLURM_ARRAY_TASK_ID}
 
-# make sure to set the seed in imagenet_networks.py
-
+# make sure to set the directories and seed in imagenet_networks.py

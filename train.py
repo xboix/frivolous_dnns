@@ -82,12 +82,11 @@ if opt.dataset_name == 'cifar':
     image = tf.image.resize_images(image, [opt.hyper.image_size, opt.hyper.image_size])
     if opt.extense_summary:
         tf.summary.image('input', image)
-
 elif opt.dataset_name == 'rand10':
     image = tf.compat.v1.reshape(image, [-1, 10])
 elif opt.dataset_name == 'rand10000':
     image = tf.compat.v1.reshape(image, [-1, 10000])
-print(tf.shape(image))
+
 
 
 # Call DNN

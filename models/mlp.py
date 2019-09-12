@@ -1,6 +1,7 @@
 import tensorflow as tf
 from utils import summary as summ
 from numpy import *
+import perturbations as pt
 
 
 def MLP3(x, opt, labels_id, dropout_rate):
@@ -82,7 +83,7 @@ def MLP1(x, opt):
 
         fc8 = tf.nn.bias_add(tf.matmul(fc1, W), b, name=scope)
 
-    return fc8, [], []
+    return fc8, []
 
 
 def MLP1_test(x, opt, select, labels_id, dropout_rate, perturbation_params, perturbation_type):
@@ -93,9 +94,10 @@ def MLP1_test(x, opt, select, labels_id, dropout_rate, perturbation_params, pert
     # perturbation_params=array of keep/drop probs indexed [type][layer]
     # perturbation_type is an int in range(5) giving perturbation type:
     # 0=weight noise, 1=weight ko, 2=act ko, 3=act noise, 4=targeted act ko
+    parameters = []
 
     num_neurons_before_fc = int(x.get_shape()[1])
-    flattened = tf.reshape(aa, [-1, num_neurons_before_fc])
+    flattened = tf.reshape(x, [-1, num_neurons_before_fc])
 
     # fc1
     with tf.name_scope('fc1') as scope:
@@ -143,7 +145,7 @@ def MLP1_test(x, opt, select, labels_id, dropout_rate, perturbation_params, pert
         fc8 = tf.nn.bias_add(tf.matmul(dropout1, W), b, name=scope)
         summ.activation_summaries(fc8, opt)
 
-    return fc8, parameters, []
+    return fc8, parameters, [fc1]
 
 
 def MLP1_linear(x, opt):
@@ -165,7 +167,7 @@ def MLP1_linear(x, opt):
 
         fc8 = tf.nn.bias_add(tf.matmul(fc1, W), b, name=scope)
 
-    return fc8, [], []
+    return fc8, [], [fc1]
 
 
 def MLP1_linear_test(x, opt, select, labels_id, dropout_rate, perturbation_params, perturbation_type):
@@ -176,9 +178,9 @@ def MLP1_linear_test(x, opt, select, labels_id, dropout_rate, perturbation_param
     # perturbation_params=array of keep/drop probs indexed [type][layer]
     # perturbation_type is an int in range(5) giving perturbation type:
     # 0=weight noise, 1=weight ko, 2=act ko, 3=act noise, 4=targeted act ko
-
+    parameters = []
     num_neurons_before_fc = int(x.get_shape()[1])
-    flattened = tf.reshape(aa, [-1, num_neurons_before_fc])
+    flattened = tf.reshape(x, [-1, num_neurons_before_fc])
 
     # fc1
     with tf.name_scope('fc1') as scope:
@@ -196,14 +198,14 @@ def MLP1_linear_test(x, opt, select, labels_id, dropout_rate, perturbation_param
 
         parameters += [W, b]
 
-        fc1_predrop = tf.nn.relu(tf.nn.bias_add(tf.matmul(flattened, W), b, name=scope))
+        fc1_predrop = tf.nn.bias_add(tf.matmul(flattened, W), b, name=scope)
 
         # if perturbation_type == 2:
         #     fc3_predrop = pt.activation_knockout(fc3_predrop, perturbation_params[2][2])
         if perturbation_type == 3:
             fc1_predrop = pt.activation_noise(fc1_predrop, perturbation_params[3][0], opt.hyper.batch_size)
         elif perturbation_type in [2, 4]:
-            ss = tf.reshape(tf.tile(select[2], [opt.hyper.batch_size]), [-1, int(fc1_predrop.get_shape()[1])])
+            ss = tf.reshape(tf.tile(select[0], [opt.hyper.batch_size]), [-1, int(fc1_predrop.get_shape()[1])])
             fc1_predrop = pt.activation_knockout_mask(fc1_predrop, perturbation_params[4][0], ss)
 
         dropout1 = tf.nn.dropout(fc1_predrop, dropout_rate)
@@ -226,4 +228,4 @@ def MLP1_linear_test(x, opt, select, labels_id, dropout_rate, perturbation_param
         fc8 = tf.nn.bias_add(tf.matmul(dropout1, W), b, name=scope)
         summ.activation_summaries(fc8, opt)
 
-    return fc8, parameters, []
+    return fc8, parameters

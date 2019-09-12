@@ -38,7 +38,16 @@ def create_graph():
     ################################################################################################
 
     # Initialize dataset and creates TF records if they do not exist
-    dataset = cifar_dataset.Cifar10(opt)
+    # Initialize dataset and creates TF records if they do not exist
+    if opt.dataset_name == 'cifar':
+        from data import cifar_dataset
+        dataset = cifar_dataset.Cifar10(opt)
+    elif opt.dataset_name == 'rand10':
+        from data import rand10_dataset
+        dataset = rand10_dataset.Rand10(opt)
+    elif opt.dataset_name == 'rand10000':
+        from data import rand10000_dataset
+        dataset = rand10000_dataset.Rand10000(opt)
 
     # No repeatable dataset for testing
     train_dataset_full = dataset.create_dataset(augmentation=False, standarization=True,
@@ -64,7 +73,14 @@ def create_graph():
 
     # Get data from dataset
     image, y_ = iterator.get_next()
-    image = tf.image.resize_images(image, [opt.hyper.image_size, opt.hyper.image_size])
+    if opt.dataset_name == 'cifar':
+        image = tf.image.resize_images(image, [opt.hyper.image_size, opt.hyper.image_size])
+        if opt.extense_summary:
+            tf.summary.image('input', image)
+    elif opt.dataset_name == 'rand10':
+        image = tf.compat.v1.reshape(image, [-1, 10])
+    elif opt.dataset_name == 'rand10000':
+        image = tf.compat.v1.reshape(image, [-1, 10000])
 
     # Call DNN
     dropout_rate = tf.compat.v1.placeholder(tf.float32)
