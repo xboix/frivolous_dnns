@@ -1,6 +1,6 @@
 import numpy as np
 
-master_seed = 2
+master_seed = 0
 
 
 class Dataset(object):
@@ -700,54 +700,58 @@ idx += 1
 
 
 for neuron_mult in [1, 2, 4, 8, 16]:
-    for lr in [1, 1e-1, 1e-2, 1e-3, 1e-4]:
-        opt += [Experiments(idx, "MLP" + str(p))]
+    for lr in [1e0, 1e-1, 1e-2, 1e-3, 1e-4]:
+        opt += [Experiments(idx, "MLP" + '_seed=' + str(master_seed))]
         opt[-1].dataset_name = 'rand10'
         opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10])
         opt[-1].hyper.max_num_epochs = 50
         opt[-1].dnn.name = 'MLP1'
-        opt[-1].dnn.layers = 1
+        opt[-1].dnn.layers = 2
+        opt[-1].hyper.learning_rate = lr
         opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
         opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10/'
         opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10/'
         idx += 1
 
 for neuron_mult in [1, 2, 4, 8, 16]:
-    for lr in [1, 1e-1, 1e-2, 1e-3, 1e-4]:
-        opt += [Experiments(idx, "MLP10K" + str(p))]
+    for lr in [1e0, 1e-1, 1e-2, 1e-3, 1e-4]:
+        opt += [Experiments(idx, "MLP10K" + '_seed=' + str(master_seed))]
         opt[-1].dataset_name = 'rand10000'
         opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10000])
         opt[-1].hyper.max_num_epochs = 50
         opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
         opt[-1].dnn.name = 'MLP1'
-        opt[-1].dnn.layers = 1
+        opt[-1].dnn.layers = 2
+        opt[-1].hyper.learning_rate = lr
         opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10000/'
         opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10000/'
         idx += 1
 
 
 for neuron_mult in [1, 2, 4, 8, 16]:
-    for lr in [1, 1e-1, 1e-2, 1e-3, 1e-4]:
-        opt += [Experiments(idx, "MLP" + str(p))]
+    for lr in [1e0, 1e-1, 1e-2, 1e-3, 1e-4]:
+        opt += [Experiments(idx, "MLP" + '_seed=' + str(master_seed))]
         opt[-1].dataset_name = 'rand10'
         opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10])
         opt[-1].hyper.max_num_epochs = 50
         opt[-1].dnn.name = 'MLP1_linear'
-        opt[-1].dnn.layers = 1
+        opt[-1].dnn.layers = 2
+        opt[-1].hyper.learning_rate = lr
         opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
         opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10/'
         opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10/'
         idx += 1
 
 for neuron_mult in [1, 2, 4, 8, 16]:
-    for lr in [1, 1e-1, 1e-2, 1e-3, 1e-4]:
-        opt += [Experiments(idx, "MLP10K" + str(p))]
+    for lr in [1e0, 1e-1, 1e-2, 1e-3, 1e-4]:
+        opt += [Experiments(idx, "MLP10K" + '_seed=' + str(master_seed))]
         opt[-1].dataset_name = 'rand10000'
         opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10000])
         opt[-1].hyper.max_num_epochs = 50
         opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
         opt[-1].dnn.name = 'MLP1_linear'
-        opt[-1].dnn.layers = 1
+        opt[-1].dnn.layers = 2
+        opt[-1].hyper.learning_rate = lr
         opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10000/'
         opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10000/'
         idx += 1

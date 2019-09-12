@@ -12,7 +12,7 @@ import numpy as np
 # Read experiment to run
 ################################################################################################
 
-for opt in experiments.opt:
+for opt in experiments.opt[243:]:
 
     header = ['model_name', 'evaluation_set', 'cross_validation', 'layer', 'preserved_energy', 'training_dropout',
               'training_weight_decay', 'training_data_augmentation', 'training_amount_data', 'random_labels',
@@ -21,42 +21,46 @@ for opt in experiments.opt:
               'num_components', 'compressability_95', 'selectivity_mean', 'selectivity_std', 'selectivity_gen_mean',
               'selectivity_gen_std', 'not_selective', 'similarity_ave', 'similarity_std', 'performance']
 
-    if not os.path.isfile(opt.log_dir_base + opt.name + '/redundancy0.pkl'):
-        print('Couldn\'t find files, skipped:', opt.name)
+    tmp_name = opt.log_dir_base + opt.name
+    #tmp_name = tmp_name[:-7] + '1'
+    if not os.path.isfile(tmp_name + '/redundancy0.pkl'):
+        print('Couldn\'t find files, skipped:', tmp_name[:-7])
         sys.stdout.flush()
         continue
 
-    with open(opt.csv_dir + opt.name + '_redundancy.csv', 'w') as csvfile:
+    tmp_name_red = opt.csv_dir + opt.name
+    #tmp_name_red = tmp_name_red[:-7] + '1'
+    with open(tmp_name_red + '_redundancy.csv', 'w') as csvfile:
 
         filewriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
 
         filewriter.writerow(header)
 
         for cross in range(3):
-            if os.path.isfile(opt.log_dir_base + opt.name + '/redundancy' + str(cross) + '.pkl'):
-                with open(opt.log_dir_base + opt.name + '/redundancy' + str(cross) + '.pkl', 'rb') as f:
+            if os.path.isfile(tmp_name + '/redundancy' + str(cross) + '.pkl'):
+                with open(tmp_name + '/redundancy' + str(cross) + '.pkl', 'rb') as f:
                     results = pickle.load(f)
             else:
-                print('Couldn\'t find files, skipped:', opt.name)
+                print('Couldn\'t find files, skipped:', tmp_name)
                 sys.stdout.flush()
                 continue
 
-            if os.path.isfile(opt.log_dir_base + opt.name + '/selectivity' + str(cross) + '.pkl'):
-                with open(opt.log_dir_base + opt.name + '/selectivity' + str(cross) + '.pkl', 'rb') as f:
+            if os.path.isfile(tmp_name + '/selectivity' + str(cross) + '.pkl'):
+                with open(tmp_name+ '/selectivity' + str(cross) + '.pkl', 'rb') as f:
                     select = pickle.load(f)
                     for i in range(len(select)):
                         for j in range(len(select[i])):
                             select[i][j][np.isnan(select[i][j])] = 0
             else:
-                print('Couldn\'t find files, skipped:', opt.name)
+                print('Couldn\'t find files, skipped:', tmp_name)
                 sys.stdout.flush()
                 continue
 
-            if os.path.isfile(opt.log_dir_base + opt.name + '/similarity' + str(cross) + '.pkl'):
-                with open(opt.log_dir_base + opt.name + '/similarity' + str(cross) + '.pkl', 'rb') as f:
+            if os.path.isfile(tmp_name + '/similarity' + str(cross) + '.pkl'):
+                with open(tmp_name + '/similarity' + str(cross) + '.pkl', 'rb') as f:
                     sim = pickle.load(f)
             else:
-                print('Couldn\'t find files, skipped:', opt.name)
+                print('Couldn\'t find files, skipped:', tmp_name)
                 sys.stdout.flush()
                 continue
 

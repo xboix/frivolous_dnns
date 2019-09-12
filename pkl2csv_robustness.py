@@ -18,7 +18,7 @@ noise_range = np.linspace(0.0, 1.0, num=range_len, endpoint=True)
 noise_idx = [0, 3]
 knockout_idx = [1, 2, 4]
 
-for opt in experiments.opt:
+for opt in experiments.opt[243:]:
 
     output_path = opt.csv_dir
 

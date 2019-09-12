@@ -140,7 +140,7 @@ def test_robustness(handle, dropout_rate, perturbation_params, select, opt, rang
 
         # This is only okay to do if were doing activation perturbations and not weight perturbations
         # b/c the last layer isn't one where we ever apply activation perturbations for obvious reasons
-        if layer == 4:
+        if layer == (opt.dnn.layers-1):
             continue
 
         print('Processing Layer:', layer)

@@ -83,7 +83,7 @@ def MLP1(x, opt):
 
         fc8 = tf.nn.bias_add(tf.matmul(fc1, W), b, name=scope)
 
-    return fc8, []
+    return fc8, [], [fc1]
 
 
 def MLP1_test(x, opt, select, labels_id, dropout_rate, perturbation_params, perturbation_type):
@@ -122,7 +122,7 @@ def MLP1_test(x, opt, select, labels_id, dropout_rate, perturbation_params, pert
         if perturbation_type == 3:
             fc1_predrop = pt.activation_noise(fc1_predrop, perturbation_params[3][0], opt.hyper.batch_size)
         elif perturbation_type in [2, 4]:
-            ss = tf.reshape(tf.tile(select[2], [opt.hyper.batch_size]), [-1, int(fc1_predrop.get_shape()[1])])
+            ss = tf.reshape(tf.tile(select[0], [opt.hyper.batch_size]), [-1, int(fc1_predrop.get_shape()[1])])
             fc1_predrop = pt.activation_knockout_mask(fc1_predrop, perturbation_params[4][0], ss)
 
         dropout1 = tf.nn.dropout(fc1_predrop, dropout_rate)
@@ -145,7 +145,7 @@ def MLP1_test(x, opt, select, labels_id, dropout_rate, perturbation_params, pert
         fc8 = tf.nn.bias_add(tf.matmul(dropout1, W), b, name=scope)
         summ.activation_summaries(fc8, opt)
 
-    return fc8, parameters, [fc1]
+    return fc8, parameters
 
 
 def MLP1_linear(x, opt):
