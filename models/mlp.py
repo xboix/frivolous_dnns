@@ -67,23 +67,26 @@ def MLP3(x, opt, labels_id, dropout_rate):
 def MLP1(x, opt):
 
     num_neurons_before_fc = int(x.get_shape()[1])
+    activations = []
 
     # fc1
     with tf.name_scope('fc1') as scope:
         W = tf.Variable( tf.truncated_normal([num_neurons_before_fc, int(32*opt.dnn.neuron_multiplier[0])], dtype=tf.float32,
-                                stddev=1e-3), name='weights')
-        b = tf.Variable(0 * tf.ones([int(32)]), name='bias')
+                                stddev=1e-3*opt.dnn.init_mult), name='weights')
+        b = tf.Variable(0 * tf.ones([int(32*opt.dnn.neuron_multiplier[0])]), name='bias')
 
         fc1 = tf.nn.relu(tf.nn.bias_add(tf.matmul(x, W), b, name=scope))
-
+        activations += [fc1]
     # fc8
     with tf.name_scope('fc_out') as scope:
-        W = tf.Variable(tf.truncated_normal([int(32*opt.dnn.neuron_multiplier[0]), 2],  dtype=tf.float32, stddev=1e-2), name='weights')
+        W = tf.Variable(tf.truncated_normal([int(32*opt.dnn.neuron_multiplier[0]), 2],
+                                            dtype=tf.float32, stddev=1e-2*opt.dnn.init_mult), name='weights')
         b = tf.Variable(tf.zeros([2]), name='bias')
 
         fc8 = tf.nn.bias_add(tf.matmul(fc1, W), b, name=scope)
+        activations += [fc8]
 
-    return fc8, [], [fc1]
+    return fc8, [], activations
 
 
 def MLP1_test(x, opt, select, labels_id, dropout_rate, perturbation_params, perturbation_type):
@@ -151,23 +154,26 @@ def MLP1_test(x, opt, select, labels_id, dropout_rate, perturbation_params, pert
 def MLP1_linear(x, opt):
 
     num_neurons_before_fc = int(x.get_shape()[1])
+    activations = []
 
     # fc1
     with tf.name_scope('fc1') as scope:
         W = tf.Variable( tf.truncated_normal([num_neurons_before_fc, int(32*opt.dnn.neuron_multiplier[0])], dtype=tf.float32,
-                                stddev=1e-3), name='weights')
-        b = tf.Variable(0 * tf.ones([int(32)]), name='bias')
+                                stddev=1e-3*opt.dnn.init_mult), name='weights')
+        b = tf.Variable(0 * tf.ones([int(32)*opt.dnn.neuron_multiplier[0]]), name='bias')
 
         fc1 = tf.nn.bias_add(tf.matmul(x, W), b, name=scope)
+        activations += [fc1]
 
     # fc8
     with tf.name_scope('fc_out') as scope:
-        W = tf.Variable(tf.truncated_normal([int(32*opt.dnn.neuron_multiplier[0]), 2],  dtype=tf.float32, stddev=1e-2), name='weights')
+        W = tf.Variable(tf.truncated_normal([int(32*opt.dnn.neuron_multiplier[0]), 2],
+                                            dtype=tf.float32, stddev=1e-2*opt.dnn.init_mult), name='weights')
         b = tf.Variable(tf.zeros([2]), name='bias')
 
         fc8 = tf.nn.bias_add(tf.matmul(fc1, W), b, name=scope)
-
-    return fc8, [], [fc1]
+        activations += [fc8]
+    return fc8, [], activations
 
 
 def MLP1_linear_test(x, opt, select, labels_id, dropout_rate, perturbation_params, perturbation_type):

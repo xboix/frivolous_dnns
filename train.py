@@ -1,5 +1,5 @@
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = "0"
+#os.environ['CUDA_VISIBLE_DEVICES'] = "0"
 
 import os.path
 import shutil
@@ -115,6 +115,8 @@ with tf.name_scope('loss'):
     tf.summary.scalar('total_loss', total_loss)
 
 global_step = tf.Variable(0, name='global_step', trainable=False)
+
+
 
 ################################################################################################
 # Set up Training

@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -N 1
 #SBATCH -c 2
-#SBATCH --array=243-294
+#SBATCH --array=245,250,255,260,265,270,275,280,285,290
 #SBATCH --job-name=MLPs
 #SBATCH --mem=20GB
 #SBATCH --gres=gpu:titan-x:1
