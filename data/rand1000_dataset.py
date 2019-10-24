@@ -7,15 +7,15 @@ from random import randint
 from data import dataset
 
 
-class Rand10000(dataset.Dataset):
+class Rand1000(dataset.Dataset):
 
     def __init__(self, opt):
-        super(Rand10000, self).__init__(opt)
+        super(Rand1000, self).__init__(opt)
 
         self.num_threads = 8
 
         self.list_labels = range(2)
-        self.num_images_training = 10000
+        self.num_images_training = 1000
         self.num_images_test = 1000
 
         self.num_images_epoch = self.num_images_training
@@ -32,8 +32,8 @@ class Rand10000(dataset.Dataset):
     # Virtual functions:
     def get_data_trainval(self):
 
-        train = self.__unpickle('train_10000.pickle')
-        val = self.__unpickle('val_10000.pickle')
+        train = self.__unpickle('train_1000.pickle')
+        val = self.__unpickle('val_1000.pickle')
 
         train_addrs = []
         for t in train['data']:
@@ -48,7 +48,7 @@ class Rand10000(dataset.Dataset):
         return train_addrs, train_labels, val_addrs, val_labels
 
     def get_data_test(self):
-        test = self.__unpickle('test_10000.pickle')
+        test = self.__unpickle('test_1000.pickle')
 
         test_addrs = []
         for t in test['data']:

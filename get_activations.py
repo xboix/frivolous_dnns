@@ -29,7 +29,7 @@ tf.compat.v1.set_random_seed(opt.seed)
 
 ################################################################################################
 
-MAX_SAMPLES = 5e4
+MAX_SAMPLES = 1000
 
 
 def create_graph():
@@ -45,9 +45,18 @@ def create_graph():
     elif opt.dataset_name == 'rand10':
         from data import rand10_dataset
         dataset = rand10_dataset.Rand10(opt)
+    elif opt.dataset_name == 'rand100':
+        from data import rand100_dataset
+        dataset = rand100_dataset.Rand100(opt)
+    elif opt.dataset_name == 'rand1000':
+        from data import rand1000_dataset
+        dataset = rand1000_dataset.Rand1000(opt)
     elif opt.dataset_name == 'rand10000':
         from data import rand10000_dataset
         dataset = rand10000_dataset.Rand10000(opt)
+    elif opt.dataset_name == 'rand100000':
+        from data import rand100000_dataset
+        dataset = rand100000_dataset.Rand100000(opt)
 
     # No repeatable dataset for testing
     train_dataset_full = dataset.create_dataset(augmentation=False, standarization=True,
@@ -79,7 +88,7 @@ def create_graph():
             tf.summary.image('input', image)
     elif opt.dataset_name == 'rand10':
         image = tf.compat.v1.reshape(image, [-1, 10])
-    elif opt.dataset_name == 'rand10000':
+    else:
         image = tf.compat.v1.reshape(image, [-1, 10000])
 
     # Call DNN

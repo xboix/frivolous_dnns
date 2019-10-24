@@ -18,7 +18,7 @@ noise_range = np.linspace(0.0, 1.0, num=range_len, endpoint=True)
 noise_idx = [0, 3]
 knockout_idx = [1, 2, 4]
 
-for opt in experiments.opt[243:]:
+for opt in experiments.opt[245:]:
 
     output_path = opt.csv_dir
 
@@ -67,7 +67,7 @@ for opt in experiments.opt[243:]:
                 else:
                     range_perturb = knockout_range
 
-                if idx_ptype not in [2, 3, 4]:  # only knockout
+                if idx_ptype not in [2]:  # only knockout
                     continue
 
                 for eval_set, idx_set in zip(eval_sets, range(len(eval_sets))):

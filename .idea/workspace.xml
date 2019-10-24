@@ -5,46 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed3bb66d-67f6-4dbd-a399-f518d8f264aa" name="Default Changelist" comment="Default Changelist">
-      <change afterPath="$PROJECT_DIR$/ImageNet/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/rand100000_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/rand1000_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/rand100_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ipy_notebooks/plot_numparams.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/data/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/summary/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/data/build_imagenet_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/data/build_imagenet_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/data/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/data/data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/data/imagenet_preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/data/imagenet_preprocessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/datasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/datasets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/experiments/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/runs/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/experiments/experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/experiments/experiments.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/inception/inception_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/inception/inception_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/inception/losses.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/inception/losses.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/inception/ops.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/inception/ops.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/inception/scopes.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/inception/scopes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/inception/variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/inception/variables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/nets.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/nets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/perturbations.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/perturbations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/nets/resnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/resnet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/pkl2csv_redundancy.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/pkl2csv_redundancy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/pkl2csv_robustness.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/pkl2csv_robustness.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/experiments/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/activations.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/runs/activations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/runs/preprocessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/redundancy.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/runs/redundancy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/robustness.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/runs/robustness.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/runs/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/runs/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/summary/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/data/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/summary/summary.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/summary/summary.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_activations.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/tools/array_activations.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_redundancy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/tools/array_redundancy.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseline-ImageNet-clean/tools/array_robustness.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/tools/array_robustness.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_linear_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_linear_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/rand10000_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/rand10000_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_lookup.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiments.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_activations.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_activations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_redundancy.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_redundancy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_robustness.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_robustness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/mlp.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/mlp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/nets.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/nets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkl2csv_redundancy.py" beforeDir="false" afterPath="$PROJECT_DIR$/pkl2csv_redundancy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkl2csv_robustness.py" beforeDir="false" afterPath="$PROJECT_DIR$/pkl2csv_robustness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/array_activations_rand.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_activations_rand.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/array_redundancy_rand.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_redundancy_rand.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/array_robustness_rand.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_robustness_rand.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/array_train_rand.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_train_rand.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -61,7 +63,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/baseline-ImageNet-clean" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -74,19 +76,19 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean" />
-      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/tools" />
-      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/nets" />
-      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/runs" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/baseline-ImageNet-clean" />
       <recent name="$PROJECT_DIR$/tools" />
       <recent name="$PROJECT_DIR$/resnet" />
       <recent name="$PROJECT_DIR$/resnet/official" />
       <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data" />
+      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean" />
+      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/tools" />
+      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/nets" />
+      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/runs" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -131,9 +133,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="/usr/local/bin/python3.6" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -326,6 +328,13 @@
       <workItem from="1565147518757" duration="1288000" />
       <workItem from="1565184160696" duration="1606000" />
       <workItem from="1567864180137" duration="1588000" />
+      <workItem from="1568645861728" duration="2134000" />
+      <workItem from="1568668989880" duration="52572000" />
+      <workItem from="1569353834088" duration="1571000" />
+      <workItem from="1569521252607" duration="5000" />
+      <workItem from="1569522796467" duration="1667000" />
+      <workItem from="1571081452689" duration="426000" />
+      <workItem from="1571708664666" duration="31000" />
     </task>
     <task id="LOCAL-00001" summary="Inception update">
       <created>1566600208066</created>
@@ -334,7 +343,21 @@
       <option name="project" value="LOCAL" />
       <updated>1566600208067</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="MLPs">
+      <created>1568906486090</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1568906486090</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Plots">
+      <created>1568906829557</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1568906829557</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -364,7 +387,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Inception update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Inception update" />
+    <MESSAGE value="MLPs" />
+    <MESSAGE value="Plots" />
+    <option name="LAST_COMMIT_MESSAGE" value="Plots" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -398,16 +423,6 @@
           <url>file://$PROJECT_DIR$/resnet/estimator_benchmark.py</url>
           <line>15</line>
           <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/experiments.py</url>
-          <line>720</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/experiments.py</url>
-          <line>719</line>
-          <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/get_mappability.py</url>

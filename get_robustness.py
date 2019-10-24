@@ -43,9 +43,18 @@ def create_graph(perturbation_type):
     elif opt.dataset_name == 'rand10':
         from data import rand10_dataset
         dataset = rand10_dataset.Rand10(opt)
+    elif opt.dataset_name == 'rand100':
+        from data import rand100_dataset
+        dataset = rand100_dataset.Rand100(opt)
+    elif opt.dataset_name == 'rand1000':
+        from data import rand1000_dataset
+        dataset = rand1000_dataset.Rand1000(opt)
     elif opt.dataset_name == 'rand10000':
         from data import rand10000_dataset
         dataset = rand10000_dataset.Rand10000(opt)
+    elif opt.dataset_name == 'rand100000':
+        from data import rand100000_dataset
+        dataset = rand100000_dataset.Rand100000(opt)
 
     # No repeatable dataset for testing
     train_dataset_full = dataset.create_dataset(augmentation=False, standarization=True, set_name='train', repeat=False)
@@ -75,7 +84,7 @@ def create_graph(perturbation_type):
             tf.summary.image('input', image)
     elif opt.dataset_name == 'rand10':
         image = tf.compat.v1.reshape(image, [-1, 10])
-    elif opt.dataset_name == 'rand10000':
+    else:
         image = tf.compat.v1.reshape(image, [-1, 10000])
     # Call DNN
     dropout_rate = tf.compat.v1.placeholder(tf.float32)
@@ -220,7 +229,7 @@ for cross in range(3):
 
     for ptype in range(NUM_TYPES):
         # perturbation types: 0=weight noise, 1=weight ko, 2=act ko, 3=act noise, 4=targeted act ko
-        if ptype in [0, 1]:  # for now, we skip over weight perturbations and only look at activation ones
+        if ptype in [0, 1, 3, 4]:  # for now, we skip over weight perturbations and only look at activation ones
             continue
 
         print("Perturbation type: " + str(ptype))

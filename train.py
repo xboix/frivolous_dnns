@@ -27,6 +27,8 @@ tf.compat.v1.set_random_seed(opt.seed)
 # Skip execution if instructed in experiment
 if opt.skip:
     print("SKIP")
+    print('train.py')
+    print(":)")
     quit()
 
 print(opt.name)
@@ -43,9 +45,18 @@ if opt.dataset_name == 'cifar':
 elif opt.dataset_name == 'rand10':
     from data import rand10_dataset
     dataset = rand10_dataset.Rand10(opt)
+elif opt.dataset_name == 'rand100':
+    from data import rand100_dataset
+    dataset = rand100_dataset.Rand100(opt)
+elif opt.dataset_name == 'rand1000':
+    from data import rand1000_dataset
+    dataset = rand1000_dataset.Rand1000(opt)
 elif opt.dataset_name == 'rand10000':
     from data import rand10000_dataset
     dataset = rand10000_dataset.Rand10000(opt)
+elif opt.dataset_name == 'rand100000':
+    from data import rand100000_dataset
+    dataset = rand100000_dataset.Rand100000(opt)
 
 # Repeatable datasets for training
 train_dataset = dataset.create_dataset(augmentation=opt.hyper.augmentation, standarization=True, set_name='train',
@@ -84,9 +95,8 @@ if opt.dataset_name == 'cifar':
         tf.summary.image('input', image)
 elif opt.dataset_name == 'rand10':
     image = tf.compat.v1.reshape(image, [-1, 10])
-elif opt.dataset_name == 'rand10000':
+else:
     image = tf.compat.v1.reshape(image, [-1, 10000])
-
 
 
 # Call DNN
@@ -153,13 +163,14 @@ with tf.Session(config=config) as sess:
     all_var = tf.trainable_variables()
 
     # choose optimizer
-    train_step = tf.compat.v1.train.MomentumOptimizer(learning_rate=lr,
+    if opt.optimizer == 0:
+        train_step = tf.compat.v1.train.MomentumOptimizer(learning_rate=lr,
                                                       momentum=opt.hyper.momentum).minimize(total_loss,
-                                                                                            var_list=all_var)
-    if opt.optimizer == 1:
+                                                                                       var_list=all_var)
+    elif opt.optimizer == 1:
         train_step = tf.train.GradientDescentOptimizer(learning_rate=lr).minimize(total_loss, var_list=all_var)
     elif opt.optimizer == 2:
-        train_step = tf.train.AdamOptimizer().minimize(total_loss, var_list=all_var)
+        train_step = tf.train.AdamOptimizer(learning_rate=opt.hyper.learning_rate).minimize(total_loss, var_list=all_var)
     elif opt.optimizer == 3:
         train_step = tf.train.AdagradOptimizer(learning_rate=opt.hyper.learning_rate/10).minimize(total_loss,
                                                                                                   var_list=all_var)
@@ -167,7 +178,7 @@ with tf.Session(config=config) as sess:
         train_step = tf.train.ProximalAdagradOptimizer(learning_rate=opt.hyper.learning_rate/10). \
             minimize(total_loss, var_list=all_var)
     elif opt.optimizer == 5:
-        train_step = tf.train.RMSPropOptimizer(learning_rate=opt.hyper.learning_rate/10).minimize(total_loss,
+        train_step = tf.train.RMSPropOptimizer(learning_rate=opt.hyper.learning_rate).minimize(total_loss,
                                                                                                   var_list=all_var)
     elif opt.optimizer == 6:
         train_step = tf.train.FtrlOptimizer(learning_rate=opt.hyper.learning_rate/10).minimize(total_loss,
