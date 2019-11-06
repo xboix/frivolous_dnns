@@ -3,7 +3,6 @@ import sys
 import numpy as np
 import os
 import experiments
-from data import cifar_dataset
 from models import nets
 import pickle
 import time
