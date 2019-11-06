@@ -26,31 +26,45 @@ NUM_TYPES = 5
 
 np.random.seed(opt.seed)
 
+if opt.hyper.mse:
+    metric_name = 'mse'
+else:
+    metric_name = 'accuracy'
+
 
 def create_graph(perturbation_type):
     ################################################################################################
     # Define training and validation datasets thorugh Dataset API
     ################################################################################################
 
-    with open(opt.log_dir_base + opt.name + '/selectivity0.pkl', 'rb') as f:
-        selectivity = pickle.load(f)  # [sel, sel_test, sel_gen][layer][neuron]
+    with open(opt.log_dir_base + opt.name + '/corr0.pkl', 'rb') as f:
+        correlation = pickle.load(f)  # [layer][neuron][neuron]
+
+    if opt.hyper.mse:  # make correction if there is a single output node
+        correlation[-1] = np.array([[1.0]], dtype=float)
 
     # Initialize dataset and creates TF records if they do not exist
     # Initialize dataset and creates TF records if they do not exist
-    if opt.dataset_name == 'cifar':
+    if opt.dataset.dataset_name == 'cifar':
         from data import cifar_dataset
         dataset = cifar_dataset.Cifar10(opt)
-    elif opt.dataset_name == 'rand10':
+    elif opt.dataset.dataset_name == 'rand10':
         from data import rand10_dataset
         dataset = rand10_dataset.Rand10(opt)
-    elif opt.dataset_name == 'rand10000':
+    elif opt.dataset.dataset_name == 'rand10000':
         from data import rand10000_dataset
         dataset = rand10000_dataset.Rand10000(opt)
+    elif opt.dataset.dataset_name == 'rand10_regression':
+        from data import rand10_regression_dataset
+        dataset = rand10_regression_dataset.Rand10_regression(opt)
+    elif opt.dataset.dataset_name == 'rand10000_regression':
+        from data import rand10000_regression_dataset
+        dataset = rand10000_regression_dataset.Rand10000_regression(opt)
 
     # No repeatable dataset for testing
-    train_dataset_full = dataset.create_dataset(augmentation=False, standarization=True, set_name='train', repeat=False)
-    val_dataset_full = dataset.create_dataset(augmentation=False, standarization=True, set_name='test', repeat=False)
-    test_dataset_full = dataset.create_dataset(augmentation=False, standarization=True, set_name='test', repeat=False)
+    train_dataset_full = dataset.create_dataset(augmentation=False, standarization=True, set_name='train')
+    val_dataset_full = dataset.create_dataset(augmentation=False, standarization=True, set_name='test')
+    test_dataset_full = dataset.create_dataset(augmentation=False, standarization=True, set_name='test')
 
     # Hadles to switch datasets
     handle = tf.compat.v1.placeholder(tf.string, shape=[])
@@ -68,19 +82,19 @@ def create_graph(perturbation_type):
 
     # Get data from dataset
     image, y_ = iterator.get_next()
-
-    if opt.dataset_name == 'cifar':
+    if opt.dataset.dataset_name == 'cifar':
         image = tf.image.resize_images(image, [opt.hyper.image_size, opt.hyper.image_size])
         if opt.extense_summary:
             tf.summary.image('input', image)
-    elif opt.dataset_name == 'rand10':
+    elif opt.dataset.dataset_name == 'rand10' or opt.dataset.dataset_name == 'rand10_regression':
         image = tf.compat.v1.reshape(image, [-1, 10])
-    elif opt.dataset_name == 'rand10000':
+    elif opt.dataset.dataset_name == 'rand10000' or opt.dataset.dataset_name == 'rand10000_regression':
         image = tf.compat.v1.reshape(image, [-1, 10000])
+
     # Call DNN
     dropout_rate = tf.compat.v1.placeholder(tf.float32)
 
-    select = [tf.compat.v1.placeholder(tf.float32, shape=(len(selectivity[1][k]))) for k in range(len(selectivity[1]))]
+    select = [tf.compat.v1.placeholder(tf.float32, shape=(correlation[k].shape[1])) for k in range(opt.dnn.layers)]
     # select in THIS case is indexed [layer][neuron]
 
     perturbation_params = tf.compat.v1.placeholder(tf.float32, shape=[NUM_TYPES, opt.dnn.layers])  # idx: [type][layer]
@@ -88,18 +102,22 @@ def create_graph(perturbation_type):
     to_call = getattr(nets, opt.dnn.name + "_test")
     y, _ = to_call(image, dropout_rate, select, opt, dataset.list_labels, perturbation_params, perturbation_type)
 
-    # Accuracy
     gt = y_
-    y = tf.argmax(y, 1)
-    im_prediction = tf.equal(y, gt)
-    im_prediction = tf.cast(im_prediction, tf.float32)
-    accuracy = tf.reduce_mean(im_prediction)
+
+    if opt.hyper.mse:
+        metric = tf.reduce_mean((y_ - y) ** 2)
+        im_prediction = tf.cast(-1.0, tf.float32)
+    else:
+        y = tf.argmax(y, 1)
+        im_prediction = tf.equal(y, gt)
+        im_prediction = tf.cast(im_prediction, tf.float32)
+        metric = tf.reduce_mean(im_prediction)
 
     num_iter_train = int(dataset.num_images_training * opt.dataset.proportion_training_set / opt.hyper.batch_size) - 1
     num_iter_test = int(dataset.num_images_test / opt.hyper.batch_size) - 1
     num_iter_val = int(dataset.num_images_val / opt.hyper.batch_size) - 1
 
-    return accuracy, y, gt, im_prediction, handle, dropout_rate, perturbation_params, select, \
+    return metric, y, gt, im_prediction, handle, dropout_rate, perturbation_params, select, \
            train_iterator_full, val_iterator_full, test_iterator_full, num_iter_train, num_iter_val, num_iter_test
     ################################################################################################
 
@@ -109,8 +127,11 @@ def test_robustness(handle, dropout_rate, perturbation_params, select, opt, rang
     # perturbation_params indexed [type][layer]
     # select indexed [layer][neuron]
 
-    with open(opt.log_dir_base + opt.name + '/corr' + str(cross) + '.pkl', 'rb') as f:  # only do for the first cross
+    with open(opt.log_dir_base + opt.name + '/corr' + str(cross) + '.pkl', 'rb') as f:
         corr = pickle.load(f)
+
+    if opt.hyper.mse:  # make correction if there is a single output node
+        corr[-1] = np.array([[1.0]], dtype=float)
 
     corr = [np.abs(corr[k]) for k in range(len(corr))]  # take the absolute values
     corr_single = [corr[k][np.random.randint(0, np.shape(corr[k])[0])] for k in range(len(corr))]
@@ -124,15 +145,19 @@ def test_robustness(handle, dropout_rate, perturbation_params, select, opt, rang
 
     results_robustness = np.zeros([opt.dnn.layers + 1, len(range_robustness), 3])  # idx: [layer][range][max/ave/min]
 
-    outputs_base = np.array([])
+    outputs_base = None
     test_rob = np.zeros([NUM_TYPES, opt.dnn.layers])  # initially, it's zeros, so there will be no perturbation
     sess.run(iterator_dataset.initializer)
     for _ in range(num_iter):  # fills im_pred_gt with predictions and im_y with labels
         dall = {}
         dall.update({i: d for i, d in zip(select, to_perturb)})  # i is a list of neurons, and d is node binaries
-        dall.update({handle: handle_dataset, dropout_rate: opt.hyper.drop_test, perturbation_params: test_rob})
-        acc_tmp, y_iter, gt_iter, im_pred_iter = sess.run([accuracy, y, gt, im_prediction], feed_dict=dall)
-        outputs_base = np.concatenate((outputs_base, y_iter))
+        dall.update({handle: handle_dataset, dropout_rate: opt.hyper.drop_test,
+                     perturbation_params: test_rob})
+        met_tmp, y_iter, gt_iter, im_pred_iter = sess.run([metric, y, gt, im_prediction], feed_dict=dall)
+        if outputs_base is None:
+            outputs_base = y_iter
+        else:
+            outputs_base = np.concatenate((outputs_base, y_iter))
 
     sys.stdout.flush()
 
@@ -185,17 +210,23 @@ def test_robustness(handle, dropout_rate, perturbation_params, select, opt, rang
 
             sess.run(iterator_dataset.initializer)
 
-            output_perturbation = np.array([])
+            output_perturbation = None
             for idx in range(num_iter):
                 # runs the model for an iteration with the to_perturb perturbations
                 dall = {}
                 dall.update({i: d for i, d in zip(select, to_perturb)})  # i is neuron list, and d is node binaries
                 dall.update({handle: handle_dataset, dropout_rate: opt.hyper.drop_test, perturbation_params: test_rob})
-                acc_tmp, y_iter, gt_iter, im_pred_iter = sess.run([accuracy, y, gt, im_prediction], feed_dict=dall)
-                output_perturbation = np.concatenate((output_perturbation, y_iter))  # perturb results
+                met_tmp, y_iter, gt_iter, im_pred_iter = sess.run([metric, y, gt, im_prediction], feed_dict=dall)
+                if output_perturbation is None:
+                    output_perturbation = y_iter
+                else:
+                    output_perturbation = np.concatenate((output_perturbation, y_iter))
 
-            prop_same_label = np.mean(outputs_base == output_perturbation)  # proportion of same prediections
-            results_robustness[layer, noise_id, :] = prop_same_label
+            if opt.hyper.mse:
+                rob_result = np.mean(np.abs(outputs_base == output_perturbation))  # mean abs diff
+            else:
+                rob_result = np.mean(outputs_base == output_perturbation)  # proportion of same prediections
+            results_robustness[layer, noise_id, :] = rob_result
 
         sys.stdout.flush()
 
@@ -210,7 +241,7 @@ for cross in range(3):
     print('Cross:', cross)
 
     range_len = 7
-    knockout_idx = [1, 2, 4]
+    knockout_idxs = [1, 2, 4]
     noise_idx = [0, 3]
     knockout_range = np.linspace(0.0, 1.0, num=range_len, endpoint=True)
     noise_range = np.linspace(0.0, 1.0, num=range_len, endpoint=True)
@@ -224,7 +255,7 @@ for cross in range(3):
             continue
 
         print("Perturbation type: " + str(ptype))
-        accuracy, y, gt, im_prediction, handle, dropout_rate, perturbation_params, select, train_iterator_full, \
+        metric, y, gt, im_prediction, handle, dropout_rate, perturbation_params, select, train_iterator_full, \
         val_iterator_full, test_iterator_full, num_iter_train, num_iter_val, num_iter_test = create_graph(ptype)
         # note that HERE ^ perturbation_params is indexed [type][layer] select is indexed [layer][neuron]
 
@@ -250,7 +281,7 @@ for cross in range(3):
             validation_handle_full = sess.run(val_iterator_full.string_handle())
             test_handle_full = sess.run(test_iterator_full.string_handle())
 
-            if ptype in knockout_idx:
+            if ptype in knockout_idxs:
                 range_robustness = knockout_range
             else:
                 range_robustness = noise_range

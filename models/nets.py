@@ -2,8 +2,12 @@ import tensorflow as tf
 
 from models.mlp import MLP1 as net_MLP1
 from models.mlp import MLP1_test as net_MLP1_test
+from models.mlp import MLP1_regression as net_MLP1_regression
+from models.mlp import MLP1_regression_test as net_MLP1_regression_test
 from models.mlp import MLP1_linear as net_MLP1_linear
 from models.mlp import MLP1_linear_test as net_MLP1_linear_test
+from models.mlp import MLP1_linear_regression as net_MLP1_linear_regression
+from models.mlp import MLP1_linear_regression_test as net_MLP1_linear_regression_test
 from models.mlp import MLP3 as net_MLP3
 from models.alexnet import Alexnet as net_Alexnet
 from models.alexnet import Alexnet_test as net_Alexnet_test
@@ -24,11 +28,30 @@ def MLP1(x, dropout_rate, opt, labels_id):
 def MLP1_test(x, dropout_rate, select, opt, labels_id, perturbation_params, perturbation_type):
     return net_MLP1_test(x, opt, select, labels_id, dropout_rate, perturbation_params, perturbation_type)
 
+
+def MLP1_regression(x, dropout_rate, opt, labels_id):
+    return net_MLP1_regression(x, opt)
+
+
+def MLP1_regression_test(x, dropout_rate, select, opt, labels_id, perturbation_params, perturbation_type):
+    return net_MLP1_regression_test(x, opt, select, labels_id, dropout_rate, perturbation_params, perturbation_type)
+
+
 def MLP1_linear(x, dropout_rate, opt, labels_id):
     return net_MLP1_linear(x, opt)
 
+
 def MLP1_linear_test(x, dropout_rate, select, opt, labels_id, perturbation_params, perturbation_type):
     return net_MLP1_linear_test(x, opt, select, labels_id, dropout_rate, perturbation_params, perturbation_type)
+
+
+def MLP1_linear_regression(x, dropout_rate, opt, labels_id):
+    return net_MLP1_linear_regression(x, opt)
+
+
+def MLP1_linear_regression_test(x, dropout_rate, select, opt, labels_id, perturbation_params, perturbation_type):
+    return net_MLP1_linear_regression_test(x, opt, select, labels_id, dropout_rate, perturbation_params,
+                                           perturbation_type)
 
 
 def Alexnet(x, dropout_rate, opt, labels_id):

@@ -27,6 +27,11 @@ print('Experiment:', opt.name)
 
 tf.compat.v1.set_random_seed(opt.seed)
 
+if opt.hyper.mse:
+    metric_name = 'mse'
+else:
+    metric_name = 'accuracy'
+
 ################################################################################################
 
 MAX_SAMPLES = 5e4
@@ -39,15 +44,21 @@ def create_graph():
 
     # Initialize dataset and creates TF records if they do not exist
     # Initialize dataset and creates TF records if they do not exist
-    if opt.dataset_name == 'cifar':
+    if opt.dataset.dataset_name == 'cifar':
         from data import cifar_dataset
         dataset = cifar_dataset.Cifar10(opt)
-    elif opt.dataset_name == 'rand10':
+    elif opt.dataset.dataset_name == 'rand10':
         from data import rand10_dataset
         dataset = rand10_dataset.Rand10(opt)
-    elif opt.dataset_name == 'rand10000':
+    elif opt.dataset.dataset_name == 'rand10000':
         from data import rand10000_dataset
         dataset = rand10000_dataset.Rand10000(opt)
+    elif opt.dataset.dataset_name == 'rand10_regression':
+        from data import rand10_regression_dataset
+        dataset = rand10_regression_dataset.Rand10_regression(opt)
+    elif opt.dataset.dataset_name == 'rand10000_regression':
+        from data import rand10000_regression_dataset
+        dataset = rand10000_regression_dataset.Rand10000_regression(opt)
 
     # No repeatable dataset for testing
     train_dataset_full = dataset.create_dataset(augmentation=False, standarization=True,
@@ -73,13 +84,13 @@ def create_graph():
 
     # Get data from dataset
     image, y_ = iterator.get_next()
-    if opt.dataset_name == 'cifar':
+    if opt.dataset.dataset_name == 'cifar':
         image = tf.image.resize_images(image, [opt.hyper.image_size, opt.hyper.image_size])
         if opt.extense_summary:
             tf.summary.image('input', image)
-    elif opt.dataset_name == 'rand10':
+    elif opt.dataset.dataset_name == 'rand10' or opt.dataset.dataset_name == 'rand10_regression':
         image = tf.compat.v1.reshape(image, [-1, 10])
-    elif opt.dataset_name == 'rand10000':
+    elif opt.dataset.dataset_name == 'rand10000' or opt.dataset.dataset_name == 'rand10000_regression':
         image = tf.compat.v1.reshape(image, [-1, 10000])
 
     # Call DNN
@@ -87,38 +98,41 @@ def create_graph():
     to_call = getattr(nets, opt.dnn.name)
     y, parameters, activations = to_call(image, dropout_rate, opt, dataset.list_labels)
 
-    # Accuracy
-    im_prediction = tf.equal(tf.argmax(y, 1), y_)
-    im_prediction = tf.cast(im_prediction, tf.float32)
-    accuracy = tf.reduce_mean(im_prediction)
+    if opt.hyper.mse:
+        # MSE metric
+        metric = tf.reduce_mean((y_ - y) ** 2)
+    else:
+        # Accuracy metric
+        im_prediction = tf.equal(tf.argmax(y, 1), y_)
+        im_prediction = tf.cast(im_prediction, tf.float32)
+        metric = tf.reduce_mean(im_prediction)
 
     num_iter_train = int(dataset.num_images_training * opt.dataset.proportion_training_set
                          / opt.hyper.batch_size) - 1
     num_iter_test = int(dataset.num_images_test / opt.hyper.batch_size) - 1
     num_iter_val = int(dataset.num_images_val / opt.hyper.batch_size) - 1
 
-    return activations, accuracy, y_, handle, dropout_rate, train_iterator_full, val_iterator_full, \
+    return activations, metric, y_, handle, dropout_rate, train_iterator_full, val_iterator_full, \
            test_iterator_full, num_iter_train, num_iter_val, num_iter_test
     ################################################################################################
 
 
-def get_activations(handle, accuracy, gt, dropout_rate, activations, opt,
+def get_activations(handle, metric, gt, dropout_rate, activations, opt,
                     iterator_dataset, handle_dataset, num_iter, cross):
     sess.run(iterator_dataset.initializer)
 
     np.random.seed(cross)
 
     activations_out = []
-    acc_tmp = 0.0
+    metric_tmp = 0.0
 
     max_samples_per_iter = int(MAX_SAMPLES / num_iter)
 
     for _ in range(num_iter):
-        activations_tmp, acc_batch, labels_batch = \
-            sess.run([activations, accuracy, gt], feed_dict={handle: handle_dataset,
-                                                             dropout_rate: opt.hyper.drop_test})
+        activations_tmp, metric_batch, labels_batch = \
+            sess.run([activations, metric, gt], feed_dict={handle: handle_dataset, dropout_rate: opt.hyper.drop_test})
 
-        acc_tmp += acc_batch
+        metric_tmp += metric_batch
 
         labels_tmp = []
         for layer in range(len(activations_tmp)):
@@ -138,13 +152,13 @@ def get_activations(handle, accuracy, gt, dropout_rate, activations, opt,
                 activations_out[layer] = np.append(activations_out[layer], activations_tmp[layer], axis=0)
                 labels_out[layer] = np.append(labels_out[layer], labels_tmp[layer], axis=0)
 
-    acc_out = acc_tmp / num_iter
-    return activations_out, acc_out, labels_out
+    metric_out = metric_tmp / num_iter
+    return activations_out, metric_out, labels_out
 
 
 t0 = time.time()
 # if not os.path.isfile(opt.log_dir_base + opt.name + '/activations0.pkl'):
-activations, accuracy, gt, handle, dropout_rate, train_iterator_full, val_iterator_full, test_iterator_full,\
+activations, metric, gt, handle, dropout_rate, train_iterator_full, val_iterator_full, test_iterator_full,\
     num_iter_train, num_iter_val, num_iter_test = create_graph()
 
 # results = [[[] for i in range(2)] for i in range(6)]
@@ -177,28 +191,28 @@ with tf.Session() as sess:
 
     for cross in range(3):
         print('cross:', cross)
-        res, acc, gt_labels_train = get_activations(handle, accuracy, gt, dropout_rate, activations, opt,
+        res, met, gt_labels_train = get_activations(handle, metric, gt, dropout_rate, activations, opt,
                                                     train_iterator_full, train_handle_full, num_iter_train, cross)
         if cross == 0:
-            print("Train accuracy:",  acc)
+            print("Train", metric_name+':',  met)
         with open(opt.log_dir_base + opt.name + '/activations' + str(cross) + '.pkl', 'wb') as f:
             pickle.dump(res, f, protocol=2)
         with open(opt.log_dir_base + opt.name + '/labels' + str(cross) + '.pkl', 'wb') as f:
             pickle.dump(gt_labels_train, f, protocol=2)
-        with open(opt.log_dir_base + opt.name + '/accuracy' + str(cross) + '.pkl', 'wb') as f:
-            pickle.dump(acc, f, protocol=2)
+        with open(opt.log_dir_base + opt.name + '/' + metric_name + str(cross) + '.pkl', 'wb') as f:
+            pickle.dump(met, f, protocol=2)
 
-        res_test, acc_test, gt_labels_test = get_activations(handle, accuracy, gt, dropout_rate, activations, opt,
+        res_test, met_test, gt_labels_test = get_activations(handle, metric, gt, dropout_rate, activations, opt,
                                                              test_iterator_full, test_handle_full, num_iter_test,
                                                              cross)
         if cross == 0:
-            print("Test accuracy:",  acc_test)
+            print("Test", metric_name+':', met_test)
         with open(opt.log_dir_base + opt.name + '/activations_test' + str(cross) + '.pkl', 'wb') as f:
             pickle.dump(res_test, f, protocol=2)
         with open(opt.log_dir_base + opt.name + '/labels_test' + str(cross) + '.pkl', 'wb') as f:
             pickle.dump(gt_labels_test, f, protocol=2)
-        with open(opt.log_dir_base + opt.name + '/accuracy_test' + str(cross) + '.pkl', 'wb') as f:
-            pickle.dump(acc_test, f, protocol=2)
+        with open(opt.log_dir_base + opt.name + '/' + metric_name + '_test' + str(cross) + '.pkl', 'wb') as f:
+            pickle.dump(met_test, f, protocol=2)
 
         sys.stdout.flush()
 

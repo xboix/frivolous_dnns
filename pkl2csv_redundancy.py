@@ -46,16 +46,19 @@ for opt in experiments.opt[243:]:
                 sys.stdout.flush()
                 continue
 
-            if os.path.isfile(tmp_name + '/selectivity' + str(cross) + '.pkl'):
-                with open(tmp_name+ '/selectivity' + str(cross) + '.pkl', 'rb') as f:
-                    select = pickle.load(f)
-                    for i in range(len(select)):
-                        for j in range(len(select[i])):
-                            select[i][j][np.isnan(select[i][j])] = 0
+            if opt.hyper.mse:
+                select = -1 * np.ones((3, opt.dnn.layers, 1))
             else:
-                print('Couldn\'t find files, skipped:', tmp_name)
-                sys.stdout.flush()
-                continue
+                if os.path.isfile(tmp_name + '/selectivity' + str(cross) + '.pkl'):
+                    with open(tmp_name + '/selectivity' + str(cross) + '.pkl', 'rb') as f:
+                        select = pickle.load(f)
+                        for i in range(len(select)):
+                            for j in range(len(select[i])):
+                                select[i][j][np.isnan(select[i][j])] = 0
+                else:
+                    print('Couldn\'t find files, skipped:', tmp_name)
+                    sys.stdout.flush()
+                    continue
 
             if os.path.isfile(tmp_name + '/similarity' + str(cross) + '.pkl'):
                 with open(tmp_name + '/similarity' + str(cross) + '.pkl', 'rb') as f:
@@ -101,7 +104,8 @@ for opt in experiments.opt[243:]:
                         if layer == opt.dnn.layers - 1:
                             cc = 0
                             for i in range(opt.dnn.layers):
-                                cc += results[0][idx_set][i][energy_idx]
+                                if i < opt.dnn.layers-1 or not opt.hyper.mse:
+                                    cc += results[0][idx_set][i][energy_idx]
                             ll.append(cc)  # modes
                         else:
                             ll.append(results[0][idx_set][layer][energy_idx])  # modes
@@ -155,7 +159,7 @@ for opt in experiments.opt[243:]:
                             ll.append(sim[idx_set][0][layer])
                             ll.append(sim[idx_set][1][layer])
 
-                        ll.append(results[3][idx_set][0])  # accuracy
+                        ll.append(results[3][idx_set][0])  # accuracy or mse
 
                         filewriter.writerow(ll)
 

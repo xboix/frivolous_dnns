@@ -2,6 +2,7 @@ import tensorflow as tf
 import sys
 import os.path
 import shutil
+import gc
 
 from abc import ABCMeta, abstractmethod
 
@@ -16,8 +17,9 @@ class Dataset:
     num_images_training = 0
     num_images_test = 0
 
-    def __init__(self, opt):
+    def __init__(self, opt, regression=False):
         self.opt = opt
+        self.regression = regression
 
     @abstractmethod
     def get_data_trainval(self):
@@ -38,7 +40,7 @@ class Dataset:
         return tf.train.Feature(int64_list=tf.train.Int64List(value=[value]))
 
     def _float_feature(self, value):
-        return tf.train.Feature(int64_list=tf.train.FloatList(value=[value]))
+        return tf.train.Feature(float_list=tf.train.FloatList(value=[value]))
 
     def _bytes_feature(self, value):
         return tf.train.Feature(bytes_list=tf.train.BytesList(value=[value]))
@@ -56,11 +58,18 @@ class Dataset:
                 sys.stdout.flush()
 
             # Create a feature
-            feature = {set_name + '/label': self._int64_feature(labels[i]),
-                       set_name + '/image': self._bytes_feature(addrs[i].tostring()),
-                       set_name + '/width': self._int64_feature(32),
-                       set_name + '/height': self._int64_feature(32)
-                       }
+            if self.regression:
+                feature = {set_name + '/label': self._float_feature(labels[i]),
+                           set_name + '/image': self._bytes_feature(addrs[i].tostring()),
+                           set_name + '/width': self._int64_feature(32),
+                           set_name + '/height': self._int64_feature(32)
+                           }
+            else:
+                feature = {set_name + '/label': self._int64_feature(labels[i]),
+                           set_name + '/image': self._bytes_feature(addrs[i].tostring()),
+                           set_name + '/width': self._int64_feature(32),
+                           set_name + '/height': self._int64_feature(32)
+                           }
 
             # Create an example protocol buffer
             example = tf.train.Example(features=tf.train.Features(feature=feature))
@@ -91,30 +100,38 @@ class Dataset:
         print("CREATING TFRECORDS")
         print(self.opt.dataset.dataset_path)
 
-        train_addrs, train_labels, val_addrs, val_labels = self.get_data_trainval()
-        test_addrs, test_labels = self.get_data_test()
         app = self.opt.dataset.transfer_append_name
+
+        train_addrs, train_labels, val_addrs, val_labels = self.get_data_trainval()
         self.write_tfrecords(tfrecords_path, 'train' + app, train_addrs, train_labels)
         self.write_tfrecords(tfrecords_path, 'val' + app, val_addrs, val_labels)
-        self.write_tfrecords(tfrecords_path, 'test' + app, test_addrs, test_labels)
+        data_addrs, data_labels = self.get_data_test()
+        self.write_tfrecords(tfrecords_path, 'test' + app, data_addrs, data_labels)
 
     def delete_tfrecords(self):
         tfrecords_path = self.opt.log_dir_base + self.opt.name + '/data/'
         shutil.rmtree(tfrecords_path)
 
-    def create_dataset(self, augmentation=False, standarization=True, set_name='train', repeat=False):
+    def create_dataset(self, augmentation=False, standarization=True, set_name='train',
+                       repeat=False):
         app = self.opt.dataset.transfer_append_name
         set_name_app = set_name + app
 
         # Transforms a scalar string `example_proto` into a pair of a scalar string and
         # a scalar integer, representing an image and its label, respectively.
         def _parse_function(example_proto):
-            features = {set_name_app + '/label': tf.io.FixedLenFeature((), tf.int64, default_value=1),
-                        set_name_app + '/image': tf.io.FixedLenFeature((), tf.string, default_value=""),
-                        set_name_app + '/height': tf.io.FixedLenFeature([], tf.int64),
-                        set_name_app + '/width': tf.io.FixedLenFeature([], tf.int64)}
+            if self.regression:
+                features = {set_name_app + '/label': tf.io.FixedLenFeature((), tf.float32, default_value=1.0),
+                            set_name_app + '/image': tf.io.FixedLenFeature((), tf.string, default_value=""),
+                            set_name_app + '/height': tf.io.FixedLenFeature([], tf.int64),
+                            set_name_app + '/width': tf.io.FixedLenFeature([], tf.int64)}
+            else:
+                features = {set_name_app + '/label': tf.io.FixedLenFeature((), tf.int64, default_value=1),
+                            set_name_app + '/image': tf.io.FixedLenFeature((), tf.string, default_value=""),
+                            set_name_app + '/height': tf.io.FixedLenFeature([], tf.int64),
+                            set_name_app + '/width': tf.io.FixedLenFeature([], tf.int64)}
             parsed_features = tf.io.parse_single_example(example_proto, features)
-            if self.opt.dataset_name == 'cifar':
+            if self.opt.dataset.dataset_name == 'cifar':
                 image = tf.decode_raw(parsed_features[set_name_app + '/image'], tf.uint8)
             else:
                 image = tf.decode_raw(parsed_features[set_name_app + '/image'], tf.float64)
@@ -124,7 +141,7 @@ class Dataset:
                           tf.cast(parsed_features[set_name_app + '/width'], tf.int32), 3])
 
             ## FOR CIFAR DATASET
-            if self.opt.dataset_name == 'cifar':
+            if self.opt.dataset.dataset_name == 'cifar':
                 image = tf.reshape(image, S)
 
             float_image = self.preprocess_image(augmentation, standarization, image)

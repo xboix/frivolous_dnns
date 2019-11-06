@@ -82,7 +82,8 @@ class Hyperparameters(object):
         self.drop_test = 1
         self.momentum = 0.9
         self.augmentation = False
-        self.init_factor = False
+        self.init_factor = 1
+        self.mse = False  # default is cross entropy, but if True, use mean sq loss
 
 
 class Experiments(object):
@@ -155,7 +156,7 @@ flag_random = [0, 1]
 
 ##############################################################################################
 
-# experiments 1 and 2 are to make the base tfrecords files that the other modesl use
+# experiments 1 and 2 are to make the base tfrecords files that the other models use
 
 idx = 0
 for p in training_prop:
@@ -682,7 +683,7 @@ for nn_name in name:
 # Create base for TF records:
 idx_rand_10 = idx
 opt += [Experiments(idx, "data_" + str(p))]
-opt[-1].dataset_name = 'rand10'
+opt[-1].dataset.dataset_name = 'rand10'
 opt[-1].hyper.max_num_epochs = 0
 opt[-1].dnn.name = 'MLP1'
 opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10/'
@@ -692,24 +693,26 @@ idx += 1
 
 idx_rand_10000 = idx
 opt += [Experiments(idx, "data_" + str(p))]
-opt[-1].dataset_name = 'rand10000'
+opt[-1].dataset.dataset_name = 'rand10000'
 opt[-1].hyper.max_num_epochs = 0
 opt[-1].dnn.name = 'MLP1'
 opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10000/'
 opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10000/'
 idx += 1
 
+init_mult = 1
+
 
 for neuron_mult in [1, 2, 4, 8, 16]:
     for lr in [1e0,1e-1,1e-2,1e-3,1e-4]:
         opt += [Experiments(idx, "MLP" + '_seed=' + str(master_seed))]
-        opt[-1].dataset_name = 'rand10'
+        opt[-1].dataset.dataset_name = 'rand10'
         opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10])
         opt[-1].hyper.max_num_epochs = 50
         opt[-1].dnn.name = 'MLP1'
         opt[-1].dnn.layers = 2
         opt[-1].hyper.learning_rate = lr
-        opt[-1].dnn.init_mult = init_mult
+        opt[-1].hyper.init_factor = init_mult
         opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
         opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
         opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10/'
@@ -719,13 +722,13 @@ for neuron_mult in [1, 2, 4, 8, 16]:
 for neuron_mult in [1, 2, 4, 8, 16]:
     for lr in [1e0,1e-1,1e-2,1e-3,1e-4]:
         opt += [Experiments(idx, "MLP10K" + '_seed=' + str(master_seed))]
-        opt[-1].dataset_name = 'rand10000'
+        opt[-1].dataset.dataset_name = 'rand10000'
         opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10000])
         opt[-1].hyper.max_num_epochs = 50
         opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
         opt[-1].dnn.name = 'MLP1'
         opt[-1].dnn.layers = 2
-        opt[-1].dnn.init_mult = init_mult
+        opt[-1].hyper.init_factor = init_mult
         opt[-1].hyper.learning_rate = lr
         opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
         opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10000/'
@@ -736,13 +739,13 @@ for neuron_mult in [1, 2, 4, 8, 16]:
 for neuron_mult in [1, 2, 4, 8, 16]:
     for lr in [1e0,1e-1,1e-2,1e-3,1e-4]:
         opt += [Experiments(idx, "MLP" + '_seed=' + str(master_seed))]
-        opt[-1].dataset_name = 'rand10'
+        opt[-1].dataset.dataset_name = 'rand10'
         opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10])
         opt[-1].hyper.max_num_epochs = 50
         opt[-1].dnn.name = 'MLP1_linear'
         opt[-1].dnn.layers = 2
         opt[-1].hyper.learning_rate = lr
-        opt[-1].dnn.init_mult = init_mult
+        opt[-1].hyper.init_factor = init_mult
         opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
         opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
         opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10/'
@@ -752,12 +755,12 @@ for neuron_mult in [1, 2, 4, 8, 16]:
 for neuron_mult in [1, 2, 4, 8, 16]:
     for lr in [1e0,1e-1,1e-2,1e-3,1e-4]:
         opt += [Experiments(idx, "MLP10K" + '_seed=' + str(master_seed))]
-        opt[-1].dataset_name = 'rand10000'
+        opt[-1].dataset.dataset_name = 'rand10000'
         opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10000])
         opt[-1].hyper.max_num_epochs = 50
         opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
         opt[-1].dnn.name = 'MLP1_linear'
-        opt[-1].dnn.init_mult = init_mult
+        opt[-1].hyper.init_factor = init_mult
         opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
         opt[-1].dnn.layers = 2
         opt[-1].hyper.learning_rate = lr
@@ -773,12 +776,12 @@ for neuron_mult in [1, 2, 4, 8, 16]:
     for lr in [1e-1]:
         for init_mult in [1e-2, 1e-1, 1, 1e1, 1e2]:
             opt += [Experiments(idx, "MLP" + '_seed=' + str(master_seed))]
-            opt[-1].dataset_name = 'rand10'
+            opt[-1].dataset.dataset_name = 'rand10'
             opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10])
             opt[-1].hyper.max_num_epochs = 50
             opt[-1].dnn.name = 'MLP1'
             opt[-1].dnn.layers = 2
-            opt[-1].dnn.init_mult = init_mult
+            opt[-1].hyper.init_factor = init_mult
             opt[-1].hyper.learning_rate = lr
             opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
             opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
@@ -791,13 +794,13 @@ for neuron_mult in [1, 2, 4, 8, 16]:
         for init_mult in [1e-2, 1e-1, 1, 1e1, 1e2]:
 
             opt += [Experiments(idx, "MLP10K" + '_seed=' + str(master_seed))]
-            opt[-1].dataset_name = 'rand10000'
+            opt[-1].dataset.dataset_name = 'rand10000'
             opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10000])
             opt[-1].hyper.max_num_epochs = 50
             opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
             opt[-1].dnn.name = 'MLP1'
             opt[-1].dnn.layers = 2
-            opt[-1].dnn.init_mult = init_mult
+            opt[-1].hyper.init_factor = init_mult
             opt[-1].hyper.learning_rate = lr
             opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
             opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10000/'
@@ -810,12 +813,12 @@ for neuron_mult in [1, 2, 4, 8, 16]:
         for init_mult in [1e-2, 1e-1, 1, 1e1, 1e2]:
 
             opt += [Experiments(idx, "MLP" + '_seed=' + str(master_seed))]
-            opt[-1].dataset_name = 'rand10'
+            opt[-1].dataset.dataset_name = 'rand10'
             opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10])
             opt[-1].hyper.max_num_epochs = 50
             opt[-1].dnn.name = 'MLP1_linear'
             opt[-1].dnn.layers = 2
-            opt[-1].dnn.init_mult = init_mult
+            opt[-1].hyper.init_factor = init_mult
             opt[-1].hyper.learning_rate = lr
             opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
             opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
@@ -828,14 +831,14 @@ for neuron_mult in [1, 2, 4, 8, 16]:
         for init_mult in [1e-2, 1e-1, 1, 1e1, 1e2]:
 
             opt += [Experiments(idx, "MLP10K" + '_seed=' + str(master_seed))]
-            opt[-1].dataset_name = 'rand10000'
+            opt[-1].dataset.dataset_name = 'rand10000'
             opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10000])
             opt[-1].hyper.max_num_epochs = 50
             opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
             opt[-1].dnn.name = 'MLP1_linear'
             opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
             opt[-1].dnn.layers = 2
-            opt[-1].dnn.init_mult = init_mult
+            opt[-1].hyper.init_factor = init_mult
             opt[-1].hyper.learning_rate = lr
             opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10000/'
             opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10000/'
@@ -845,12 +848,12 @@ for neuron_mult in [1, 2, 4, 8, 16]:
     for lr in [1e-1]:
         for init_mult in [1e3, 1e4, 1e5, 1e6, 1e7]:
             opt += [Experiments(idx, "MLP" + '_seed=' + str(master_seed))]
-            opt[-1].dataset_name = 'rand10'
+            opt[-1].dataset.dataset_name = 'rand10'
             opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10])
             opt[-1].hyper.max_num_epochs = 50
             opt[-1].dnn.name = 'MLP1'
             opt[-1].dnn.layers = 2
-            opt[-1].dnn.init_mult = init_mult
+            opt[-1].hyper.init_factor = init_mult
             opt[-1].hyper.learning_rate = lr
             opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
             opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
@@ -863,13 +866,13 @@ for neuron_mult in [1, 2, 4, 8, 16]:
         for init_mult in [1e3, 1e4, 1e5, 1e6, 1e7]:
 
             opt += [Experiments(idx, "MLP10K" + '_seed=' + str(master_seed))]
-            opt[-1].dataset_name = 'rand10000'
+            opt[-1].dataset.dataset_name = 'rand10000'
             opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10000])
             opt[-1].hyper.max_num_epochs = 50
             opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
             opt[-1].dnn.name = 'MLP1'
             opt[-1].dnn.layers = 2
-            opt[-1].dnn.init_mult = init_mult
+            opt[-1].hyper.init_factor = init_mult
             opt[-1].hyper.learning_rate = lr
             opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
             opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10000/'
@@ -882,12 +885,12 @@ for neuron_mult in [1, 2, 4, 8, 16]:
         for init_mult in [1e3, 1e4, 1e5, 1e6, 1e7]:
 
             opt += [Experiments(idx, "MLP" + '_seed=' + str(master_seed))]
-            opt[-1].dataset_name = 'rand10'
+            opt[-1].dataset.dataset_name = 'rand10'
             opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10])
             opt[-1].hyper.max_num_epochs = 50
             opt[-1].dnn.name = 'MLP1_linear'
             opt[-1].dnn.layers = 2
-            opt[-1].dnn.init_mult = init_mult
+            opt[-1].hyper.init_factor = init_mult
             opt[-1].hyper.learning_rate = lr
             opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
             opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
@@ -901,73 +904,166 @@ for neuron_mult in [1, 2, 4, 8, 16]:
         for init_mult in [1e3, 1e4, 1e5, 1e6, 1e7]:
 
             opt += [Experiments(idx, "MLP10K" + '_seed=' + str(master_seed))]
-            opt[-1].dataset_name = 'rand10000'
+            opt[-1].dataset.dataset_name = 'rand10000'
             opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10000])
             opt[-1].hyper.max_num_epochs = 50
             opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
             opt[-1].dnn.name = 'MLP1_linear'
             opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
             opt[-1].dnn.layers = 2
-            opt[-1].dnn.init_mult = init_mult
+            opt[-1].hyper.init_factor = init_mult
             opt[-1].hyper.learning_rate = lr
             opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10000/'
             opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10000/'
             idx += 1
 
-
-
 ##############################################################################################
+# REGRESSION
 
-# experiments X-X are ResNet18s in imagenet
+# Create base for TF records:
+idx_rand_10_regression = idx
+opt += [Experiments(idx, "data_regression_" + str(p))]
+opt[-1].dataset.dataset_name = 'rand10_regression'
+opt[-1].hyper.max_num_epochs = 0
+opt[-1].dnn.name = 'MLP1_regression'
+opt[-1].log_dir_base = '/om/user/scasper/workspace/models/mlp_regression/'
+opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/mlp_regression/'
+opt[-1].hyper.mse = True
+idx += 1
 
-# name = ['ResNet_imagenet']
-# regularizers = [0]
-# lr_bs_factors = [1]
-# neuron_multiplier = [0.25, 0.5, 1, 2, 4]
-# batch_sizes = [512, 1024, 2048, 4096, 8192]
-# flag_random = [0]
-#
-# for nn_name in name:
-#     for init_type in initialization_type:
-#         for init_mult in initialization_multiplier:
-#             for nm_idx in range(len(neuron_multiplier)):
-#                 for bs_idx in range(len(batch_sizes)):
-#                     for train_prop_idx in range(len(training_prop)):
-#                         for reg in regularizers:
-#                             for flag_rand in flag_random:
-#
-#                                 if nm_idx + bs_idx > 4:  # these ones were impossible to train
-#                                     continue
-#
-#                                 neuron_mult = neuron_multiplier[nm_idx]
-#                                 batch_size = batch_sizes[bs_idx]
-#
-#                                 opt.append(Experiments(idx, nn_name + '_nmult=' + str(neuron_mult) +
-#                                                        '_bsize=' + str(batch_size) + '_seed=' + str(master_seed)))
-#
-#                                 opt[-1].log_dir_base = '/om/user/scasper/workspace/models/resnet_imagenet/'
-#                                 opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/resnet_imagenet/'
-#                                 opt[-1].dnn.name = nn_name
-#                                 opt[-1].init_type = init_type
-#                                 opt[-1].hyper.init_factor = init_mult
-#                                 opt[-1].dnn.layers = 19
-#                                 opt[-1].dnn.neuron_multiplier = np.ones(opt[-1].dnn.layers)
-#                                 opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
-#                                 opt[-1].hyper.batch_size = batch_size
-#                                 opt[-1].dataset.proportion_training_set *= training_prop[train_prop_idx]
-#                                 opt[-1].hyper.num_epochs_per_decay = \
-#                                     int(opt[-1].hyper.num_epochs_per_decay / training_prop[train_prop_idx])
-#
-#                                 opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx])
-#                                 opt[-1].dataset.reuse_TFrecords_path = \
-#                                     '/om/user/scasper/workspace/models/resnet_imagenet/data'
-#                                 opt[-1].hyper.max_num_epochs //= training_prop[train_prop_idx]
-#                                 opt[-1].hyper.augmentation = True
-#                                 opt[-1].hyper.weight_decay = 1e-4
-#
-#                                 idx += 1
+idx_rand_10000_regression = idx
+opt += [Experiments(idx, "data_regression_" + str(p))]
+opt[-1].dataset.dataset_name = 'rand10000_regression'
+opt[-1].hyper.max_num_epochs = 0
+opt[-1].dnn.name = 'MLP1_regression'
+opt[-1].log_dir_base = '/om/user/scasper/workspace/models/mlp_regression/'
+opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/mlp_regression/'
+opt[-1].hyper.mse = True
+idx += 1
 
-##############################################################################################
+# 10, mlp_regression, various inits
+for neuron_mult in [1, 2, 4, 8, 16]:
+    for lr in [1e-3]:
+        for init_mult in [1e-6, 1e-4, 1e-2, 1e0]:
+
+            opt += [Experiments(idx, "MLP" + '_seed=' + str(master_seed))]
+            opt[-1].dataset.dataset_name = 'rand10_regression'
+            opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10_regression])
+            opt[-1].hyper.max_num_epochs = 50
+            opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
+            opt[-1].dnn.name = 'MLP1_regression'
+            opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+            opt[-1].dnn.layers = 2
+            opt[-1].hyper.init_factor = init_mult
+            opt[-1].hyper.learning_rate = lr
+            opt[-1].hyper.mse = True
+            opt[-1].log_dir_base = '/om/user/scasper/workspace/models/mlp_regression/'
+            opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/mlp_regression/'
+            idx += 1
+
+# 10k, mlp_regression, various inits
+for neuron_mult in [1, 2, 4, 8, 16]:
+    for lr in [1e-3]:
+        for init_mult in [1e-6, 1e-4, 1e-2, 1e0]:
+
+            opt += [Experiments(idx, "MLP10K" + '_seed=' + str(master_seed))]
+            opt[-1].dataset.dataset_name = 'rand10000_regression'
+            opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10000_regression])
+            opt[-1].hyper.max_num_epochs = 50
+            opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
+            opt[-1].dnn.name = 'MLP1_regression'
+            opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+            opt[-1].dnn.layers = 2
+            opt[-1].hyper.init_factor = init_mult
+            opt[-1].hyper.learning_rate = lr
+            opt[-1].hyper.mse = True
+            opt[-1].log_dir_base = '/om/user/scasper/workspace/models/mlp_regression/'
+            opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/mlp_regression/'
+            idx += 1
+
+master_seed = 1
+
+# 10, mlp_regression, various inits
+for neuron_mult in [1, 2, 4, 8, 16]:
+    for lr in [1e-3]:
+        for init_mult in [1e-6, 1e-4, 1e-2, 1e0]:
+
+            opt += [Experiments(idx, "MLP" + '_seed=' + str(master_seed))]
+            opt[-1].dataset.dataset_name = 'rand10_regression'
+            opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10_regression])
+            opt[-1].hyper.max_num_epochs = 50
+            opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
+            opt[-1].dnn.name = 'MLP1_regression'
+            opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+            opt[-1].dnn.layers = 2
+            opt[-1].hyper.init_factor = init_mult
+            opt[-1].hyper.learning_rate = lr
+            opt[-1].hyper.mse = True
+            opt[-1].log_dir_base = '/om/user/scasper/workspace/models/mlp_regression/'
+            opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/mlp_regression/'
+            idx += 1
+
+# 10k, mlp_regression, various inits
+for neuron_mult in [1, 2, 4, 8, 16]:
+    for lr in [1e-3]:
+        for init_mult in [1e-6, 1e-4, 1e-2, 1e0]:
+
+            opt += [Experiments(idx, "MLP10K" + '_seed=' + str(master_seed))]
+            opt[-1].dataset.dataset_name = 'rand10000_regression'
+            opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10000_regression])
+            opt[-1].hyper.max_num_epochs = 50
+            opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
+            opt[-1].dnn.name = 'MLP1_regression'
+            opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+            opt[-1].dnn.layers = 2
+            opt[-1].hyper.init_factor = init_mult
+            opt[-1].hyper.learning_rate = lr
+            opt[-1].hyper.mse = True
+            opt[-1].log_dir_base = '/om/user/scasper/workspace/models/mlp_regression/'
+            opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/mlp_regression/'
+            idx += 1
+
+master_seed = 2
+
+# 10, mlp_regression, various inits
+for neuron_mult in [1, 2, 4, 8, 16]:
+    for lr in [1e-3]:
+        for init_mult in [1e-6, 1e-4, 1e-2, 1e0]:
+
+            opt += [Experiments(idx, "MLP" + '_seed=' + str(master_seed))]
+            opt[-1].dataset.dataset_name = 'rand10_regression'
+            opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10_regression])
+            opt[-1].hyper.max_num_epochs = 50
+            opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
+            opt[-1].dnn.name = 'MLP1_regression'
+            opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+            opt[-1].dnn.layers = 2
+            opt[-1].hyper.init_factor = init_mult
+            opt[-1].hyper.learning_rate = lr
+            opt[-1].hyper.mse = True
+            opt[-1].log_dir_base = '/om/user/scasper/workspace/models/mlp_regression/'
+            opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/mlp_regression/'
+            idx += 1
+
+# 10k, mlp_regression, various inits
+for neuron_mult in [1, 2, 4, 8, 16]:
+    for lr in [1e-3]:
+        for init_mult in [1e-6, 1e-4, 1e-2, 1e0]:
+
+            opt += [Experiments(idx, "MLP10K" + '_seed=' + str(master_seed))]
+            opt[-1].dataset.dataset_name = 'rand10000_regression'
+            opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10000_regression])
+            opt[-1].hyper.max_num_epochs = 50
+            opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
+            opt[-1].dnn.name = 'MLP1_regression'
+            opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+            opt[-1].dnn.layers = 2
+            opt[-1].hyper.init_factor = init_mult
+            opt[-1].hyper.learning_rate = lr
+            opt[-1].hyper.mse = True
+            opt[-1].log_dir_base = '/om/user/scasper/workspace/models/mlp_regression/'
+            opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/mlp_regression/'
+            idx += 1
 
 
 def write_lookup_file():
@@ -977,4 +1073,6 @@ def write_lookup_file():
             f.write(opt[i].name + '\n')
             f.write('\n')
 
-write_lookup_file()
+
+if __name__ == '__main__':
+    write_lookup_file()

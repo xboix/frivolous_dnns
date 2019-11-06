@@ -104,6 +104,11 @@ if not os.path.isfile(opt.log_dir_base + opt.name + '/activations0.pkl'):
 
 t0 = time.time()
 
+if opt.hyper.mse:
+    metric_name = 'mse'
+else:
+    metric_name = 'accuracy'
+
 for cross in range(3):
     print('cross:', cross)
     # results indexed [num_components/evals/evecs/acc/layer_nodes/num_components][train/test]
@@ -113,14 +118,14 @@ for cross in range(3):
         res = pickle.load(f)
     with open(opt.log_dir_base + opt.name + '/labels' + str(cross) + '.pkl', 'rb') as f:
         gt_labels = pickle.load(f)
-    with open(opt.log_dir_base + opt.name + '/accuracy' + str(cross) + '.pkl', 'rb') as f:
-        acc = pickle.load(f)
+    with open(opt.log_dir_base + opt.name + '/' + metric_name + str(cross) + '.pkl', 'rb') as f:
+        met = pickle.load(f)
     with open(opt.log_dir_base + opt.name + '/activations_test' + str(cross) + '.pkl', 'rb') as f:
         res_test = pickle.load(f)
     with open(opt.log_dir_base + opt.name + '/labels_test' + str(cross) + '.pkl', 'rb') as f:
         gt_labels_test = pickle.load(f)
-    with open(opt.log_dir_base + opt.name + '/accuracy_test' + str(cross) + '.pkl', 'rb') as f:
-        acc_test = pickle.load(f)
+    with open(opt.log_dir_base + opt.name + '/' + metric_name + '_test' + str(cross) + '.pkl', 'rb') as f:
+        met_test = pickle.load(f)
 
     corr = []
     corr_test = []
@@ -147,12 +152,16 @@ for cross in range(3):
     with open(opt.log_dir_base + opt.name + '/similarity' + str(cross) + '.pkl', 'wb') as f:
         pickle.dump(similarity, f, protocol=2)
 
+    if opt.hyper.mse:  # can't do PCA on a 1d output array
+        res = res[:-1]
+        res_test = res_test[:-1]
+
     for layer in range(len(res)):
         num_components, evals, evecs = pca(res[layer], (0.95, 0.8))
         results[0][0].append(num_components)
         results[1][0].append(evals)
         results[2][0].append(evecs)
-        results[3][0].append(acc)
+        results[3][0].append(met)
         results[4][0].append(np.shape(res[layer])[-1])
         compressability_95 = get_compressability95(evals)
         results[5][0].append(compressability_95)
@@ -162,14 +171,17 @@ for cross in range(3):
         results[0][1].append(num_components)
         results[1][1].append(evals)
         results[2][1].append(evecs)
-        results[3][1].append(acc_test)
+        results[3][1].append(met_test)
         results[4][1].append(np.shape(res_test[layer])[-1])
         compressability_95 = get_compressability95(evals)
         results[5][1].append(compressability_95)
 
-    results_selectivity = [[] for i in range(3)]  # [sel/sel_test/sel_gen][layer][neuron]
+    results_selectivity = [[] for i in range(3)]  # will be [sel/sel_test/sel_gen][layer][neuron]
     for layer in range(len(res)):
-        sel, sel_test, sel_gen = selectivity(res[layer], gt_labels[layer], res_test[layer], gt_labels_test[layer])
+        if opt.hyper.mse:
+            sel, sel_test, sel_gen = (-1, -1, -1)
+        else:
+            sel, sel_test, sel_gen = selectivity(res[layer], gt_labels[layer], res_test[layer], gt_labels_test[layer])
         results_selectivity[0].append(sel)
         results_selectivity[1].append(sel_test)
         results_selectivity[2].append(sel_gen)
