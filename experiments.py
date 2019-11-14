@@ -1066,6 +1066,32 @@ for neuron_mult in [1, 2, 4, 8, 16]:
             idx += 1
 
 
+########################################################
+# CASPER INIT TESTS WITH MLP10K
+
+master_seed = 0
+
+for rand_seed in [0, 1, 2]:
+    for neuron_mult in [1, 2, 4, 8, 16]:
+        for lr in [1e-3]:
+            for init_mult in [1e-6, 1e-4, 1e-2, 1e0]:
+
+                opt += [Experiments(idx, "MLP10K" + '_seed=' + str(rand_seed))]
+                opt[-1].dataset.dataset_name = 'rand10000'
+                opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10000])
+                opt[-1].hyper.max_num_epochs = 50
+                opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
+                opt[-1].dnn.name = 'MLP1'
+                opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                opt[-1].dnn.layers = 2
+                opt[-1].hyper.init_factor = init_mult
+                opt[-1].hyper.learning_rate = lr
+                opt[-1].log_dir_base = '/om/user/scasper/workspace/models/mlp_10k_inits/'
+                opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/mlp_10k_inits/'
+                idx += 1
+
+
+
 def write_lookup_file():
     with open('experiment_lookup.txt', 'w') as f:
         for i in range(len(opt)):
