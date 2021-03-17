@@ -16,12 +16,12 @@ for opt in run_opts:
               'similarity_std', 'compressability_95', 'selectivity_mean', 'selectivity_std', 'nonselective',
               'top_1_acc', 'top_5_acc']
 
-    if not os.path.isfile(opt.results_dir + opt.name + '/selectivity0.pkl'):
+    if not os.path.isfile(opt.results_dir + opt.name + '/selectivity2.pkl'):
         print('Couldn\'t find files, skipped:', opt.name)
         sys.stdout.flush()
         continue
 
-    with open(opt.csv_dir + opt.name + '_redundancy' + str(cross) + '.csv', 'w') as csvfile:
+    with open(opt.csv_dir + opt.name + '_redundancy.csv', 'w') as csvfile:
 
         filewriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
         filewriter.writerow(header)

@@ -17,3 +17,6 @@ srun -t 1:00:00 --partition=cbmm ss tensorboard --port=6058 \
 # jn
 # ssh -N -f -L 1229:polestar:9000 scasper@polestar.mit.edu
 # https://127.0.0.1:1229
+
+# for plotting, do this instead of jn
+# singularity exec -B /om:/om --nv /om/user/xboix/singularity/xboix-tensorflow1.14.simg jupyter-notebook --ip=0.0.0.0 --port=9000 --no-browser

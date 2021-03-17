@@ -5,30 +5,56 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed3bb66d-67f6-4dbd-a399-f518d8f264aa" name="Default Changelist" comment="Default Changelist">
-      <change afterPath="$PROJECT_DIR$/data/rand100000_dataset.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/rand1000_dataset.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/rand100_dataset.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ipy_notebooks/plot_numparams.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sshConfigs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create_linear_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/create_linear_dataset.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageNet/experiments/experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/experiments/experiments.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageNet/nets/inception/inception_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/inception/inception_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageNet/nets/resnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/resnet.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageNet/pkl2csv_redundancy.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/pkl2csv_redundancy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageNet/pkl2csv_robustness.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/pkl2csv_robustness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageNet/runs/activations.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/runs/activations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageNet/runs/robustness.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/runs/robustness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageNet/tools/array_activations.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/tools/array_activations.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageNet/tools/array_redundancy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/tools/array_redundancy.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageNet/tools/array_robustness.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/tools/array_robustness.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/rand10000_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/rand10000_dataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_lookup.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiment_lookup.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_lookup.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiments.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/get_activations.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_activations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/get_redundancy.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_redundancy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_robustness.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_robustness.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/mlp.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/mlp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/nets.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/nets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkl2csv_redundancy.py" beforeDir="false" afterPath="$PROJECT_DIR$/pkl2csv_redundancy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkl2csv_robustness.py" beforeDir="false" afterPath="$PROJECT_DIR$/pkl2csv_robustness.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/array_activations_rand.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_activations_rand.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/array_redundancy_rand.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_redundancy_rand.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/array_robustness_rand.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_robustness_rand.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/array_train_rand.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_train_rand.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_accuracy-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_accuracy-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_auc-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_auc-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_compressability-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_compressability-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_nonselective-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_nonselective-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_perturbation_curves-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_perturbation_curves-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_r_dist-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_r_dist-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_selectivity-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_selectivity-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_similarity-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_similarity-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_accuracy.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_accuracy.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_nonselective.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_nonselective.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/init_scheme/plot_accuracy.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/init_scheme/plot_accuracy.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_accuracy.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_accuracy.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_auc.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_auc.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_auc_drop.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_auc_drop.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_compressability.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_compressability.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_init_scheme_accuracy.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_init_scheme_accuracy.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_nonselective.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_nonselective.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_perturbation_curves.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_perturbation_curves.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_r_dist.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_r_dist.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_selectivity.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_selectivity.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_selectivity_layerwise.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_selectivity_layerwise.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_similarity.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_similarity.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_similarity_layerwise.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_similarity_layerwise.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resnet/resnet_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/resnet/resnet_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resnet/resnet_run_loop.py" beforeDir="false" afterPath="$PROJECT_DIR$/resnet/resnet_run_loop.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/array_activations.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_activations.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/array_redundancy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_redundancy.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/array_robustness.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_robustness.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/array_train.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_train.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/resnet_cifar_train.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/resnet_cifar_train.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/tensorboard.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/tensorboard.sh" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,12 +84,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JupyterTrust" id="db4c97cd-b270-42ce-84ce-6373d5094a70" />
   <component name="ProjectId" id="1QVmXXrdRdsoGp4sl0nVJnxmvec" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tools" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -76,6 +109,13 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tools" />
+      <recent name="$PROJECT_DIR$/data" />
+      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean" />
+      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/tools" />
+      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/nets" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/baseline-ImageNet-clean" />
       <recent name="$PROJECT_DIR$/tools" />
@@ -83,25 +123,6 @@
       <recent name="$PROJECT_DIR$/resnet/official" />
       <recent name="$PROJECT_DIR$" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/data" />
-      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean" />
-      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/tools" />
-      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/nets" />
-      <recent name="$PROJECT_DIR$/baseline-ImageNet-clean/runs" />
-    </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Python.experiments">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -205,6 +226,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -335,6 +357,66 @@
       <workItem from="1569522796467" duration="1667000" />
       <workItem from="1571081452689" duration="426000" />
       <workItem from="1571708664666" duration="31000" />
+      <workItem from="1573014531664" duration="21000" />
+      <workItem from="1573085681048" duration="2000" />
+      <workItem from="1573191072442" duration="226000" />
+      <workItem from="1573265099190" duration="3000" />
+      <workItem from="1573320123572" duration="3602000" />
+      <workItem from="1573409770734" duration="13000" />
+      <workItem from="1573522901001" duration="1675000" />
+      <workItem from="1573616685392" duration="1460000" />
+      <workItem from="1573701614360" duration="659000" />
+      <workItem from="1578455362550" duration="26000" />
+      <workItem from="1580794340488" duration="778000" />
+      <workItem from="1580798104040" duration="103000" />
+      <workItem from="1580880080054" duration="15000" />
+      <workItem from="1583079804077" duration="107000" />
+      <workItem from="1586239762849" duration="55000" />
+      <workItem from="1586315271595" duration="2000" />
+      <workItem from="1586614793568" duration="1550000" />
+      <workItem from="1586743778186" duration="296000" />
+      <workItem from="1586842947862" duration="251000" />
+      <workItem from="1587005528176" duration="12000" />
+      <workItem from="1587837916284" duration="695000" />
+      <workItem from="1587886372495" duration="765000" />
+      <workItem from="1587966397879" duration="3722000" />
+      <workItem from="1588023948693" duration="3145000" />
+      <workItem from="1588030481627" duration="557000" />
+      <workItem from="1588226079174" duration="310000" />
+      <workItem from="1588292884460" duration="231000" />
+      <workItem from="1588379149753" duration="960000" />
+      <workItem from="1588729539873" duration="471000" />
+      <workItem from="1588795259320" duration="233000" />
+      <workItem from="1589256480738" duration="172000" />
+      <workItem from="1590720894193" duration="357000" />
+      <workItem from="1590811995948" duration="242000" />
+      <workItem from="1591121887510" duration="190000" />
+      <workItem from="1592276492126" duration="55000" />
+      <workItem from="1592544444195" duration="726000" />
+      <workItem from="1592586974356" duration="1000" />
+      <workItem from="1597813166054" duration="539000" />
+      <workItem from="1597898046203" duration="1415000" />
+      <workItem from="1597935691973" duration="9000" />
+      <workItem from="1597971585133" duration="5127000" />
+      <workItem from="1598151438031" duration="630000" />
+      <workItem from="1598389600613" duration="174000" />
+      <workItem from="1598417120980" duration="253000" />
+      <workItem from="1598494385190" duration="1279000" />
+      <workItem from="1598501909037" duration="20000" />
+      <workItem from="1598545535656" duration="682000" />
+      <workItem from="1598580245272" duration="417000" />
+      <workItem from="1598588519946" duration="4000" />
+      <workItem from="1610086672959" duration="47000" />
+      <workItem from="1610141808408" duration="2000" />
+      <workItem from="1610591754253" duration="6000" />
+      <workItem from="1610592511882" duration="8000" />
+      <workItem from="1614560984994" duration="1006000" />
+      <workItem from="1614562344712" duration="209000" />
+      <workItem from="1614564134549" duration="1637000" />
+      <workItem from="1614974920538" duration="398000" />
+      <workItem from="1615254755334" duration="1000" />
+      <workItem from="1615683792207" duration="12000" />
+      <workItem from="1615945800714" duration="276000" />
     </task>
     <task id="LOCAL-00001" summary="Inception update">
       <created>1566600208066</created>
@@ -357,7 +439,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568906829557</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="new MLP10k init experiments">
+      <created>1573702516778</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1573702516778</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -370,26 +459,47 @@
     </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Inception update" />
     <MESSAGE value="MLPs" />
     <MESSAGE value="Plots" />
-    <option name="LAST_COMMIT_MESSAGE" value="Plots" />
+    <MESSAGE value="new MLP10k init experiments" />
+    <option name="LAST_COMMIT_MESSAGE" value="new MLP10k init experiments" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="421" y="205" width="647" height="490" key="find.popup" timestamp="1614565203410">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="421" y="205" width="647" height="490" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1614565203410" />
+    <state x="421" y="224" width="597" height="490" key="find.popup/0.25.1440.875@0.25.1440.875" timestamp="1614561607277" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -438,6 +548,31 @@
           <url>file://$PROJECT_DIR$/get_mappability.py</url>
           <line>202</line>
           <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/get_redundancy.py</url>
+          <line>132</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/get_redundancy.py</url>
+          <line>131</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/get_redundancy.py</url>
+          <line>128</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/get_redundancy.py</url>
+          <line>129</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/get_redundancy.py</url>
+          <line>130</line>
+          <option name="timeStamp" value="62" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

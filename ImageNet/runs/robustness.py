@@ -19,11 +19,15 @@ def create_graph(opt, ptype, cross):
     # It's ad hoc, but it works well
     if opt.dnn.name == 'resnet':
         if opt.hyper.batch_size * opt.dnn.factor >= 3072:
-            opt.hyper.batch_size = int(opt.hyper.batch_size / 4)
+            opt.hyper.batch_size = int(opt.hyper.batch_size / 8)
         elif opt.hyper.batch_size * opt.dnn.factor >= 2048:
-            opt.hyper.batch_size = int(opt.hyper.batch_size / 2)
+            opt.hyper.batch_size = int(opt.hyper.batch_size / 4)
     elif opt.dnn.name == 'inception':
-        opt.hyper.batch_size = 256
+        opt.hyper.batch_size = 128
+        if opt.dnn.factor_end == 2:
+            opt.hyper.batch_size = 64
+        elif opt.dnn.factor_end == 4:
+            opt.hyper.batch_size = 32
 
     with open(opt.results_dir + opt.name + '/selectivity' + str(cross) + '.pkl', 'rb') as f:
         selectivity = pickle.load(f)  # indexed [layer][neuron]
@@ -142,6 +146,12 @@ def test_robustness(sess, pred_label, handle, perturbation_params, select, opt, 
         print('processing layer: ' + str(layer+1) + '/' + str(opt.dnn.layers))
 
         for noise_id, noise_level in enumerate(range_robustness):
+
+            if opt.dnn.name == 'inception' and layer not in [7, 13, 15, opt.dnn.layers]:
+                results_robustness[layer, noise_id] = -1  # to note that it was skipped
+                sys.stdout.flush()
+                continue
+
             print('processing perturbation amount:', noise_level)
             sess.run(val_iterator.initializer)
 

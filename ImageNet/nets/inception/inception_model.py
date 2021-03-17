@@ -51,8 +51,8 @@ from nets import perturbations as pt
 
 
 def inception_v3(inputs, opt,
-                 factor = 1,
-                 factor_end = 1,
+                 factor=1,
+                 factor_end=1,
                  dropout_keep_prob=0.8,
                  num_classes=1000,
                  is_training=False,

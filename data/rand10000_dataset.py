@@ -32,8 +32,8 @@ class Rand10000(dataset.Dataset):
     # Virtual functions:
     def get_data_trainval(self):
 
-        train = self.__unpickle('train_10000.pickle')
-        val = self.__unpickle('val_10000.pickle')
+        train = self.__unpickle('/om/user/scasper/data/synthetic/train_10000.pickle')
+        val = self.__unpickle('/om/user/scasper/data/synthetic/val_10000.pickle')
 
         train_addrs = []
         for t in train['data']:
@@ -48,7 +48,7 @@ class Rand10000(dataset.Dataset):
         return train_addrs, train_labels, val_addrs, val_labels
 
     def get_data_test(self):
-        test = self.__unpickle('test_10000.pickle')
+        test = self.__unpickle('/om/user/scasper/data/synthetic/test_10000.pickle')
 
         test_addrs = []
         for t in test['data']:

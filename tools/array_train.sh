@@ -1,10 +1,10 @@
 #!/bin/bash
 #SBATCH -c1
-#SBATCH --array=68
-#SBATCH --job-name=alexnet_models
+#SBATCH --array=665-724
+#SBATCH --job-name=mlp_regression
 #SBATCH --mem=12GB
 #SBATCH --gres=gpu:tesla-k80:1
-#SBATCH -t 1-6:00:00
+#SBATCH -t 0-4:00:00
 #SBATCH --chdir=/om/user/scasper/workspace/
 #SBATCH --partition=cbmm
 

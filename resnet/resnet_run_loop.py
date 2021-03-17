@@ -686,6 +686,7 @@ def resnet_main(
         # case.
         eval_results = {}
     else:
+
         if train_epochs == 0:
             # If --eval_only is set, perform a single loop with zero train epochs.
             schedule, n_loops = [0], 1

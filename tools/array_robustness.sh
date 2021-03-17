@@ -1,10 +1,10 @@
 #!/bin/bash
 #SBATCH -c1
-#SBATCH --array=4-7,16
+#SBATCH --array=665-724
 #SBATCH --job-name=get_robustness
 #SBATCH --mem=12GB
 #SBATCH --gres=gpu:tesla-k80:1
-#SBATCH -t 36:00:00
+#SBATCH -t 2:00:00
 #SBATCH --chdir=/om/user/scasper/workspace/
 #SBATCH --partition=cbmm
 

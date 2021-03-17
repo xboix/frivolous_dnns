@@ -98,7 +98,6 @@ def get_activations(opt, cross, max_samples=5e4):
 
     config = tf.ConfigProto(allow_soft_placement=True)  # inter_op_parallelism_threads=80,
                             #intra_op_parallelism_threads=80,
-                            #
     #config.gpu_options.allow_growth = True
     with tf.Session(config=config) as sess:
 

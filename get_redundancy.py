@@ -126,6 +126,12 @@ for cross in range(3):
     with open(opt.log_dir_base + opt.name + '/' + metric_name + '_test' + str(cross) + '.pkl', 'rb') as f:
         met_test = pickle.load(f)
 
+    # print([l.shape for l in res_test])
+    # r, r_test = get_corr(res[0], res_test[0])
+    # print(r.shape)
+    # quit()
+    # sys.exit()
+
     corr = []
     corr_test = []
     similarity = [[[] for i in range(2)] for j in range(2)]  # will be indexed by [train/test][mean/std][layer]

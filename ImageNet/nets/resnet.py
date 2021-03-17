@@ -641,6 +641,7 @@ class ImagenetModel(Model):
 def ResNet(im, opt):
     model = ImagenetModel(resnet_size=18, resnet_version=1, factor=opt.dnn.factor)
     logits, activations = model(im, False)
+
     return logits, activations
 
 ################################################################################

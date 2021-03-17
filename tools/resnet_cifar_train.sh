@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -c1
-#SBATCH --array=217-232,234-238
+#SBATCH --array=227
 #SBATCH --job-name=cifar_train
 #SBATCH --mem=12GB
 #SBATCH --gres=gpu:tesla-k80:1

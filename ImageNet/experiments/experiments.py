@@ -139,7 +139,7 @@ def get_experiments(output_path, dataset_path):
                                  family_id=idx_family, family_name="Inception_v3")
 
         opt_handle.skip_train = False
-        opt_handle.dnn.name = "inception"
+        opt_handle.dnn.name = 'inception'
         opt_handle.dnn.factor = n_multiplier
         opt_handle.hyper.batch_size = batch_size
         opt_handle.dnn.layers = 16  # not including the logits output layer
@@ -156,7 +156,7 @@ def get_experiments(output_path, dataset_path):
                                  family_id=idx_family, family_name="Inception_v3")
 
         opt_handle.skip_train = False
-        opt_handle.dnn.name = "inception"
+        opt_handle.dnn.name = 'inception'
         opt_handle.dnn.factor = 1
         opt_handle.dnn.factor_end = n_multiplier
         opt_handle.hyper.batch_size = batch_size

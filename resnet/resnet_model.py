@@ -559,4 +559,5 @@ class Model(object):
             inputs = tf.layers.dense(inputs=inputs, units=self.num_classes)
             activations.append(inputs)  # *SC*
             inputs = tf.identity(inputs, 'final_dense')
+
             return inputs, activations  # *SC*

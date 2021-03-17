@@ -18,7 +18,7 @@ for opt in run_opts:
     header = ['model_name', 'evaluation_set', 'cross', 'perturbation_layer', 'size_factor', 'batch_size',
               'perturbation_type', 'perturbation_amount', 'unchanged labels']
 
-    if not os.path.isfile(opt.results_dir + opt.name + '/robustness0.pkl'):
+    if not os.path.isfile(opt.results_dir + opt.name + '/robustness2.pkl'):
         print('Couldn\'t find files, skipped:', opt.name)
         sys.stdout.flush()
         continue
