@@ -4,56 +4,75 @@
     <option name="CUSTOM_SCOPE_NAME" value="Current File" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed3bb66d-67f6-4dbd-a399-f518d8f264aa" name="Default Changelist" comment="Default Changelist">
-      <change afterPath="$PROJECT_DIR$/.idea/sshConfigs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+    <list default="true" id="ed3bb66d-67f6-4dbd-a399-f518d8f264aa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImageNet/experiments/experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/experiments/experiments.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImageNet/nets/inception/inception_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/inception/inception_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImageNet/nets/resnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/nets/resnet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImageNet/pkl2csv_redundancy.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/pkl2csv_redundancy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImageNet/pkl2csv_robustness.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/pkl2csv_robustness.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImageNet/runs/activations.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/runs/activations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImageNet/runs/robustness.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/runs/robustness.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImageNet/tools/array_activations.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/tools/array_activations.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImageNet/tools/array_redundancy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/tools/array_redundancy.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImageNet/tools/array_robustness.sh" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/tools/array_robustness.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/rand10000_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/data/rand10000_dataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiment_lookup.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiment_lookup.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiments.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_activations.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_activations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_redundancy.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_redundancy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_accuracy-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_accuracy-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_auc-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_auc-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_compressability-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_compressability-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_nonselective-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_nonselective-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_perturbation_curves-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_perturbation_curves-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_r_dist-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_r_dist-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_selectivity-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_selectivity-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_similarity-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_similarity-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_accuracy.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_accuracy.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_nonselective.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_nonselective.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/init_scheme/plot_accuracy.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/init_scheme/plot_accuracy.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_accuracy.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_accuracy.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_auc.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_auc.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_auc_drop.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_auc_drop.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_compressability.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_compressability.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_init_scheme_accuracy.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_init_scheme_accuracy.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_nonselective.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_nonselective.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_perturbation_curves.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_perturbation_curves.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_r_dist.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_r_dist.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_selectivity.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_selectivity.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_selectivity_layerwise.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_selectivity_layerwise.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_similarity.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_similarity.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_similarity_layerwise.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ipy_notebooks/plot_similarity_layerwise.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resnet/resnet_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/resnet/resnet_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resnet/resnet_run_loop.py" beforeDir="false" afterPath="$PROJECT_DIR$/resnet/resnet_run_loop.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/array_activations.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_activations.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/array_redundancy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_redundancy.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/array_robustness.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_robustness.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/array_train.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/array_train.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/resnet_cifar_train.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/resnet_cifar_train.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/tensorboard.sh" beforeDir="false" afterPath="$PROJECT_DIR$/tools/tensorboard.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_linear_dataset_regression.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/extract_tSNE.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_redundancy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_accuracy-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_auc-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_auc_drop-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_auc_drop_layerwise-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_auc_layerwise-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_compressability-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_compressability_layerwise-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_init_scheme_accuracy-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_mappability-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_mappability_layerwise-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_nonselective-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_nonselective_layerwise-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_perturbation_curves-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_r_dist-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_selectivity-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_selectivity_layerwise-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_similarity-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_similarity_layerwise-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/tmp_mappability_violins-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_accuracy-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_compressability-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_compressability_layerwise-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_nonselective-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_nonselective_layerwise-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_perturbation_curves-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_selectivity-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_selectivity_layerwise-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_similarity-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_similarity_layerwise-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_accuracy.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_compressability.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_compressability_layerwise.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_nonselective.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_nonselective_layerwise.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_perturbation_curves.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_selectivity.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_selectivity_layerwise.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_similarity.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_similarity_layerwise.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/Untitled.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/init_scheme/.ipynb_checkpoints/plot_accuracy-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/init_scheme/plot_accuracy.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_62-91_redundancy_robustness.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_auc.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_auc_drop.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_auc_drop_layerwise.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_auc_layerwise.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_compressability.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_compressability_layerwise.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_init_scheme_accuracy.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_mappability.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_mappability_layerwise.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_nonselective.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_nonselective_layerwise.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_r_dist.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_selectivity.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_selectivity_layerwise.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_similarity.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_similarity_layerwise.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipy_notebooks/tmp_mappability_violins.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/list_unfinished.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/remove_unfinished.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/mappability.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/tensorboard.sh" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -416,7 +435,8 @@
       <workItem from="1614974920538" duration="398000" />
       <workItem from="1615254755334" duration="1000" />
       <workItem from="1615683792207" duration="12000" />
-      <workItem from="1615945800714" duration="276000" />
+      <workItem from="1615945800714" duration="621000" />
+      <workItem from="1616125627866" duration="245000" />
     </task>
     <task id="LOCAL-00001" summary="Inception update">
       <created>1566600208066</created>
@@ -446,7 +466,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573702516778</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Default Changelist">
+      <created>1615946366520</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1615946366520</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -492,13 +519,22 @@
     <MESSAGE value="MLPs" />
     <MESSAGE value="Plots" />
     <MESSAGE value="new MLP10k init experiments" />
-    <option name="LAST_COMMIT_MESSAGE" value="new MLP10k init experiments" />
+    <MESSAGE value="Default Changelist" />
+    <option name="LAST_COMMIT_MESSAGE" value="Default Changelist" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="205" width="647" height="490" key="find.popup" timestamp="1614565203410">
+    <state x="287" y="122" key="CommitChangelistDialog2" timestamp="1615946365118">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="421" y="205" width="647" height="490" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1614565203410" />
+    <state x="287" y="122" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1615946365118" />
+    <state x="320" y="187" key="Vcs.Push.Dialog.v2" timestamp="1615946371734">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="187" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1615946371734" />
+    <state x="421" y="205" width="647" height="490" key="find.popup" timestamp="1616125648709">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="421" y="205" width="647" height="490" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1616125648709" />
     <state x="421" y="224" width="597" height="490" key="find.popup/0.25.1440.875@0.25.1440.875" timestamp="1614561607277" />
   </component>
   <component name="XDebuggerManager">
@@ -548,31 +584,6 @@
           <url>file://$PROJECT_DIR$/get_mappability.py</url>
           <line>202</line>
           <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/get_redundancy.py</url>
-          <line>132</line>
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/get_redundancy.py</url>
-          <line>131</line>
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/get_redundancy.py</url>
-          <line>128</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/get_redundancy.py</url>
-          <line>129</line>
-          <option name="timeStamp" value="61" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/get_redundancy.py</url>
-          <line>130</line>
-          <option name="timeStamp" value="62" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
