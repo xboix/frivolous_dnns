@@ -6,7 +6,7 @@
 
 Stephen Casper, scasper@college.harvard.edu
 
-Xavier Boix, xboid@mit.edu
+Xavier Boix, xboix@mit.edu
 
 Vanessa D'Amario
 
