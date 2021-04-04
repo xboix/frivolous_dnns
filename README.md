@@ -3,10 +3,15 @@
 [Paper](https://arxiv.org/abs/1912.04783) in AAAI 2021 Proceedings
 
 @article{casper2019frivolous,
+
   title={Frivolous Units: Wider Networks Are Not Really That Wide},
+  
   author={Casper, Stephen and Boix, Xavier and D'Amario, Vanessa and Guo, Ling and Schrimpf, Martin and Vinken, Kasper and Kreiman, Gabriel},
+  
   journal={arXiv preprint arXiv:1912.04783},
-  year={2019}
+  
+  year={2020}
+  
 }
 
 ## Authors
