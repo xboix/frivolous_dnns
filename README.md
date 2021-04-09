@@ -18,6 +18,8 @@
 
 * Gabriel Kreiman
 
+You are welcome to email us. 
+
 ## Bibtex:
 
 @article{casper2019frivolous,
