@@ -36,11 +36,7 @@ You are welcome to email us.
 
 ## Setup
 
-Network training is implemented in Tensorflow 1.14 (untested with 1.15). Most other dependencies are common such as numpy or scipy. To guarante that things will successfully run, use the docker image from [https://hub.docker.com/r/xboixbosch/tf1.14](https://hub.docker.com/r/xboixbosch/tf1.14).
-
-## Networks
-
-TODO explain how to get our trained networks
+Network training is implemented in Tensorflow 1.14 (untested with 1.15). To guarante that things will successfully run, use the docker image from [https://hub.docker.com/r/xboixbosch/tf1.14](https://hub.docker.com/r/xboixbosch/tf1.14).
 
 ## Initializing Experiments 
 
@@ -54,7 +50,7 @@ After an experiment is configured, its experiment IDs is passed as a command lin
 
 ```create_linear_dataset.py``` and the ```data/``` folder are for creating tfrecords datasets and linear datasets for simple experiments with MLPs. 
 
-```trian.py``` trains networks :)
+```train.py``` trains networks.
 
 ```get_robustness.py``` along with helper functions from ```perturbations.py``` analyzes network performance under perturbations for prunability analysis. 
 
@@ -69,3 +65,28 @@ Analogous files to the above exist in ```ImageNet/runs/```.
 ## Plotting
 
 The six notebooks in ```ipy_notebooks``` reproduce the plots from the paper. 
+
+## Running Demo Experiments
+
+This demo will train and run experiments for 5 standard AlexNet architectures with Glorot initialization on CIFAR-10. The first step is to download the data into a data directory. 
+
+TODO HOW TO GET CIFAR10 DATA INTO 
+
+Second, in lines 4-6 of ```experiments.py```, set ```default_dataset_path```, ```default_log_dir```, and ```default_csv_dir``` to your data directory, where you want models saved, and where you want csvs saved respectively.
+
+Then inside the docker container, run
+
+```
+for experiment_id in {2..6}
+do
+   python train.py experiment_id
+   python get_activations.py experiment_id
+   python get_redundancy.py experiment_id
+   python get_robustness.py experiment_id
+done
+
+python pkl2csv_redundancy.py
+python pkl2csv_robustness.py
+```
+
+Then to plot the accuracy, prunability, and redundancy of these networks as a function of width factor, run the notebook ```plot_accuracy.ipynb```.
