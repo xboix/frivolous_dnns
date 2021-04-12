@@ -12,12 +12,12 @@ import numpy as np
 # Read experiment to run
 ################################################################################################
 
-for opt in experiments.opt[245:]:
+for opt in experiments.opt[2:7]:
 
     header = ['model_name', 'evaluation_set', 'cross_validation', 'layer', 'preserved_energy', 'training_dropout',
               'training_weight_decay', 'training_data_augmentation', 'training_amount_data', 'random_labels',
               'scramble_image', 'init_type', 'init_factor', 'random_seed', 'multiplier_layer', 'num_neurons_layer0',
-              #'num_neurons_layer1', 'num_neurons_layer2',# 'num_neurons_layer3',
+              # 'num_neurons_layer1', 'num_neurons_layer2',# 'num_neurons_layer3',
               'num_neurons_layerall',
               'num_components', 'compressability_95', 'selectivity_mean', 'selectivity_std', 'selectivity_gen_mean',
               'selectivity_gen_std', 'not_selective', 'similarity_ave', 'similarity_std', 'performance']
@@ -97,8 +97,9 @@ for opt in experiments.opt[245:]:
                         ll.append(opt.seed)
                         ll.append(opt.dnn.neuron_multiplier[0])  # multiplier_layerX
 
-                        for layer_multiplier in range(opt.dnn.layers - 1):
-                            ll.append(results[4][1][layer_multiplier])  # multiplier_layerX
+                        # for layer_multiplier in range(opt.dnn.layers - 1):
+                        #     ll.append(results[4][1][layer_multiplier])  # multiplier_layerX
+                        ll.append(results[4][1][0])  # multiplier_layerX
                         ll.append(np.sum(results[4][1][:]))
 
                         if layer == opt.dnn.layers - 1:

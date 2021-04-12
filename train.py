@@ -1,15 +1,11 @@
 import os
-#os.environ['CUDA_VISIBLE_DEVICES'] = "0"
-
+# os.environ['CUDA_VISIBLE_DEVICES'] = "0"
 import os.path
 import shutil
 import sys
 import numpy as np
-
 import tensorflow as tf
-
 import experiments
-
 from models import nets
 from utils import summary
 
@@ -94,7 +90,6 @@ elif opt.dataset.dataset_name == 'rand10' or opt.dataset.dataset_name == 'rand10
 elif opt.dataset.dataset_name == 'rand10000' or opt.dataset.dataset_name == 'rand10000_regression':
     image = tf.compat.v1.reshape(image, [-1, 10000])
 
-
 # Call DNN
 dropout_rate = tf.compat.v1.placeholder(tf.float32)
 to_call = getattr(nets, opt.dnn.name)
@@ -125,8 +120,6 @@ with tf.name_scope('loss'):
     tf.summary.scalar('total_loss', total_loss)
 
 global_step = tf.Variable(0, name='global_step', trainable=False)
-
-
 
 ################################################################################################
 # Set up Training
@@ -416,7 +409,7 @@ with tf.Session(config=config) as sess:
                                 counter_stop = 0
                             else:
                                 counter_stop += 1
-                                if counter_stop >= 50:
+                                if counter_stop >= 25:
                                     stop_train = True
                             if acc_train == 1.0:  # if perfect train accuracy achieved, we can't do better
                                 stop_train = True

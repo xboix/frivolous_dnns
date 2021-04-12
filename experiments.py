@@ -1,6 +1,9 @@
 import numpy as np
-
 master_seed = 0
+
+default_dataset_path = '/om/user/scasper/data/cifar10/'
+default_log_dir = '/om/user/scasper/workspace/models/init_scheme/'
+default_csv_dir = '/om/user/scasper/workspace/csvs/init_scheme/'
 
 
 class Dataset(object):
@@ -8,14 +11,14 @@ class Dataset(object):
     def __init__(self):
 
         # Dataset general
-        self.dataset_path = '/om/user/scasper/data/cifar10/'
+        self.dataset_path = default_dataset_path
         self.proportion_training_set = .95
         self.shuffle_data = True
 
         # For reusing tfrecords:
         self.reuse_TFrecords = False
         self.reuse_TFrecords_ID = 0
-        self.reusse_TFrecords_path = ""
+        self.reuse_TFrecords_path = ""
 
         # Set random labels
         self.random_labels = False
@@ -195,8 +198,8 @@ for nn_name in name:
                                                        str(neuron_mult) + '_reg=' + str(reg) + '_rand=' +
                                                        str(flag_rand) + '_seed=' + str(master_seed)))
 
-                                opt[-1].log_dir_base = '/om/user/scasper/workspace/models/init_scheme/'
-                                opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/init_scheme/'
+                                opt[-1].log_dir_base = default_log_dir
+                                opt[-1].csv_dir = default_csv_dir
                                 opt[-1].dnn.name = nn_name
                                 opt[-1].init_type = init_type
                                 opt[-1].hyper.init_factor = init_mult
@@ -824,9 +827,6 @@ for idx_data, num_data in enumerate([1e3]):
                     opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10000/'
                     opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10000/'
                     idx += 1
-
-
-
 
 
 

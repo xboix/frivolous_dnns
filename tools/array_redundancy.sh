@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -c1
-#SBATCH --array=665-724
+#SBATCH --array=2-6
 #SBATCH --job-name=get_redundancy
 #SBATCH --mem=8GB
 #SBATCH --gres=gpu:tesla-k80:1

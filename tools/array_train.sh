@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -c1
-#SBATCH --array=665-724
+#SBATCH --array=2-6
 #SBATCH --job-name=mlp_regression
 #SBATCH --mem=12GB
 #SBATCH --gres=gpu:tesla-k80:1

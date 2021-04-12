@@ -40,6 +40,11 @@ class Cifar10(dataset.Dataset):
         perm_x = (perm / 32).astype("uint8")
         perm_y = (perm % 32).astype("uint8")
 
+        train_addrs = []
+        train_labels = []
+        val_addrs = []
+        val_labels = []
+
         file_names = glob.glob(self.opt.dataset.dataset_path + "*_batch_*")
         for l in file_names:
             d = self.__unpickle(l)
@@ -53,11 +58,6 @@ class Cifar10(dataset.Dataset):
                 [labels.append(l) for l in tmp['labels']]
             else:
                 [labels.append(randint(0, 9)) for l in tmp['labels']]
-
-            train_addrs = []
-            train_labels = []
-            val_addrs = []
-            val_labels = []
 
             # Divide the data into 95% train, 5% validation
             [train_addrs.append(elem) for elem in addrs[0:int(self.opt.dataset.proportion_training_set * len(addrs))]]
@@ -96,7 +96,24 @@ class Cifar10(dataset.Dataset):
         return test_addrs, test_labels
 
     def preprocess_image(self, augmentation, standarization, image):
-        if 'Alexnet' in self.opt.name:
+
+        if 'ResNet_cifar' in self.opt.name:
+            if augmentation:
+                # Resize the image to add four extra pixels on each side.
+                image = tf.image.resize_with_crop_or_pad(image, self.opt.hyper.image_size + 8,
+                                                         self.opt.hyper.image_size + 8)
+
+                # Randomly crop a [HEIGHT, WIDTH] section of the image.
+                image = tf.image.random_crop(image, [self.opt.hyper.image_size, self.opt.hyper.image_size, 3])
+
+                # Randomly flip the image horizontally.
+                image = tf.image.random_flip_left_right(image)
+
+            # Subtract off the mean and divide by the variance of the pixels.
+            image = tf.image.per_image_standardization(image)
+            return image
+
+        else:  # 'Alexnet' in self.opt.name:
             if augmentation:
                 # Randomly crop a [height, width] section of the image.
                 distorted_image = tf.random_crop(image, [self.opt.hyper.crop_size, self.opt.hyper.crop_size, 3])
@@ -120,21 +137,3 @@ class Cifar10(dataset.Dataset):
                 return float_image
             else:
                 return distorted_image
-
-        elif 'ResNet_cifar' in self.opt.name:
-            if augmentation:
-                # Resize the image to add four extra pixels on each side.
-                image = tf.image.resize_with_crop_or_pad(image, self.opt.hyper.image_size + 8,
-                                                         self.opt.hyper.image_size + 8)
-
-                # Randomly crop a [HEIGHT, WIDTH] section of the image.
-                image = tf.image.random_crop(image, [self.opt.hyper.image_size, self.opt.hyper.image_size, 3])
-
-                # Randomly flip the image horizontally.
-                image = tf.image.random_flip_left_right(image)
-
-            # Subtract off the mean and divide by the variance of the pixels.
-            image = tf.image.per_image_standardization(image)
-            return image
-        else:
-            print('CASPER, GO FIX THE PREPROCESS IMAGE FUNCTION IN CIFAR_DATASET.PY, DUMMY.')

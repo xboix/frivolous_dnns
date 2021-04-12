@@ -132,10 +132,6 @@ def get_activations(handle, metric, gt, dropout_rate, activations, opt,
         activations_tmp, metric_batch, labels_batch = \
             sess.run([activations, metric, gt], feed_dict={handle: handle_dataset, dropout_rate: opt.hyper.drop_test})
 
-        print([l.shape for l in activations_tmp])
-        quit()
-        sys.stdout.exit()
-
         metric_tmp += metric_batch
 
         labels_tmp = []
