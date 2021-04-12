@@ -65,7 +65,7 @@ The six notebooks in ```ipy_notebooks``` reproduce the plots from the paper.
 
 This demo will train and run experiments for 5 standard AlexNet architectures with Glorot initialization on CIFAR-10. The first step is to download the data into a data directory. 
 
-TODO HOW TO GET CIFAR10 DATA INTO 
+TODO HOW TO GET CIFAR10 DATA
 
 Second, in lines 4-6 of ```experiments.py```, set ```default_dataset_path```, ```default_log_dir```, and ```default_csv_dir``` to your data directory, where you want models saved, and where you want csvs saved respectively.
 
@@ -84,4 +84,4 @@ python pkl2csv_redundancy.py
 python pkl2csv_robustness.py
 ```
 
-Then to plot the accuracy, prunability, and redundancy of these networks as a function of width factor, run the notebook ```plot_accuracy.ipynb```.
+Finally, to plot the accuracy, prunability, and redundancy of these networks as a function of width factor, run the notebook ```plot_accuracy.ipynb```.
