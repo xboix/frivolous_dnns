@@ -22,16 +22,12 @@ You are welcome to email us.
 
 ## Bibtex:
 
-@article{casper2019frivolous,
-
+@inproceedings{casper2021frivolous,
   title={Frivolous Units: Wider Networks Are Not Really That Wide},
-  
   author={Casper, Stephen and Boix, Xavier and D'Amario, Vanessa and Guo, Ling and Schrimpf, Martin and Vinken, Kasper and Kreiman, Gabriel},
-  
-  journal={arXiv preprint arXiv:1912.04783},
-  
-  year={2020}
-  
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={35}
+  year={2021}
 }
 
 ## Setup
@@ -70,9 +66,9 @@ The six notebooks in ```ipy_notebooks``` reproduce the plots from the paper.
 
 This demo will train and run experiments for 5 standard AlexNet architectures with Glorot initialization on CIFAR-10. The first step is to download the data into a data directory. 
 
-TODO HOW TO GET CIFAR10 DATA INTO 
+To get the CIFAR-10 dataset, navigate to your preferred directory, and type ```wget https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz``` followed by ```tar -zxvf cifar-10-python.tar.gz```, and rename the folder with ```mv cifar-10-batches-py cifar10```.
 
-Second, in lines 4-6 of ```experiments.py```, set ```default_dataset_path```, ```default_log_dir```, and ```default_csv_dir``` to your data directory, where you want models saved, and where you want csvs saved respectively.
+Second, in lines 4, 5, and 7 of ```experiments.py```, set ```dataset_stem```, ```log_dir_stem```, and ```csv_dir_stem``` to your data directory, where you want models saved, and where you want csvs saved respectively.
 
 Then inside the docker container, run
 
@@ -89,4 +85,4 @@ python pkl2csv_redundancy.py
 python pkl2csv_robustness.py
 ```
 
-Then to plot the accuracy, prunability, and redundancy of these networks as a function of width factor, run the notebook ```plot_accuracy.ipynb```.
+Finally, to plot the accuracy, prunability, and redundancy of these networks as a function of width factor, run the notebook ```plot_accuracy.ipynb```.
