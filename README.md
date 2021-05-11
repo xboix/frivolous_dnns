@@ -22,11 +22,12 @@ You are welcome to email us.
 
 ## Bibtex:
 
-@article{casper2019frivolous,
+@inproceedings{casper2021frivolous,
   title={Frivolous Units: Wider Networks Are Not Really That Wide},
   author={Casper, Stephen and Boix, Xavier and D'Amario, Vanessa and Guo, Ling and Schrimpf, Martin and Vinken, Kasper and Kreiman, Gabriel},
-  journal={arXiv preprint arXiv:1912.04783},
-  year={2020}
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={35}
+  year={2021}
 }
 
 ## Setup
