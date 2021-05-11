@@ -65,9 +65,9 @@ The six notebooks in ```ipy_notebooks``` reproduce the plots from the paper.
 
 This demo will train and run experiments for 5 standard AlexNet architectures with Glorot initialization on CIFAR-10. The first step is to download the data into a data directory. 
 
-TODO HOW TO GET CIFAR10 DATA
+To get the CIFAR-10 dataset, navigate to your preferred directory, and type ```wget https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz``` followed by ```tar -zxvf cifar-10-python.tar.gz```, and rename the folder with ```mv cifar-10-batches-py cifar10```.
 
-Second, in lines 4-6 of ```experiments.py```, set ```default_dataset_path```, ```default_log_dir```, and ```default_csv_dir``` to your data directory, where you want models saved, and where you want csvs saved respectively.
+Second, in lines 4, 5, and 7 of ```experiments.py```, set ```dataset_stem```, ```log_dir_stem```, and ```csv_dir_stem``` to your data directory, where you want models saved, and where you want csvs saved respectively.
 
 Then inside the docker container, run
 
