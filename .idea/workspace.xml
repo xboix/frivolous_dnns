@@ -5,74 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed3bb66d-67f6-4dbd-a399-f518d8f264aa" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/other.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/redundancy_dnns.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sshConfigs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create_linear_dataset_regression.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/extract_tSNE.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/get_redundancy.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_accuracy-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_auc-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_auc_drop-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_auc_drop_layerwise-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_auc_layerwise-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_compressability-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_compressability_layerwise-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_init_scheme_accuracy-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_mappability-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_mappability_layerwise-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_nonselective-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_nonselective_layerwise-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_perturbation_curves-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_r_dist-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_selectivity-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_selectivity_layerwise-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_similarity-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/plot_similarity_layerwise-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/.ipynb_checkpoints/tmp_mappability_violins-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_accuracy-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_compressability-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_compressability_layerwise-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_nonselective-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_nonselective_layerwise-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_perturbation_curves-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_selectivity-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_selectivity_layerwise-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_similarity-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/.ipynb_checkpoints/plot_similarity_layerwise-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_accuracy.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_compressability.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_compressability_layerwise.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_nonselective.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_nonselective_layerwise.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_perturbation_curves.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_selectivity.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_selectivity_layerwise.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_similarity.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/ResNet_cifar/plot_similarity_layerwise.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/Untitled.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/init_scheme/.ipynb_checkpoints/plot_accuracy-checkpoint.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/init_scheme/plot_accuracy.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_62-91_redundancy_robustness.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_auc.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_auc_drop.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_auc_drop_layerwise.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_auc_layerwise.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_compressability.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_compressability_layerwise.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_init_scheme_accuracy.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_mappability.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_mappability_layerwise.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_nonselective.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_nonselective_layerwise.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_r_dist.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_selectivity.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_selectivity_layerwise.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_similarity.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/plot_similarity_layerwise.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipy_notebooks/tmp_mappability_violins.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/list_unfinished.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/remove_unfinished.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/mappability.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tools/tensorboard.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageNet/experiments/experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageNet/experiments/experiments.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments.py" beforeDir="false" afterPath="$PROJECT_DIR$/experiments.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,13 +41,18 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="JupyterTrust" id="db4c97cd-b270-42ce-84ce-6373d5094a70" />
+  <component name="JupyterTrust" id="db4c97cd-b270-42ce-84ce-6373d5094a70">
+    <option name="files">
+      <option value="ipy_notebooks/plot_demo.ipynb" />
+    </option>
+  </component>
   <component name="ProjectId" id="1QVmXXrdRdsoGp4sl0nVJnxmvec" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -437,6 +386,22 @@
       <workItem from="1615683792207" duration="12000" />
       <workItem from="1615945800714" duration="621000" />
       <workItem from="1616125627866" duration="245000" />
+      <workItem from="1617984866943" duration="192000" />
+      <workItem from="1617994595069" duration="346000" />
+      <workItem from="1617995628166" duration="72000" />
+      <workItem from="1618012016051" duration="70000" />
+      <workItem from="1618022309059" duration="2000" />
+      <workItem from="1618101803649" duration="1403000" />
+      <workItem from="1618120648396" duration="2543000" />
+      <workItem from="1618155975994" duration="17000" />
+      <workItem from="1618179672871" duration="4310000" />
+      <workItem from="1618262083678" duration="7000" />
+      <workItem from="1618262976663" duration="5000" />
+      <workItem from="1618263936572" duration="2000" />
+      <workItem from="1618322762743" duration="3000" />
+      <workItem from="1620136659016" duration="69000" />
+      <workItem from="1620673541559" duration="555000" />
+      <workItem from="1620691345776" duration="2118000" />
     </task>
     <task id="LOCAL-00001" summary="Inception update">
       <created>1566600208066</created>
@@ -473,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1615946366520</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="updates for demo runs">
+      <created>1618189090695</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1618189090695</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -487,6 +459,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.sh" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -520,22 +495,35 @@
     <MESSAGE value="Plots" />
     <MESSAGE value="new MLP10k init experiments" />
     <MESSAGE value="Default Changelist" />
-    <option name="LAST_COMMIT_MESSAGE" value="Default Changelist" />
+    <MESSAGE value="updates for demo runs" />
+    <option name="LAST_COMMIT_MESSAGE" value="updates for demo runs" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="287" y="122" key="CommitChangelistDialog2" timestamp="1615946365118">
+    <state x="320" y="112" key="#Deployment" timestamp="1620694401964">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="287" y="122" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1615946365118" />
-    <state x="320" y="187" key="Vcs.Push.Dialog.v2" timestamp="1615946371734">
+    <state x="320" y="112" key="#Deployment/0.0.1440.900@0.0.1440.900" timestamp="1620694401964" />
+    <state x="0" y="0" key="#SSH_Configurations" timestamp="1620694397325">
+      <screen x="0" y="25" width="1440" height="875" />
+    </state>
+    <state x="0" y="0" key="#SSH_Configurations/0.0.1440.900@0.0.1440.900" timestamp="1620694397325" />
+    <state x="287" y="122" key="CommitChangelistDialog2" timestamp="1618189090084">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="187" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1615946371734" />
+    <state x="287" y="122" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1618189090084" />
+    <state x="320" y="187" key="Vcs.Push.Dialog.v2" timestamp="1618189092095">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="187" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1618189092095" />
     <state x="421" y="205" width="647" height="490" key="find.popup" timestamp="1616125648709">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="421" y="205" width="647" height="490" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1616125648709" />
     <state x="421" y="224" width="597" height="490" key="find.popup/0.25.1440.875@0.25.1440.875" timestamp="1614561607277" />
+    <state x="0" y="25" width="1440" height="875" key="publish.login" timestamp="1620694353658">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="0" y="25" width="1440" height="875" key="publish.login/0.0.1440.900@0.0.1440.900" timestamp="1620694353658" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -584,6 +572,11 @@
           <url>file://$PROJECT_DIR$/get_mappability.py</url>
           <line>202</line>
           <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pkl2csv_redundancy.py</url>
+          <line>97</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

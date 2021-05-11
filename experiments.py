@@ -1,17 +1,18 @@
 import numpy as np
 master_seed = 0
 
-default_dataset_path = '/om/user/scasper/data/cifar10/'
-default_log_dir = '/om/user/scasper/workspace/models/init_scheme/'
-default_csv_dir = '/om/user/scasper/workspace/csvs/init_scheme/'
-
+dataset_stem = '/om/user/scasper/data/'
+log_dir_stem = '/om/user/scasper/workspace/models/'
+log_dir_stem2 = '/om/user/xboix/share/robust/'
+csv_dir_stem = '/om/user/scasper/workspace/csvs/'
+csv_dir_stem2 = '/om/user/xboix/share/robust/csvs/'
 
 class Dataset(object):
 
     def __init__(self):
 
         # Dataset general
-        self.dataset_path = default_dataset_path
+        self.dataset_path = dataset_stem + 'cifar10/'
         self.proportion_training_set = .95
         self.shuffle_data = True
 
@@ -198,8 +199,8 @@ for nn_name in name:
                                                        str(neuron_mult) + '_reg=' + str(reg) + '_rand=' +
                                                        str(flag_rand) + '_seed=' + str(master_seed)))
 
-                                opt[-1].log_dir_base = default_log_dir
-                                opt[-1].csv_dir = default_csv_dir
+                                opt[-1].log_dir_base = log_dir_stem + 'init_scheme/'
+                                opt[-1].csv_dir = csv_dir_stem + 'init_scheme/'
                                 opt[-1].dnn.name = nn_name
                                 opt[-1].init_type = init_type
                                 opt[-1].hyper.init_factor = init_mult
@@ -255,8 +256,8 @@ for nn_name in name:
                                                        str(neuron_mult) + '_reg=' + str(reg) + '_rand=' +
                                                        str(flag_rand) + '_seed=' + str(master_seed)))
 
-                                opt[-1].log_dir_base = '/om/user/scasper/workspace/models/replication/'
-                                opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/replication/'
+                                opt[-1].log_dir_base = log_dir_stem + 'replication/'
+                                opt[-1].csv_dir = csv_dir_stem + 'replication/'
                                 opt[-1].dnn.name = nn_name
                                 opt[-1].init_type = init_type
                                 opt[-1].hyper.init_factor = init_mult
@@ -315,8 +316,8 @@ for nn_name in name:
                                                            str(flag_rand) + '_optim=' + str(optim) +
                                                            '_seed=' + str(master_seed)))
 
-                                    opt[-1].log_dir_base = '/om/user/scasper/workspace/models/optimizers/'
-                                    opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/optimizers/'
+                                    opt[-1].log_dir_base = log_dir_stem + 'optimizers/'
+                                    opt[-1].csv_dir = csv_dir_stem + 'optimizers/'
                                     opt[-1].dnn.name = nn_name
                                     opt[-1].init_type = init_type
                                     opt[-1].hyper.init_factor = init_mult
@@ -362,8 +363,8 @@ for nn_name in name:
                                                            str(flag_rand) + '_af=' + str(af) +
                                                            '_seed=' + str(master_seed)))
 
-                                    opt[-1].log_dir_base = '/om/user/scasper/workspace/models/act_functions/'
-                                    opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/act_functions/'
+                                    opt[-1].log_dir_base = log_dir_stem + 'act_functions/'
+                                    opt[-1].csv_dir = csv_dir_stem + 'act_functions/'
                                     opt[-1].dnn.name = nn_name
                                     opt[-1].init_type = init_type
                                     opt[-1].hyper.init_factor = init_mult
@@ -411,8 +412,8 @@ for nn_name in name:
                                                            str(lr_bs) + '_rand=' + str(flag_rand) + '_seed=' +
                                                            str(master_seed)))
 
-                                    opt[-1].log_dir_base = '/om/user/scasper/workspace/models/lr_bs/'
-                                    opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/lr_bs/'
+                                    opt[-1].log_dir_base = log_dir_stem + 'lr_bs/'
+                                    opt[-1].csv_dir = csv_dir_stem + 'lr_bs/'
                                     opt[-1].dnn.name = nn_name
                                     opt[-1].init_type = init_type
                                     opt[-1].hyper.init_factor = init_mult
@@ -475,8 +476,8 @@ for nn_name in name:
                                                            str(lr_bs) + '_rand=' + str(flag_rand) + '_seed=' +
                                                            str(master_seed)))
 
-                                    opt[-1].log_dir_base = '/om/user/scasper/workspace/models/resnet_cifar/'
-                                    opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/resnet_cifar/'
+                                    opt[-1].log_dir_base = log_dir_stem + 'resnet_cifar/'
+                                    opt[-1].csv_dir = csv_dir_stem + 'resnet_cifar/'
                                     opt[-1].dnn.name = nn_name
                                     opt[-1].init_type = init_type
                                     opt[-1].hyper.init_factor = init_mult
@@ -530,8 +531,8 @@ for nn_name in name:
                                                        str(neuron_mult) + '_reg=' + str(reg) + '_rand=' +
                                                        str(flag_rand) + '_seed=' + str(master_seed+1)))
 
-                                opt[-1].log_dir_base = '/om/user/scasper/workspace/models/replication/'
-                                opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/replication/'
+                                opt[-1].log_dir_base = log_dir_stem + 'replication/'
+                                opt[-1].csv_dir = csv_dir_stem + 'replication/'
                                 opt[-1].dnn.name = nn_name
                                 opt[-1].init_type = init_type
                                 opt[-1].hyper.init_factor = init_mult
@@ -593,8 +594,8 @@ for nn_name in name:
                                                            str(lr_bs) + '_rand=' + str(flag_rand) + '_seed=' +
                                                            str(master_seed)))
 
-                                    opt[-1].log_dir_base = '/om/user/scasper/workspace/models/resnet_cifar/'
-                                    opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/resnet_cifar/'
+                                    opt[-1].log_dir_base = log_dir_stem + 'resnet_cifar/'
+                                    opt[-1].csv_dir = csv_dir_stem + 'resnet_cifar/'
                                     opt[-1].dnn.name = nn_name
                                     opt[-1].init_type = init_type
                                     opt[-1].hyper.init_factor = init_mult
@@ -647,8 +648,8 @@ for nn_name in name:
                                                        str(neuron_mult) + '_reg=' + str(reg) + '_rand=' +
                                                        str(flag_rand) + '_seed=' + str(master_seed+1)))
 
-                                opt[-1].log_dir_base = '/om/user/scasper/workspace/models/replication/'
-                                opt[-1].csv_dir = '/om/user/scasper/workspace/csvs/replication/'
+                                opt[-1].log_dir_base = log_dir_stem + 'replication/'
+                                opt[-1].csv_dir = csv_dir_stem + 'replication/'
                                 opt[-1].dnn.name = nn_name
                                 opt[-1].init_type = init_type
                                 opt[-1].hyper.init_factor = init_mult
@@ -693,8 +694,8 @@ for num_data in [1e3, 1e4, 1e5]:
     opt[-1].hyper.max_num_epochs = 0
     opt[-1].dnn.name = 'MLP1'
     opt[-1].num_data_random = num_data
-    opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10/'
-    opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10/'
+    opt[-1].log_dir_base = log_dir_stem2 + 'rand10/'
+    opt[-1].csv_dir = csv_dir_stem2 + 'rand10/'
     idx += 1
 
 
@@ -704,8 +705,8 @@ for num_data in [1e3, 1e4, 1e5]:
     opt[-1].hyper.max_num_epochs = 0
     opt[-1].dnn.name = 'MLP1'
     opt[-1].num_data_random = num_data
-    opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10000/'
-    opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10000/'
+    opt[-1].log_dir_base = log_dir_stem2 + 'rand10000/'
+    opt[-1].csv_dir = csv_dir_stem2 + 'rand10000/'
     idx += 1
 
 
@@ -727,8 +728,8 @@ for idx_data, num_data in enumerate([1e3]):
                     opt[-1].hyper.init_factor = init_mult
                     opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
                     opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
-                    opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10/'
-                    opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10/'
+                    opt[-1].log_dir_base = log_dir_stem2 + 'rand10/'
+                    opt[-1].csv_dir = csv_dir_stem2 + 'rand10/'
                     idx += 1
 
         for neuron_mult in [1, 2, 4, 8, 16]:
@@ -746,8 +747,8 @@ for idx_data, num_data in enumerate([1e3]):
                     opt[-1].hyper.learning_rate = lr
                     opt[-1].optimizer = optimizer
                     opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
-                    opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10000/'
-                    opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10000/'
+                    opt[-1].log_dir_base = log_dir_stem2 + 'rand10000/'
+                    opt[-1].csv_dir = csv_dir_stem2 + 'rand10000/'
                     idx += 1
 
 for idx_data, num_data in enumerate([1e4,1e5]):
@@ -765,8 +766,8 @@ for idx_data, num_data in enumerate([1e4,1e5]):
                 opt[-1].hyper.init_factor = init_mult
                 opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
                 opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
-                opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10/'
-                opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10/'
+                opt[-1].log_dir_base = log_dir_stem2 + 'rand10/'
+                opt[-1].csv_dir = csv_dir_stem2 + 'rand10/'
                 idx += 1
 
     for neuron_mult in [1, 2, 4, 8, 16]:
@@ -783,8 +784,8 @@ for idx_data, num_data in enumerate([1e4,1e5]):
                 opt[-1].hyper.init_factor = init_mult
                 opt[-1].hyper.learning_rate = lr
                 opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
-                opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10000/'
-                opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10000/'
+                opt[-1].log_dir_base = log_dir_stem2 + 'rand10000/'
+                opt[-1].csv_dir = csv_dir_stem2 + 'rand10000/'
                 idx += 1
 
 for idx_data, num_data in enumerate([1e3]):
@@ -805,8 +806,8 @@ for idx_data, num_data in enumerate([1e3]):
                     opt[-1].hyper.init_factor = init_mult
                     opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
                     opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
-                    opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10/'
-                    opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10/'
+                    opt[-1].log_dir_base = log_dir_stem2 + 'rand10/'
+                    opt[-1].csv_dir = csv_dir_stem2 + 'rand10/'
                     idx += 1
 
         for neuron_mult in [1, 2, 4, 8, 16]:
@@ -824,8 +825,8 @@ for idx_data, num_data in enumerate([1e3]):
                     opt[-1].hyper.learning_rate = lr
                     opt[-1].optimizer = optimizer
                     opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
-                    opt[-1].log_dir_base = '/om/user/xboix/share/robust/rand10000/'
-                    opt[-1].csv_dir = '/om/user/xboix/share/robust/csvs/rand10000/'
+                    opt[-1].log_dir_base = log_dir_stem2 + 'rand10000/'
+                    opt[-1].csv_dir = csv_dir_stem2 + 'rand10000/'
                     idx += 1
 
 

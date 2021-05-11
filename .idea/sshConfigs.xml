@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="SshConfigs">
-    <configs>
-      <sshConfig authType="PASSWORD" host="polestar.mit.edu" id="f77b96f8-a16b-43a4-a713-1d1b5262c7a4" port="22" customName="openmind7.cm.cluster" nameFormat="CUSTOM" username="scasper" />
-      <sshConfig authType="PASSWORD" host="polestar.mit.edu" id="3ac33b72-eea4-4769-a580-d5ca5e66d42b" port="22" customName="openmind7.cm.cluster" nameFormat="CUSTOM" username="scasper" />
-    </configs>
-  </component>
-</project>

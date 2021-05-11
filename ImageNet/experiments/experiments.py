@@ -4,6 +4,8 @@ import datasets
 import copy
 import pickle
 
+models_stem = '/om/user/scasper/workspace/models/'
+csvs_stem = '/om/user/scasper/workspace/csvs/'
 
 class DNN(object):
 
@@ -23,8 +25,8 @@ class Hyperparameters(object):
 class Experiments(object):
 
     def __init__(self, id, dataset, output_path, family_id, family_name,
-                 results_dir='/om/user/scasper/workspace/models/resnet_imagenet/',
-                 csv_dir='/om/user/scasper/workspace/csvs/resnet_imagenet/'):
+                 results_dir=models_stem + 'resnet_imagenet/',
+                 csv_dir=csvs_stem + 'resnet_imagenet/'):
         self.log_dir_base = output_path
         self.results_dir = results_dir
         self.csv_dir = csv_dir
@@ -143,8 +145,8 @@ def get_experiments(output_path, dataset_path):
         opt_handle.dnn.factor = n_multiplier
         opt_handle.hyper.batch_size = batch_size
         opt_handle.dnn.layers = 16  # not including the logits output layer
-        opt_handle.results_dir = '/om/user/scasper/workspace/models/inception_imagenet/'
-        opt_handle.csv_dir = '/om/user/scasper/workspace/csvs/inception_imagenet/'
+        opt_handle.results_dir = models_stem + 'inception_imagenet/'
+        opt_handle.csv_dir = csvs_stem + 'inception_imagenet/'
         opt += [copy.deepcopy(opt_handle)]
         idx_base += 1
 
@@ -161,8 +163,8 @@ def get_experiments(output_path, dataset_path):
         opt_handle.dnn.factor_end = n_multiplier
         opt_handle.hyper.batch_size = batch_size
         opt_handle.dnn.layers = 16  # not including the logits output layer
-        opt_handle.results_dir = '/om/user/scasper/workspace/models/inception_imagenet/'
-        opt_handle.csv_dir = '/om/user/scasper/workspace/csvs/inception_imagenet/'
+        opt_handle.results_dir = models_stem + 'inception_imagenet/'
+        opt_handle.csv_dir = csvs_stem + 'inception_imagenet/'
         opt += [copy.deepcopy(opt_handle)]
         idx_base += 1
 
