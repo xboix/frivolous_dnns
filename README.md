@@ -58,6 +58,8 @@ After an experiment is configured, its experiment IDs is passed as a command lin
 
 Analogous files to the above exist in ```ImageNet/runs/```.
 
+Pretrained models can be downloaded from [here](https://drive.google.com/drive/folders/1jce491LXys18_za-VOFnuJlG2cpeMjiO?usp=sharing) to the network training directory. 
+
 ## Plotting
 
 The six notebooks in ```ipy_notebooks``` reproduce the plots from the paper. 
