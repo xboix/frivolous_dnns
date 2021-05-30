@@ -1,28 +1,32 @@
 import numpy as np
+master_seed = 0
 
+dataset_stem = '/om/user/scasper/data/'
+log_dir_stem = '/om/user/scasper/workspace/models/'
+log_dir_stem2 = '/om/user/xboix/share/robust/'
+csv_dir_stem = '/om/user/scasper/workspace/csvs/'
+csv_dir_stem2 = '/om/user/xboix/share/robust/csvs/'
 
 class Dataset(object):
 
     def __init__(self):
 
-        # # #
         # Dataset general
-        self.dataset_path = ""
-        self.proportion_training_set = 0.95
+        self.dataset_path = dataset_stem + 'cifar10/'
+        self.proportion_training_set = .95
         self.shuffle_data = True
 
-        # # #
         # For reusing tfrecords:
         self.reuse_TFrecords = False
         self.reuse_TFrecords_ID = 0
         self.reuse_TFrecords_path = ""
 
-        # # #
         # Set random labels
         self.random_labels = False
         self.scramble_data = False
 
-        # # #
+        self.dataset_name = 'cifar'
+
         # Transfer learning
         self.transfer_learning = False
         self.transfer_pretrain = True
@@ -30,13 +34,6 @@ class Dataset(object):
         self.transfer_restart_name = "_pretrain"
         self.transfer_append_name = ""
 
-        # Find dataset path:
-        for line in open("data/paths", 'r'):
-            if 'Dataset:' in line:
-                self.dataset_path = line.split(" ")[1].replace('\r', '').replace('\n', '')
-
-    # # #
-    # Dataset general
     # Set base tfrecords
     def generate_base_tfrecords(self):
         self.reuse_TFrecords = False
@@ -47,13 +44,12 @@ class Dataset(object):
         self.reuse_TFrecords_ID = experiment.ID
         self.reuse_TFrecords_path = experiment.name
 
-    # # #
     # Transfer learning
-    def do_pretrain_transfer_lerning(self):
+    def do_pretrain_transfer_learning(self):
         self.transfer_learning = True
         self.transfer_append_name = self.transfer_restart_name
 
-    def do_transfer_transfer_lerning(self):
+        # def do_transfer_transfer_learning(self):
         self.transfer_learning = True
         self.transfer_pretrain = True
         self.transfer_label_offset = 5
@@ -63,15 +59,15 @@ class Dataset(object):
 class DNN(object):
 
     def __init__(self):
-        self.name = "Alexnet"
+        self.name = ''
         self.pretrained = False
-        self.version = 1
-        self.layers = 4
-        self.neuron_multiplier = np.ones([self.layers])
+        self.layers = 5
+        # self.version = 1
+        self.neuron_multiplier = np.ones(self.layers-1)
 
-    def set_num_layers(self, num_layers):
-        self.layers = num_layers
-        self.neuron_multiplier = np.ones([self.layers])
+    # def set_num_layers(self, num_layers):
+    #     self.layers = num_layers
+    #     self.neuron_multiplier = np.ones([self.layers])
 
 
 class Hyperparameters(object):
@@ -79,28 +75,35 @@ class Hyperparameters(object):
     def __init__(self):
         self.batch_size = 128
         self.learning_rate = 1e-2
-        self.num_epochs_per_decay = 1.0
+        self.lr_bs_factor = 1  # factor by which lr and batch_size are multiplied by
+        self.num_epochs_per_decay = 1
         self.learning_rate_factor_per_decay = 0.95
         self.weight_decay = 0
-        self.max_num_epochs = 60
+        self.max_num_epochs = 500
         self.crop_size = 28
         self.image_size = 32
         self.drop_train = 1
         self.drop_test = 1
         self.momentum = 0.9
         self.augmentation = False
-        self.init_factor = False
+        self.init_factor = 1
+        self.mse = False  # default is cross entropy, but if True, use mean sq loss
 
 
 class Experiments(object):
 
     def __init__(self, id, name):
-        self.name = "base"
-        self.log_dir_base = "/om/user/xboix/share/robustness/models_init_test/"
-            #"/om/user/xboix/src/robustness/robustness/log/"
-            #"/Users/xboix/src/martin/robustness/robustness/log/"
-            #"/om/user/xboix/src/robustness/robustness/log/"
+        self.log_dir_base = ''
+        self.csv_dir = ''
+        self.seed = master_seed
 
+        # Training
+        # 0=glorot norm, 1=glorot unif, 2=he norm, 3=he unif, 4=lecun norm, 5=lecun unif; invalid defaults 0
+        self.init_type = 0
+        # 0=momentum, 1=sgd, 2=adam, 3=adagrad, 4=proximal adagrad, 5=rmsprop, 6=FTRL
+        self.optimizer = 0
+        # 0=relu, 1=leaky relu, 2=elu, 3=exponential, 4=sigmoid, 5=tanh
+        self.act_function = 0
 
         # Recordings
         self.max_to_keep_checkpoints = 5
@@ -142,246 +145,699 @@ class Experiments(object):
         self.plot_details = plot_details
         self.plotting = True
 
-# # #
+
 # Create set of experiments
 opt = []
-plot_freezing = []
 
-neuron_multiplier = [1] #0.25, 0.5, 1, 2, 4]
-initialization_multiplier = [1.0] #[0.1, 0.5, 1, 5, 10]
-learning_rates = [1e-2] #[1e-1, 1e-2, 1e-3]
-training_data = [1] #, 0.5, 0.25, 0.125, 0.0625]
-name = ["Alexnet"]
-num_layers = [5]
-max_epochs = [500]
+name = ['Alexnet']
+initialization_type = [0, 1, 2, 3, 4, 5]
+initialization_multiplier = [1.0]  # [0.1, 0.5, 1, 5, 10]
+neuron_multiplier = [0.25, 0.5, 1, 2, 4]
+training_prop = [1]  # , 0.5, 0.25, 0.125, 0.0625]
+learning_rate = [1e-2]  # [1e-1, 1e-2, 1e-3]
+regularizers = [0]  # 1, 2, 3, 4]
+flag_random = [0, 1]
 
+##############################################################################################
 
-# 0-1, 32-33, 64-65
-# 2-31, 34-63, 66-95
-
+# experiments 1 and 2 are to make the base tfrecords files that the other models use
 
 idx = 0
-for d in training_data:
+for p in training_prop:
     # Create base for TF records:
-    opt += [Experiments(idx, "data_" + str(d))]
-    opt[-1].dataset.proportion_training_set *= d
+    opt += [Experiments(idx, "data_" + str(p))]
+    opt[-1].dataset.proportion_training_set *= p
     opt[-1].hyper.max_num_epochs = 0
     idx += 1
 
 idx_base_random = idx
-# Create base for TF records:
-for d in training_data:
+for p in training_prop:
     # Create base for TF records:
     opt += [Experiments(idx, "data_random")]
     opt[-1].hyper.max_num_epochs = 0
-    opt[-1].dataset.proportion_training_set *= d
+    opt[-1].dataset.proportion_training_set *= p
     opt[-1].dataset.random_labels = True
     idx += 1
 
+##############################################################################################
 
-for name_NN, num_layers_NN, max_epochs_NN in zip(name, num_layers, max_epochs):
-    for idx_data in range(len(training_data)):
-        for flag_random in range(2):
-            for init in initialization_multiplier:
-                for lr in learning_rates:
-                    regularizers = 0
-                    #for regularizers in range(5):
-                    if flag_random and regularizers > 0:
-                        continue
+# experiments 2-61 are the init_scheme_tests
 
-                    # Change number neurons for each layer
-                    for multiplier in neuron_multiplier:
-                        opt += [Experiments(idx, name_NN + "_layers_all_" +
-                                        str(multiplier) + "_" + str(regularizers) + "_" + str(idx_data))]
+for nn_name in name:
+    for flag_rand in flag_random:
+        for init_type in initialization_type:
+            for init_mult in initialization_multiplier:
+                for neuron_mult in neuron_multiplier:
+                    for train_prop_idx in range(len(training_prop)):
+                        for lr in learning_rate:
+                            for reg in regularizers:
 
-                        opt[-1].hyper.max_num_epochs = max_epochs_NN
-                        opt[-1].dnn.name = name_NN
-                        opt[-1].dnn.set_num_layers(num_layers_NN)
-                        opt[-1].dnn.neuron_multiplier.fill(multiplier)
-                        opt[-1].dnn.init_factor = init
-                        opt[-1].dnn.learning_rate = lr
+                                if flag_rand and reg > 0:
+                                    continue
 
-                        if flag_random == 0:
-                            opt[-1].dataset.reuse_tfrecords(opt[idx_data])
-                            opt[-1].dataset.proportion_training_set *= training_data[idx_data]
-                            opt[-1].hyper.max_num_epochs = int(max_epochs_NN / training_data[idx_data])
-                            opt[-1].hyper.num_epochs_per_decay = \
-                                int(opt[-1].hyper.num_epochs_per_decay / training_data[idx_data])
+                                opt.append(Experiments(idx, nn_name + '_itype=' + str(init_type) + '_nmult=' +
+                                                       str(neuron_mult) + '_reg=' + str(reg) + '_rand=' +
+                                                       str(flag_rand) + '_seed=' + str(master_seed)))
 
-                        elif flag_random == 1:
-                            opt[-1].dataset.reuse_tfrecords(opt[idx_data+idx_base_random])
-                            opt[-1].dataset.random_labels = True
-                            opt[-1].dataset.proportion_training_set *= training_data[idx_data]
-                            opt[-1].hyper.max_num_epochs = int(max_epochs_NN * 10 / training_data[idx_data])
-                            opt[-1].hyper.num_epochs_per_decay = int(opt[-1].hyper.num_epochs_per_decay  / training_data[idx_data])
+                                opt[-1].log_dir_base = log_dir_stem + 'init_scheme/'
+                                opt[-1].csv_dir = csv_dir_stem + 'init_scheme/'
+                                opt[-1].dnn.name = nn_name
+                                opt[-1].init_type = init_type
+                                opt[-1].hyper.init_factor = init_mult
+                                opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                                opt[-1].dataset.proportion_training_set *= training_prop[train_prop_idx]
+                                opt[-1].hyper.learning_rate = lr
+                                opt[-1].hyper.num_epochs_per_decay = \
+                                    int(opt[-1].hyper.num_epochs_per_decay / training_prop[train_prop_idx])
+
+                                if flag_rand == 0:
+                                    opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx])
+                                    opt[-1].hyper.max_num_epochs //= training_prop[train_prop_idx]
+                                else:
+                                    opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx + idx_base_random])
+                                    opt[-1].dataset.random_labels = True
+                                    opt[-1].hyper.max_num_epochs = int(opt[-1].hyper.max_num_epochs * 10 /
+                                                                       training_prop[train_prop_idx])
+
+                                if reg == 1:
+                                    opt[-1].hyper.augmentation = True
+                                    opt[-1].hyper.max_num_epochs *= int(2)
+                                elif reg == 2:
+                                    opt[-1].hyper.drop_train = 0.5
+                                elif reg == 3:
+                                    opt[-1].hyper.weight_decay = 0.001
+                                elif reg == 4:
+                                    opt[-1].hyper.augmentation = True
+                                    opt[-1].hyper.max_num_epochs *= int(2)
+                                    opt[-1].hyper.drop_train = 0.5
+                                    opt[-1].hyper.weight_decay = 0.001
+                                idx += 1
+
+##############################################################################################
+
+# experiments 62-91 are the main tests
+
+initialization_type = [0]
+regularizers = [0, 1, 2, 3, 4]
+
+for nn_name in name:
+    for init_type in initialization_type:
+        for init_mult in initialization_multiplier:
+            for neuron_mult in neuron_multiplier:
+                for train_prop_idx in range(len(training_prop)):
+                    for lr in learning_rate:
+                        for reg in regularizers:
+                            for flag_rand in flag_random:
+
+                                if flag_rand and reg > 0:
+                                    continue
+
+                                opt.append(Experiments(idx, nn_name + '_itype=' + str(init_type) + '_nmult=' +
+                                                       str(neuron_mult) + '_reg=' + str(reg) + '_rand=' +
+                                                       str(flag_rand) + '_seed=' + str(master_seed)))
+
+                                opt[-1].log_dir_base = log_dir_stem + 'replication/'
+                                opt[-1].csv_dir = csv_dir_stem + 'replication/'
+                                opt[-1].dnn.name = nn_name
+                                opt[-1].init_type = init_type
+                                opt[-1].hyper.init_factor = init_mult
+                                opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                                opt[-1].dataset.proportion_training_set *= training_prop[train_prop_idx]
+                                opt[-1].hyper.learning_rate = lr
+                                opt[-1].hyper.num_epochs_per_decay = \
+                                    int(opt[-1].hyper.num_epochs_per_decay / training_prop[train_prop_idx])
+
+                                if flag_rand == 0:
+                                    opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx])
+                                    opt[-1].hyper.max_num_epochs //= training_prop[train_prop_idx]
+                                else:
+                                    opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx + idx_base_random])
+                                    opt[-1].dataset.random_labels = True
+                                    opt[-1].hyper.max_num_epochs = int(opt[-1].hyper.max_num_epochs * 10 /
+                                                                       training_prop[train_prop_idx])
+
+                                if reg == 1:
+                                    opt[-1].hyper.augmentation = True
+                                    opt[-1].hyper.max_num_epochs *= int(2)
+                                elif reg == 2:
+                                    opt[-1].hyper.drop_train = 0.5
+                                elif reg == 3:
+                                    opt[-1].hyper.weight_decay = 0.001
+                                elif reg == 4:
+                                    opt[-1].hyper.augmentation = True
+                                    opt[-1].hyper.max_num_epochs *= int(2)
+                                    opt[-1].hyper.drop_train = 0.5
+                                    opt[-1].hyper.weight_decay = 0.001
+                                idx += 1
+
+##############################################################################################
+
+# experiments 92-126 are the optimizer tests
+
+regularizers = [0]
+optimizers = [0, 1, 2, 3, 4, 5, 6]
+flag_random = [0]
+
+for nn_name in name:
+    for init_type in initialization_type:
+        for init_mult in initialization_multiplier:
+            for neuron_mult in neuron_multiplier:
+                for train_prop_idx in range(len(training_prop)):
+                    for lr in learning_rate:
+                        for reg in regularizers:
+                            for flag_rand in flag_random:
+                                for optim in optimizers:
+
+                                    if flag_rand and reg > 0:
+                                        continue
+
+                                    opt.append(Experiments(idx, nn_name + '_nmult=' +
+                                                           str(neuron_mult) + '_reg=' + str(reg) + '_rand=' +
+                                                           str(flag_rand) + '_optim=' + str(optim) +
+                                                           '_seed=' + str(master_seed)))
+
+                                    opt[-1].log_dir_base = log_dir_stem + 'optimizers/'
+                                    opt[-1].csv_dir = csv_dir_stem + 'optimizers/'
+                                    opt[-1].dnn.name = nn_name
+                                    opt[-1].init_type = init_type
+                                    opt[-1].hyper.init_factor = init_mult
+                                    opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                                    opt[-1].dataset.proportion_training_set *= training_prop[train_prop_idx]
+                                    opt[-1].hyper.learning_rate = lr
+                                    opt[-1].hyper.num_epochs_per_decay = \
+                                        int(opt[-1].hyper.num_epochs_per_decay / training_prop[train_prop_idx])
+                                    opt[-1].optimizer = optim
+
+                                    if flag_rand == 0:
+                                        opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx])
+                                        opt[-1].hyper.max_num_epochs //= training_prop[train_prop_idx]
+                                    else:
+                                        opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx + idx_base_random])
+                                        opt[-1].dataset.random_labels = True
+                                        opt[-1].hyper.max_num_epochs = int(opt[-1].hyper.max_num_epochs * 10 /
+                                                                           training_prop[train_prop_idx])
+
+                                    idx += 1
+
+##############################################################################################
+
+# experiments 127-156 are the activation function tests
+
+act_functions = [0, 1, 2, 3, 4, 5]
+
+for nn_name in name:
+    for init_type in initialization_type:
+        for init_mult in initialization_multiplier:
+            for neuron_mult in neuron_multiplier:
+                for train_prop_idx in range(len(training_prop)):
+                    for lr in learning_rate:
+                        for reg in regularizers:
+                            for flag_rand in flag_random:
+                                for af in act_functions:
+
+                                    if flag_rand and reg > 0:
+                                        continue
+
+                                    opt.append(Experiments(idx, nn_name + '_nmult=' +
+                                                           str(neuron_mult) + '_reg=' + str(reg) + '_rand=' +
+                                                           str(flag_rand) + '_af=' + str(af) +
+                                                           '_seed=' + str(master_seed)))
+
+                                    opt[-1].log_dir_base = log_dir_stem + 'act_functions/'
+                                    opt[-1].csv_dir = csv_dir_stem + 'act_functions/'
+                                    opt[-1].dnn.name = nn_name
+                                    opt[-1].init_type = init_type
+                                    opt[-1].hyper.init_factor = init_mult
+                                    opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                                    opt[-1].dataset.proportion_training_set *= training_prop[train_prop_idx]
+                                    opt[-1].hyper.learning_rate = lr
+                                    opt[-1].hyper.num_epochs_per_decay = \
+                                        int(opt[-1].hyper.num_epochs_per_decay / training_prop[train_prop_idx])
+                                    opt[-1].act_function = af
+
+                                    if flag_rand == 0:
+                                        opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx])
+                                        opt[-1].hyper.max_num_epochs //= training_prop[train_prop_idx]
+                                    else:
+                                        opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx + idx_base_random])
+                                        opt[-1].dataset.random_labels = True
+                                        opt[-1].hyper.max_num_epochs = int(opt[-1].hyper.max_num_epochs * 10 /
+                                                                           training_prop[train_prop_idx])
+
+                                    idx += 1
+
+##############################################################################################
+
+# experiments 157-216 are the tests for different factors to multiple the lr and batch size by
+
+lr_bs_factors = [0.25, 4]
+regularizers = [0, 1, 2, 3, 4]
+flag_random = [0, 1]
+
+for nn_name in name:
+    for flag_rand in flag_random:
+        for init_type in initialization_type:
+            for init_mult in initialization_multiplier:
+                for train_prop_idx in range(len(training_prop)):
+                    for lr in learning_rate:
+                        for reg in regularizers:
+                            for neuron_mult in neuron_multiplier:
+                                for lr_bs in lr_bs_factors:
+
+                                    if flag_rand and reg > 0:
+                                        continue
+
+                                    opt.append(Experiments(idx, nn_name + '_nmult=' +
+                                                           str(neuron_mult) + '_reg=' + str(reg) + '_lrbs=' +
+                                                           str(lr_bs) + '_rand=' + str(flag_rand) + '_seed=' +
+                                                           str(master_seed)))
+
+                                    opt[-1].log_dir_base = log_dir_stem + 'lr_bs/'
+                                    opt[-1].csv_dir = csv_dir_stem + 'lr_bs/'
+                                    opt[-1].dnn.name = nn_name
+                                    opt[-1].init_type = init_type
+                                    opt[-1].hyper.init_factor = init_mult
+                                    opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                                    opt[-1].dataset.proportion_training_set *= training_prop[train_prop_idx]
+                                    opt[-1].hyper.learning_rate = lr
+                                    opt[-1].hyper.lr_bs_factor = lr_bs
+                                    opt[-1].hyper.learning_rate *= lr_bs
+                                    opt[-1].hyper.batch_size = int(opt[-1].hyper.batch_size * lr_bs)
+                                    opt[-1].hyper.num_epochs_per_decay = \
+                                        int(opt[-1].hyper.num_epochs_per_decay / training_prop[train_prop_idx])
+
+                                    if flag_rand == 0:
+                                        opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx])
+                                        opt[-1].hyper.max_num_epochs //= training_prop[train_prop_idx]
+                                    else:
+                                        opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx + idx_base_random])
+                                        opt[-1].dataset.random_labels = True
+                                        opt[-1].hyper.max_num_epochs = int(opt[-1].hyper.max_num_epochs * 10 /
+                                        training_prop[train_prop_idx])
+
+                                    if reg == 1:
+                                        opt[-1].hyper.augmentation = True
+                                        opt[-1].hyper.max_num_epochs *= int(2)
+                                    elif reg == 2:
+                                        opt[-1].hyper.drop_train = 0.5
+                                    elif reg == 3:
+                                        opt[-1].hyper.weight_decay = 0.001
+                                    elif reg == 4:
+                                        opt[-1].hyper.augmentation = True
+                                        opt[-1].hyper.max_num_epochs *= int(2)
+                                        opt[-1].hyper.drop_train = 0.5
+                                        opt[-1].hyper.weight_decay = 0.001
+                                    idx += 1
+
+##############################################################################################
+
+# experiments 217-231 are the tests for resnet in cifar
+
+name = ['ResNet_cifar']
+regularizers = [0]
+lr_bs_factors = [1, 0.25]
+learning_rate = [1e-1]
+
+for nn_name in name:
+    for init_type in initialization_type:
+        for init_mult in initialization_multiplier:
+            for neuron_mult in neuron_multiplier:
+                for train_prop_idx in range(len(training_prop)):
+                    for lr in learning_rate:
+                        for reg in regularizers:
+                            for lr_bs in lr_bs_factors:
+                                for flag_rand in flag_random:
+
+                                    if flag_rand and lr_bs == 0.25:
+                                        continue
+
+                                    opt.append(Experiments(idx, nn_name + '_nmult=' +
+                                                           str(neuron_mult) + '_lrbs=' +
+                                                           str(lr_bs) + '_rand=' + str(flag_rand) + '_seed=' +
+                                                           str(master_seed)))
+
+                                    opt[-1].log_dir_base = log_dir_stem + 'resnet_cifar/'
+                                    opt[-1].csv_dir = csv_dir_stem + 'resnet_cifar/'
+                                    opt[-1].dnn.name = nn_name
+                                    opt[-1].init_type = init_type
+                                    opt[-1].hyper.init_factor = init_mult
+                                    opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                                    opt[-1].dataset.proportion_training_set *= training_prop[train_prop_idx]
+                                    opt[-1].hyper.learning_rate = lr
+                                    opt[-1].hyper.lr_bs_factor = lr_bs
+                                    opt[-1].hyper.learning_rate *= lr_bs
+                                    opt[-1].hyper.batch_size = int(opt[-1].hyper.batch_size * lr_bs)
+                                    opt[-1].hyper.weight_decay = 2e-4
+                                    opt[-1].hyper.num_epochs_per_decay = \
+                                        int(opt[-1].hyper.num_epochs_per_decay / training_prop[train_prop_idx])
+
+                                    if flag_rand == 0:
+                                        opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx])
+                                        opt[-1].hyper.max_num_epochs //= training_prop[train_prop_idx]
+                                        opt[-1].hyper.augmentation = True
+                                        opt[-1].hyper.weight_decay = 2e-4
+                                    else:
+                                        opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx + idx_base_random])
+                                        opt[-1].dataset.random_labels = True
+                                        opt[-1].hyper.max_num_epochs = int(opt[-1].hyper.max_num_epochs * 10 /
+                                                                           training_prop[train_prop_idx])
+                                        opt[-1].hyper.augmentation = False
+                                        opt[-1].hyper.weight_decay = 0
+                                    idx += 1
+
+##############################################################################################
+
+# experiments 232 and 233 need to be copies of 86 and 91 to help with the mappability experiment
+
+regularizers = [0, 4]
+flag_random = [0]
+name = ['Alexnet']
+neuron_multiplier = [4]
+learning_rate = [1e-2]
+
+for nn_name in name:
+    for init_type in initialization_type:
+        for init_mult in initialization_multiplier:
+            for neuron_mult in neuron_multiplier:
+                for train_prop_idx in range(len(training_prop)):
+                    for lr in learning_rate:
+                        for reg in regularizers:
+                            for flag_rand in flag_random:
+
+                                if flag_rand and reg > 0:
+                                    continue
+
+                                opt.append(Experiments(idx, nn_name + '_itype=' + str(init_type) + '_nmult=' +
+                                                       str(neuron_mult) + '_reg=' + str(reg) + '_rand=' +
+                                                       str(flag_rand) + '_seed=' + str(master_seed+1)))
+
+                                opt[-1].log_dir_base = log_dir_stem + 'replication/'
+                                opt[-1].csv_dir = csv_dir_stem + 'replication/'
+                                opt[-1].dnn.name = nn_name
+                                opt[-1].init_type = init_type
+                                opt[-1].hyper.init_factor = init_mult
+                                opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                                opt[-1].dataset.proportion_training_set *= training_prop[train_prop_idx]
+                                opt[-1].hyper.learning_rate = lr
+                                opt[-1].hyper.num_epochs_per_decay = \
+                                    int(opt[-1].hyper.num_epochs_per_decay / training_prop[train_prop_idx])
+                                opt[-1].seed += 1
+
+                                if flag_rand == 0:
+                                    opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx])
+                                    opt[-1].hyper.max_num_epochs //= training_prop[train_prop_idx]
+                                else:
+                                    opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx + idx_base_random])
+                                    opt[-1].dataset.random_labels = True
+                                    opt[-1].hyper.max_num_epochs = int(opt[-1].hyper.max_num_epochs * 10 /
+                                                                       training_prop[train_prop_idx])
+
+                                if reg == 1:
+                                    opt[-1].hyper.augmentation = True
+                                    opt[-1].hyper.max_num_epochs *= int(2)
+                                elif reg == 2:
+                                    opt[-1].hyper.drop_train = 0.5
+                                elif reg == 3:
+                                    opt[-1].hyper.weight_decay = 0.001
+                                elif reg == 4:
+                                    opt[-1].hyper.augmentation = True
+                                    opt[-1].hyper.max_num_epochs *= int(2)
+                                    opt[-1].hyper.drop_train = 0.5
+                                    opt[-1].hyper.weight_decay = 0.001
+                                idx += 1
+
+##############################################################################################
+
+# experiments 234-238 are more tests for resnet in cifar which have a lr_bs_factor of 4
+
+name = ['ResNet_cifar']
+regularizers = [0]
+lr_bs_factors = [4]
+learning_rate = [1e-1]
+neuron_multiplier = [0.25, 0.5, 1, 2, 4]
+
+for nn_name in name:
+    for init_type in initialization_type:
+        for init_mult in initialization_multiplier:
+            for neuron_mult in neuron_multiplier:
+                for train_prop_idx in range(len(training_prop)):
+                    for lr in learning_rate:
+                        for reg in regularizers:
+                            for lr_bs in lr_bs_factors:
+                                for flag_rand in flag_random:
+
+                                    if flag_rand and lr_bs == 0.25:
+                                        continue
+
+                                    opt.append(Experiments(idx, nn_name + '_nmult=' +
+                                                           str(neuron_mult) + '_lrbs=' +
+                                                           str(lr_bs) + '_rand=' + str(flag_rand) + '_seed=' +
+                                                           str(master_seed)))
+
+                                    opt[-1].log_dir_base = log_dir_stem + 'resnet_cifar/'
+                                    opt[-1].csv_dir = csv_dir_stem + 'resnet_cifar/'
+                                    opt[-1].dnn.name = nn_name
+                                    opt[-1].init_type = init_type
+                                    opt[-1].hyper.init_factor = init_mult
+                                    opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                                    opt[-1].dataset.proportion_training_set *= training_prop[train_prop_idx]
+                                    opt[-1].hyper.learning_rate = lr
+                                    opt[-1].hyper.lr_bs_factor = lr_bs
+                                    opt[-1].hyper.learning_rate *= lr_bs
+                                    opt[-1].hyper.batch_size = int(opt[-1].hyper.batch_size * lr_bs)
+                                    opt[-1].hyper.weight_decay = 2e-4
+                                    opt[-1].hyper.num_epochs_per_decay = \
+                                        int(opt[-1].hyper.num_epochs_per_decay / training_prop[train_prop_idx])
+
+                                    if flag_rand == 0:
+                                        opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx])
+                                        opt[-1].hyper.max_num_epochs //= training_prop[train_prop_idx]
+                                        opt[-1].hyper.augmentation = True
+                                    else:
+                                        opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx + idx_base_random])
+                                        opt[-1].dataset.random_labels = True
+                                        opt[-1].hyper.max_num_epochs = int(opt[-1].hyper.max_num_epochs * 10 /
+                                                                           training_prop[train_prop_idx])
+                                        opt[-1].hyper.augmentation = False
+                                        opt[-1].hyper.weight_decay = 0
+                                    idx += 1
+
+##############################################################################################
+
+# experiments 239 and 240 need to be copies of 62 and 67 to help with the mappability experiment
+
+regularizers = [0, 4]
+flag_random = [0]
+name = ['Alexnet']
+neuron_multiplier = [0.25]
+learning_rate = [1e-2]
+
+for nn_name in name:
+    for init_type in initialization_type:
+        for init_mult in initialization_multiplier:
+            for neuron_mult in neuron_multiplier:
+                for train_prop_idx in range(len(training_prop)):
+                    for lr in learning_rate:
+                        for reg in regularizers:
+                            for flag_rand in flag_random:
+
+                                if flag_rand and reg > 0:
+                                    continue
+
+                                opt.append(Experiments(idx, nn_name + '_itype=' + str(init_type) + '_nmult=' +
+                                                       str(neuron_mult) + '_reg=' + str(reg) + '_rand=' +
+                                                       str(flag_rand) + '_seed=' + str(master_seed+1)))
+
+                                opt[-1].log_dir_base = log_dir_stem + 'replication/'
+                                opt[-1].csv_dir = csv_dir_stem + 'replication/'
+                                opt[-1].dnn.name = nn_name
+                                opt[-1].init_type = init_type
+                                opt[-1].hyper.init_factor = init_mult
+                                opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                                opt[-1].dataset.proportion_training_set *= training_prop[train_prop_idx]
+                                opt[-1].hyper.learning_rate = lr
+                                opt[-1].hyper.num_epochs_per_decay = \
+                                    int(opt[-1].hyper.num_epochs_per_decay / training_prop[train_prop_idx])
+                                opt[-1].seed += 1
+
+                                if flag_rand == 0:
+                                    opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx])
+                                    opt[-1].hyper.max_num_epochs //= training_prop[train_prop_idx]
+                                else:
+                                    opt[-1].dataset.reuse_tfrecords(opt[train_prop_idx + idx_base_random])
+                                    opt[-1].dataset.random_labels = True
+                                    opt[-1].hyper.max_num_epochs = int(opt[-1].hyper.max_num_epochs * 10 /
+                                                                       training_prop[train_prop_idx])
+
+                                if reg == 1:
+                                    opt[-1].hyper.augmentation = True
+                                    opt[-1].hyper.max_num_epochs *= int(2)
+                                elif reg == 2:
+                                    opt[-1].hyper.drop_train = 0.5
+                                elif reg == 3:
+                                    opt[-1].hyper.weight_decay = 0.001
+                                elif reg == 4:
+                                    opt[-1].hyper.augmentation = True
+                                    opt[-1].hyper.max_num_epochs *= int(2)
+                                    opt[-1].hyper.drop_train = 0.5
+                                    opt[-1].hyper.weight_decay = 0.001
+                                idx += 1
 
 
-                        # SKIP#SKIP#SKIP#SKIP#SKIP#SKIP
-                        #if regularizers > 0:
-                        #    opt[-1].skip = True
-
-                        if regularizers == 1:
-                            opt[-1].hyper.augmentation = True
-                            opt[-1].hyper.max_num_epochs *= int(2)
-                        elif regularizers == 2:
-                            opt[-1].hyper.drop_train = 0.5
-                        elif regularizers == 3:
-                            opt[-1].hyper.weight_decay = 0.001
-                        elif regularizers == 4:
-                            opt[-1].hyper.augmentation = True
-                            opt[-1].hyper.max_num_epochs *= int(2)
-                            opt[-1].hyper.drop_train = 0.5
-                            opt[-1].hyper.weight_decay = 0.001
-                        idx += 1
-
-training_data = [0.0625]
-
-for d in training_data:
-    # Create base for TF records:
-    opt += [Experiments(idx, "data_" + str(d))]
-    opt[-1].dataset.proportion_training_set *= d
-    opt[-1].hyper.max_num_epochs = 0
-    idx += 1
-
-idx_base_random = idx
 # Create base for TF records:
-for d in training_data:
-    # Create base for TF records:
-    opt += [Experiments(idx, "data_random")]
+idx_rand_10 = []
+idx_rand_10000 = []
+for num_data in [1e3, 1e4, 1e5]:
+    idx_rand_10.append(idx)
+    opt += [Experiments(idx, "data_10_tfrecords" + '_seed=' + str(master_seed))]
+    opt[-1].dataset.dataset_name = 'rand10'
     opt[-1].hyper.max_num_epochs = 0
-    opt[-1].dataset.proportion_training_set *= d
-    opt[-1].dataset.random_labels = True
+    opt[-1].dnn.name = 'MLP1'
+    opt[-1].num_data_random = num_data
+    opt[-1].log_dir_base = log_dir_stem2 + 'rand10/'
+    opt[-1].csv_dir = csv_dir_stem2 + 'rand10/'
     idx += 1
 
 
-for name_NN, num_layers_NN, max_epochs_NN in zip(name, num_layers, max_epochs):
-    for idx_data in range(len(training_data)):
-        for flag_random in range(2):
-            for init in initialization_multiplier:
-                for regularizers in range(5):
-                    if flag_random and regularizers > 0:
-                        continue
-
-                    # Change number neurons for each layer
-                    for multiplier in neuron_multiplier:
-                        opt += [Experiments(idx, name_NN + "_layers_all_" +
-                                        str(multiplier) + "_" + str(regularizers) + "_" + str(idx_data))]
-
-                        opt[-1].hyper.max_num_epochs = max_epochs_NN
-                        opt[-1].dnn.name = name_NN
-                        opt[-1].dnn.set_num_layers(num_layers_NN)
-                        opt[-1].dnn.neuron_multiplier.fill(multiplier)
-                        opt[-1].dnn.init_factor =  init
-
-                        if flag_random == 0:
-                            opt[-1].dataset.reuse_tfrecords(opt[idx_data])
-                            opt[-1].dataset.proportion_training_set *= training_data[idx_data]
-                            opt[-1].hyper.max_num_epochs = int(max_epochs_NN / training_data[idx_data])
-                            opt[-1].hyper.num_epochs_per_decay = \
-                                int(opt[-1].hyper.num_epochs_per_decay / training_data[idx_data])
-
-                        elif flag_random == 1:
-                            opt[-1].dataset.reuse_tfrecords(opt[idx_data+idx_base_random])
-                            opt[-1].dataset.random_labels = True
-                            opt[-1].dataset.proportion_training_set *= training_data[idx_data]
-                            opt[-1].hyper.max_num_epochs = int(max_epochs_NN * 10 / training_data[idx_data])
-                            opt[-1].hyper.num_epochs_per_decay = int(opt[-1].hyper.num_epochs_per_decay  / training_data[idx_data])
-
-
-                        # SKIP#SKIP#SKIP#SKIP#SKIP#SKIP
-                        #if regularizers > 0:
-                        #    opt[-1].skip = True
-
-                        if regularizers == 1:
-                            opt[-1].hyper.augmentation = True
-                            opt[-1].hyper.max_num_epochs *= int(2)
-                        elif regularizers == 2:
-                            opt[-1].hyper.drop_train = 0.5
-                        elif regularizers == 3:
-                            opt[-1].hyper.weight_decay = 0.001
-                        elif regularizers == 4:
-                            opt[-1].hyper.augmentation = True
-                            opt[-1].hyper.max_num_epochs *= int(2)
-                            opt[-1].hyper.drop_train = 0.5
-                            opt[-1].hyper.weight_decay = 0.001
-                        idx += 1
-
-
-
-training_data = [0.00390625]
-
-idx_training_data = idx
-for d in training_data:
-    # Create base for TF records:
-    opt += [Experiments(idx, "data_" + str(d))]
-    opt[-1].dataset.proportion_training_set *= d
+    idx_rand_10000.append(idx)
+    opt += [Experiments(idx, "data_10000_tfrecords" + '_seed=' + str(master_seed) )]
+    opt[-1].dataset.dataset_name = 'rand10000'
     opt[-1].hyper.max_num_epochs = 0
-    idx += 1
-
-idx_base_random = idx
-# Create base for TF records:
-for d in training_data:
-    # Create base for TF records:
-    opt += [Experiments(idx, "data_random")]
-    opt[-1].hyper.max_num_epochs = 0
-    opt[-1].dataset.proportion_training_set *= d
-    opt[-1].dataset.random_labels = True
+    opt[-1].dnn.name = 'MLP1'
+    opt[-1].num_data_random = num_data
+    opt[-1].log_dir_base = log_dir_stem2 + 'rand10000/'
+    opt[-1].csv_dir = csv_dir_stem2 + 'rand10000/'
     idx += 1
 
 
-for name_NN, num_layers_NN, max_epochs_NN in zip(name, num_layers, max_epochs):
-    for idx_data in range(len(training_data)):
-        for flag_random in range(2):
-            for regularizers in range(5):
-                if flag_random and regularizers > 0:
-                    continue
+for idx_data, num_data in enumerate([1e3]):
+    for optimizer in [1, 2, 5]:
+        for neuron_mult in [1, 2, 4, 8, 16]:
+            for lr in [1e0,1e-1,1e-2,1e-3,1e-4]:
+                for init_mult in [1e-2, 1e-1, 1, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7]:
+                    opt += [Experiments(idx, "MLP" + '_seed=' + str(master_seed))]
+                    opt[-1].dataset.dataset_name = 'rand10'
+                    opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10[idx_data]])
+                    opt[-1].hyper.max_num_epochs = 50
+                    opt[-1].dnn.name = 'MLP1'
+                    opt[-1].dnn.layers = 2
+                    opt[-1].num_data_random = num_data
 
-                # Change number neurons for each layer
-                for multiplier in neuron_multiplier:
-                    opt += [Experiments(idx, name_NN + "_layers_all_" +
-                                    str(multiplier) + "_" + str(regularizers) + "_" + str(idx_data))]
-
-                    ###ASDAAD
-                    #ASDASDAS
-                    #opt[-1].restart = True
-                    opt[-1].hyper.learning_rate = 1e-3
-                    opt[-1].hyper.batch_size = 4
-
-                    opt[-1].hyper.max_num_epochs = 100*max_epochs_NN
-                    opt[-1].dnn.name = name_NN
-                    opt[-1].dnn.set_num_layers(num_layers_NN)
-                    opt[-1].dnn.neuron_multiplier.fill(multiplier)
-
-                    if flag_random == 0:
-                        opt[-1].dataset.reuse_tfrecords(opt[idx_training_data])
-                        opt[-1].dataset.proportion_training_set *= training_data[idx_data]
-                        opt[-1].hyper.max_num_epochs = int(max_epochs_NN / training_data[idx_data])
-                        opt[-1].hyper.num_epochs_per_decay = \
-                            int(opt[-1].hyper.num_epochs_per_decay / training_data[idx_data])
-
-                    elif flag_random == 1:
-                        opt[-1].dataset.reuse_tfrecords(opt[idx_base_random])
-                        opt[-1].dataset.random_labels = True
-                        opt[-1].dataset.proportion_training_set *= training_data[idx_data]
-                        opt[-1].hyper.max_num_epochs = int(max_epochs_NN * 10 / training_data[idx_data])
-                        opt[-1].hyper.num_epochs_per_decay = int(opt[-1].hyper.num_epochs_per_decay  / training_data[idx_data])
-
-
-                    # SKIP#SKIP#SKIP#SKIP#SKIP#SKIP
-                    #if regularizers > 0:
-                    #    opt[-1].skip = True
-
-                    if regularizers == 1:
-                        opt[-1].hyper.augmentation = True
-                        opt[-1].hyper.max_num_epochs *= int(2)
-                    elif regularizers == 2:
-                        opt[-1].hyper.drop_train = 0.5
-                    elif regularizers == 3:
-                        opt[-1].hyper.weight_decay = 0.001
-                    elif regularizers == 4:
-                        opt[-1].hyper.augmentation = True
-                        opt[-1].hyper.max_num_epochs *= int(2)
-                        opt[-1].hyper.drop_train = 0.5
-                        opt[-1].hyper.weight_decay = 0.001
+                    opt[-1].hyper.learning_rate = lr
+                    opt[-1].optimizer = optimizer
+                    opt[-1].hyper.init_factor = init_mult
+                    opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
+                    opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                    opt[-1].log_dir_base = log_dir_stem2 + 'rand10/'
+                    opt[-1].csv_dir = csv_dir_stem2 + 'rand10/'
                     idx += 1
 
+        for neuron_mult in [1, 2, 4, 8, 16]:
+            for lr in [1e0,1e-1,1e-2,1e-3,1e-4]:
+                for init_mult in [1e-2, 1e-1, 1, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7]:
+                    opt += [Experiments(idx, "MLP10K" + '_seed=' + str(master_seed))]
+                    opt[-1].dataset.dataset_name = 'rand10000'
+                    opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10000[idx_data]])
+                    opt[-1].hyper.max_num_epochs = 50
+                    opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
+                    opt[-1].dnn.name = 'MLP1'
+                    opt[-1].dnn.layers = 2
+                    opt[-1].num_data_random = num_data
+                    opt[-1].hyper.init_factor = init_mult
+                    opt[-1].hyper.learning_rate = lr
+                    opt[-1].optimizer = optimizer
+                    opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                    opt[-1].log_dir_base = log_dir_stem2 + 'rand10000/'
+                    opt[-1].csv_dir = csv_dir_stem2 + 'rand10000/'
+                    idx += 1
+
+for idx_data, num_data in enumerate([1e4,1e5]):
+    for neuron_mult in [1, 2, 4, 8, 16]:
+        for lr in [1e0,1e-1,1e-2,1e-3,1e-4]:
+            for init_mult in [1e-2, 1e-1, 1, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7]:
+                opt += [Experiments(idx, "MLP" + '_seed=' + str(master_seed))]
+                opt[-1].dataset.dataset_name = 'rand10'
+                opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10[idx_data+1]])
+                opt[-1].hyper.max_num_epochs = 50
+                opt[-1].dnn.name = 'MLP1'
+                opt[-1].dnn.layers = 2
+                opt[-1].num_data_random = num_data
+                opt[-1].hyper.learning_rate = lr
+                opt[-1].hyper.init_factor = init_mult
+                opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
+                opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                opt[-1].log_dir_base = log_dir_stem2 + 'rand10/'
+                opt[-1].csv_dir = csv_dir_stem2 + 'rand10/'
+                idx += 1
+
+    for neuron_mult in [1, 2, 4, 8, 16]:
+        for lr in [1e0,1e-1,1e-2,1e-3,1e-4]:
+            for init_mult in [1e-2, 1e-1, 1, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7]:
+                opt += [Experiments(idx, "MLP10K" + '_seed=' + str(master_seed))]
+                opt[-1].dataset.dataset_name = 'rand10000'
+                opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10000[idx_data+1]])
+                opt[-1].hyper.max_num_epochs = 50
+                opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
+                opt[-1].dnn.name = 'MLP1'
+                opt[-1].dnn.layers = 2
+                opt[-1].num_data_random = num_data
+                opt[-1].hyper.init_factor = init_mult
+                opt[-1].hyper.learning_rate = lr
+                opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                opt[-1].log_dir_base = log_dir_stem2 + 'rand10000/'
+                opt[-1].csv_dir = csv_dir_stem2 + 'rand10000/'
+                idx += 1
+
+for idx_data, num_data in enumerate([1e3]):
+    for optimizer in [0]:
+        for neuron_mult in [1, 2, 4, 8, 16]:
+            for lr in [1e0,1e-1,1e-2,1e-3,1e-4]:
+                for init_mult in [1e-2, 1e-1, 1, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7]:
+                    opt += [Experiments(idx, "MLP" + '_seed=' + str(master_seed))]
+                    opt[-1].dataset.dataset_name = 'rand10'
+                    opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10[idx_data]])
+                    opt[-1].hyper.max_num_epochs = 50
+                    opt[-1].dnn.name = 'MLP1'
+                    opt[-1].dnn.layers = 2
+                    opt[-1].num_data_random = num_data
+
+                    opt[-1].hyper.learning_rate = lr
+                    opt[-1].optimizer = optimizer
+                    opt[-1].hyper.init_factor = init_mult
+                    opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
+                    opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                    opt[-1].log_dir_base = log_dir_stem2 + 'rand10/'
+                    opt[-1].csv_dir = csv_dir_stem2 + 'rand10/'
+                    idx += 1
+
+        for neuron_mult in [1, 2, 4, 8, 16]:
+            for lr in [1e0,1e-1,1e-2,1e-3,1e-4]:
+                for init_mult in [1e-2, 1e-1, 1, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7]:
+                    opt += [Experiments(idx, "MLP10K" + '_seed=' + str(master_seed))]
+                    opt[-1].dataset.dataset_name = 'rand10000'
+                    opt[-1].dataset.reuse_tfrecords(opt[idx_rand_10000[idx_data]])
+                    opt[-1].hyper.max_num_epochs = 50
+                    opt[-1].max_to_keep_checkpoints = opt[-1].hyper.max_num_epochs
+                    opt[-1].dnn.name = 'MLP1'
+                    opt[-1].dnn.layers = 2
+                    opt[-1].num_data_random = num_data
+                    opt[-1].hyper.init_factor = init_mult
+                    opt[-1].hyper.learning_rate = lr
+                    opt[-1].optimizer = optimizer
+                    opt[-1].dnn.neuron_multiplier.fill(neuron_mult)
+                    opt[-1].log_dir_base = log_dir_stem2 + 'rand10000/'
+                    opt[-1].csv_dir = csv_dir_stem2 + 'rand10000/'
+                    idx += 1
+
+
+
+def write_lookup_file():
+    with open('experiment_lookup.txt', 'w') as f:
+        for i in range(len(opt)):
+            f.write(str(i) + '\n')
+            f.write(opt[i].name + '\n')
+            f.write('\n')
+
+
+if __name__ == '__main__':
+    write_lookup_file()

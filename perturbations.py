@@ -1,5 +1,4 @@
 import numbers
-
 import numpy as np
 import tensorflow as tf
 # from tensorflow.python.eager import context
@@ -7,7 +6,8 @@ from tensorflow.python.framework import ops, tensor_shape, tensor_util
 from tensorflow.python.ops import array_ops, random_ops, math_ops
 
 
-def unscaled_dropout(x, keep_prob, noise_shape=None, seed=None, name=None):  # from tensorflow/pyton/ops/nn_ops/dropout
+# from tensorflow/pyton/ops/nn_ops/dropout
+def unscaled_dropout(x, keep_prob, noise_shape=None, seed=None, name=None):
     """Computes dropout where the output is not scaled by the dropout.
 
     With probability `keep_prob`, outputs the input element scaled up by
@@ -29,7 +29,7 @@ def unscaled_dropout(x, keep_prob, noise_shape=None, seed=None, name=None):  # f
       noise_shape: A 1-D `Tensor` of type `int32`, representing the
         shape for randomly generated keep/drop flags.
       seed: A Python integer. Used to create random seeds. See
-        @{tf.set_random_seed}
+        @{tf.compat.v1.set_random_seed}
         for behavior.
       name: A name for this operation (optional).
 
@@ -43,14 +43,10 @@ def unscaled_dropout(x, keep_prob, noise_shape=None, seed=None, name=None):  # f
     with ops.name_scope(name, "unscaled_dropout", [x]) as name:
         x = ops.convert_to_tensor(x, name="x")
         if not x.dtype.is_floating:
-            raise ValueError("x has to be a floating point tensor since it's going to"
-                             " be scaled. Got a %s tensor instead." % x.dtype)
+            raise ValueError("x must be float tensor since it will be scaled. Got a %s tensor instead." % x.dtype)
         if isinstance(keep_prob, numbers.Real) and not 0 < keep_prob <= 1:
-            raise ValueError("keep_prob must be a scalar tensor or a float in the "
-                             "range (0, 1], got %g" % keep_prob)
-        keep_prob = ops.convert_to_tensor(keep_prob,
-                                          dtype=x.dtype,
-                                          name="keep_prob")
+            raise ValueError("keep_prob must be a scalar tensor or a float in range (0, 1], got %g" % keep_prob)
+        keep_prob = ops.convert_to_tensor(keep_prob, dtype=x.dtype, name="keep_prob")
         keep_prob.get_shape().assert_is_compatible_with(tensor_shape.scalar())
 
         # Do nothing if we know keep_prob == 1
@@ -60,9 +56,7 @@ def unscaled_dropout(x, keep_prob, noise_shape=None, seed=None, name=None):  # f
         noise_shape = noise_shape if noise_shape is not None else array_ops.shape(x)
         # uniform [keep_prob, 1.0 + keep_prob)
         random_tensor = keep_prob
-        random_tensor += random_ops.random_uniform(noise_shape,
-                                                   seed=seed,
-                                                   dtype=x.dtype)
+        random_tensor += random_ops.random_uniform(noise_shape, seed=seed, dtype=x.dtype)
         # 0. if [keep_prob, 1.0) and 1. if [1.0, 1.0 + keep_prob)
         binary_tensor = math_ops.floor(random_tensor)
         ret = x * binary_tensor
@@ -71,7 +65,8 @@ def unscaled_dropout(x, keep_prob, noise_shape=None, seed=None, name=None):  # f
         return ret
 
 
-def unscaled_dropout_mask(x, keep_prob, mask, noise_shape=None, seed=None, name=None):  # from tensorflow/pyton/ops/nn_ops/dropout
+# from tensorflow/pyton/ops/nn_ops/dropout
+def unscaled_dropout_mask(x, keep_prob, mask, noise_shape=None, seed=None, name=None):
     """Computes dropout where the output is not scaled by the dropout.
 
     With probability `keep_prob`, outputs the input element scaled up by
@@ -93,7 +88,7 @@ def unscaled_dropout_mask(x, keep_prob, mask, noise_shape=None, seed=None, name=
       noise_shape: A 1-D `Tensor` of type `int32`, representing the
         shape for randomly generated keep/drop flags.
       seed: A Python integer. Used to create random seeds. See
-        @{tf.set_random_seed}
+        @{tf.compat.v1.set_random_seed}
         for behavior.
       name: A name for this operation (optional).
 
@@ -107,17 +102,11 @@ def unscaled_dropout_mask(x, keep_prob, mask, noise_shape=None, seed=None, name=
     with ops.name_scope(name, "unscaled_dropout", [x]) as name:
         x = ops.convert_to_tensor(x, name="x")
         if not x.dtype.is_floating:
-            raise ValueError("x has to be a floating point tensor since it's going to"
-                             " be scaled. Got a %s tensor instead." % x.dtype)
+            raise ValueError("x must be float tensor since it will be scaled. Got a %s tensor instead." % x.dtype)
         if isinstance(keep_prob, numbers.Real) and not 0 < keep_prob <= 1:
-            raise ValueError("keep_prob must be a scalar tensor or a float in the "
-                             "range (0, 1], got %g" % keep_prob)
-        keep_prob = ops.convert_to_tensor(keep_prob,
-                                          dtype=x.dtype,
-                                          name="keep_prob")
-        mask = ops.convert_to_tensor(mask,
-                                          dtype=x.dtype,
-                                          name="mask")
+            raise ValueError("keep_prob must be a scalar tensor or a float in range (0, 1], got %g" % keep_prob)
+        keep_prob = ops.convert_to_tensor(keep_prob, dtype=x.dtype, name="keep_prob")
+        mask = ops.convert_to_tensor(mask, dtype=x.dtype, name="mask")
         keep_prob.get_shape().assert_is_compatible_with(tensor_shape.scalar())
 
         # Do nothing if we know keep_prob == 1
@@ -127,9 +116,7 @@ def unscaled_dropout_mask(x, keep_prob, mask, noise_shape=None, seed=None, name=
         noise_shape = noise_shape if noise_shape is not None else array_ops.shape(x)
         # uniform [keep_prob, 1.0 + keep_prob)
         random_tensor = keep_prob
-        random_tensor += random_ops.random_uniform(noise_shape,
-                                                   seed=seed,
-                                                   dtype=x.dtype)
+        random_tensor += random_ops.random_uniform(noise_shape, seed=seed, dtype=x.dtype)
         # 0. if [keep_prob, 1.0) and 1. if [1.0, 1.0 + keep_prob)
         binary_tensor = math_ops.floor(random_tensor)
         binary_tensor = binary_tensor * mask + (1.0 - mask)
@@ -154,9 +141,7 @@ def activation_knockout_compensated(x, knockout_prob):
 def activation_noise(x, variance_proportion, batch_size, variance_excluded_axes=(0,), seed=None, name=None):
     with ops.name_scope(name, "activation-gaussian_noise", [x]) as name:
         x = ops.convert_to_tensor(x, name="x")
-        variance_proportion = ops.convert_to_tensor(variance_proportion,
-                                                    dtype=x.dtype,
-                                                    name="variance_proportion")
+        variance_proportion = ops.convert_to_tensor(variance_proportion, dtype=x.dtype, name="variance_proportion")
         # Do nothing if we know variance_proportion == 0
         if tensor_util.constant_value(variance_proportion) == 0:
             return x
@@ -168,7 +153,7 @@ def activation_noise(x, variance_proportion, batch_size, variance_excluded_axes=
         variance_axes = list(variance_axes)
         _, gaussian_variance = tf.nn.moments(x, axes=variance_axes)
         gaussian_stddev = tf.sqrt(gaussian_variance)
-        gaussian_stddev = variance_proportion * gaussian_stddev
+        gaussian_stddev *= variance_proportion
 
         if len(variance_excluded_axes) == 0:  # if no axes are excluded, we have to make stddev into 1D
             gaussian_stddev = tf.expand_dims(gaussian_stddev, axis=0)

@@ -40,6 +40,11 @@ class Cifar10(dataset.Dataset):
         perm_x = (perm / 32).astype("uint8")
         perm_y = (perm % 32).astype("uint8")
 
+        train_addrs = []
+        train_labels = []
+        val_addrs = []
+        val_labels = []
+
         file_names = glob.glob(self.opt.dataset.dataset_path + "*_batch_*")
         for l in file_names:
             d = self.__unpickle(l)
@@ -53,12 +58,6 @@ class Cifar10(dataset.Dataset):
                 [labels.append(l) for l in tmp['labels']]
             else:
                 [labels.append(randint(0, 9)) for l in tmp['labels']]
-
-
-            train_addrs = []
-            train_labels = []
-            val_addrs = []
-            val_labels = []
 
             # Divide the data into 95% train, 5% validation
             [train_addrs.append(elem) for elem in addrs[0:int(self.opt.dataset.proportion_training_set * len(addrs))]]
@@ -87,39 +86,54 @@ class Cifar10(dataset.Dataset):
             X = X.transpose(0, 2, 3, 1)
 
             [test_addrs.append(l) for l in X]
-            if not self.opt.dataset.random_labels:
-                [test_labels.append(l) for l in tmp['labels']]
-            else:
-                [test_labels.append(randint(0, 9)) for l in tmp['labels']]
+            [test_labels.append(l) for l in tmp['labels']]
+
+            # if not self.opt.dataset.random_labels:
+            #     [test_labels.append(l) for l in tmp['labels']]
+            # else:
+            #     [test_labels.append(randint(0, 9)) for l in tmp['labels']]
 
         return test_addrs, test_labels
 
     def preprocess_image(self, augmentation, standarization, image):
-        if augmentation:
-            # Randomly crop a [height, width] section of the image.
-            distorted_image = tf.random_crop(image, [self.opt.hyper.crop_size, self.opt.hyper.crop_size, 3])
 
-            # Randomly flip the image horizontally.
-            distorted_image = tf.image.random_flip_left_right(distorted_image)
+        if 'ResNet_cifar' in self.opt.name:
+            if augmentation:
+                # Resize the image to add four extra pixels on each side.
+                image = tf.image.resize_with_crop_or_pad(image, self.opt.hyper.image_size + 8,
+                                                         self.opt.hyper.image_size + 8)
 
-            # Because these operations are not commutative, consider randomizing
-            # the order their operation.
-            # NOTE: since per_image_standardization zeros the mean and makes
-            # the stddev unit, this likely has no effect see tensorflow#1458.
-            distorted_image = tf.image.random_brightness(distorted_image,
-                                                         max_delta=63)
-            distorted_image = tf.image.random_contrast(distorted_image,
-                                                       lower=0.2, upper=1.8)
-        else:
+                # Randomly crop a [HEIGHT, WIDTH] section of the image.
+                image = tf.image.random_crop(image, [self.opt.hyper.image_size, self.opt.hyper.image_size, 3])
 
-            distorted_image = tf.image.resize_image_with_crop_or_pad(image,
-                                                    self.opt.hyper.crop_size, self.opt.hyper.crop_size)
+                # Randomly flip the image horizontally.
+                image = tf.image.random_flip_left_right(image)
 
-        if standarization:
             # Subtract off the mean and divide by the variance of the pixels.
-            float_image = tf.image.per_image_standardization(distorted_image)
-            float_image.set_shape([self.opt.hyper.crop_size, self.opt.hyper.crop_size, 3])
-        else:
-            float_image = distorted_image
+            image = tf.image.per_image_standardization(image)
+            return image
 
-        return float_image
+        else:  # 'Alexnet' in self.opt.name:
+            if augmentation:
+                # Randomly crop a [height, width] section of the image.
+                distorted_image = tf.random_crop(image, [self.opt.hyper.crop_size, self.opt.hyper.crop_size, 3])
+
+                # Randomly flip the image horizontally.
+                distorted_image = tf.image.random_flip_left_right(distorted_image)
+
+                # Because these operations are not commutative, consider randomizing the order their operation.
+                # NOTE: since per_image_standardization zeros the mean and makes
+                # the stddev unit, this likely has no effect see tensorflow#1458.
+                distorted_image = tf.image.random_brightness(distorted_image, max_delta=63)
+                distorted_image = tf.image.random_contrast(distorted_image, lower=0.2, upper=1.8)
+            else:
+                distorted_image = tf.image.resize_image_with_crop_or_pad(image,
+                                                        self.opt.hyper.crop_size, self.opt.hyper.crop_size)
+
+            if standarization:
+                # Subtract off the mean and divide by the variance of the pixels.
+                float_image = tf.image.per_image_standardization(distorted_image)
+                float_image.set_shape([self.opt.hyper.crop_size, self.opt.hyper.crop_size, 3])
+                return float_image
+            else:
+                return distorted_image
