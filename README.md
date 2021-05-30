@@ -52,6 +52,8 @@ After an experiment is configured, its experiment IDs is passed as a command lin
 
 ```get_activations.py``` extracts activations from networks for redundancy analysis. 
 
+```get_redundancy.py``` analyzes redundancy among units. 
+
 ```pkl2csv_robustness.py``` and ```pkl2csv_redundancy.py``` process robustness and activations data and store them in csvs which can be later accessed for plotting. 
 
 ### For ImageNet Experiments
