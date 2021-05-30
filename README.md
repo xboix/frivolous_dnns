@@ -48,11 +48,11 @@ After an experiment is configured, its experiment IDs is passed as a command lin
 
 ```train.py``` trains networks.
 
-```get_robustness.py``` along with helper functions from ```perturbations.py``` analyzes network performance under perturbations for prunability analysis. 
-
 ```get_activations.py``` extracts activations from networks for redundancy analysis. 
 
 ```get_redundancy.py``` analyzes redundancy among units. 
+
+```get_robustness.py``` along with helper functions from ```perturbations.py``` analyzes network performance under perturbations for prunability analysis. 
 
 ```pkl2csv_robustness.py``` and ```pkl2csv_redundancy.py``` process robustness and activations data and store them in csvs which can be later accessed for plotting. 
 
