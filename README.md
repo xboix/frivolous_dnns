@@ -40,6 +40,8 @@ All networks are associated with an ```Experiment``` object which specifies the 
 
 After an experiment is configured, its experiment IDs is passed as a command line argument for running experiments for training, prunability, or redundancy. 
 
+Make sure to adjust the paths in ```experiments.py``` that point to the datasets and results files.
+
 ## Running Experiments
 
 ### For Non-ImageNet Experiments
