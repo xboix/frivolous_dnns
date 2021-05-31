@@ -44,7 +44,7 @@ After an experiment is configured, its experiment IDs is passed as a command lin
 
 ### For Non-ImageNet Experiments
 
-```create_linear_dataset.py``` and the ```data/``` folder are for creating tfrecords datasets and linear datasets for simple experiments with MLPs. 
+```create_linear_dataset.py``` (change the constant DIMENSIONALITY in the code to generate the desired dataset) and the ```data/``` folder are for creating tfrecords datasets and linear datasets for simple experiments with MLPs. 
 
 ```train.py``` trains networks.
 
