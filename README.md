@@ -2,6 +2,7 @@
 
 [Paper](https://arxiv.org/abs/1912.04783) in AAAI 2021 Proceedings
 
+[![Quick video summary]](https://www.youtube.com/watch?v=1uDo-6UuW2o)
 [![Quick video summary](https://img.youtube.com/vi/1uDo-6UuW2o/0.jpg)](https://www.youtube.com/watch?v=1uDo-6UuW2o)
 
 
